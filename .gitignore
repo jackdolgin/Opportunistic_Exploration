@@ -1,0 +1,9 @@
+*.DS_Store
+*.Rproj.user
+*.Rproj.user
+*.Rhistory
+pilot_task/metaexplore_pilot_subinfo.csv
+.Rproj.user
+*.key
+database_config.php
+

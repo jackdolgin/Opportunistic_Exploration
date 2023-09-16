@@ -1,0 +1,632 @@
+---
+title: "Opportunistic Exploration — Replication Data"
+date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    df_print: paged
+    theme: united
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    toc_depth: 3
+    number_sections: false
+    code_folding: hide
+    code_download: true
+---
+
+```{css, echo=FALSE}
+body {
+  font-size: 1.6rem;
+  text-align: justify;
+}
+
+.title {
+  font-size: 47px;
+  color: firebrick;
+}
+
+h1,h2,h3,h4,h5 {
+  text-align: left;
+}
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+
+rerun_fit_models <<- "no"
+
+source(here::here("Analysis", "main_task", "packages.R"))
+library(patchwork)
+source(here::here("Analysis", "main_task", "fit.R"))
+source(here::here("Analysis", "main_task", "plotting_funcs.R"))
+
+
+# first, let's compile a df of the participants whose data passes
+# our exclusion criteria; note that unlike the `free_choices.csv` file,
+# which also prunes participants who fail to meet the exclusion
+# criteria, this df keeps forced choices, too; keeping these forced choice
+# trials will be useful for analyzing whether participants took massive breaks
+# between any trials
+
+preprocessed_df <- read_parquet(here("Data", "Main_Task", "preprocessed_df.parquet"))
+free_choice_df <<- read_csv(here("Data", "Main_Task", "free_choices.csv"))
+
+subids_with_enough_trials <- preprocessed_df %>%
+  group_by(batch) %>%
+  count(subid) %>%
+  slice_max(n) %>%
+  pull(subid)
+
+
+preprocessed_df_usable_participants_full_data_set <- preprocessed_df %>%
+  filter(
+    subid %in% subids_with_enough_trials,
+    q1 == "Not at all",
+    q2 == "Not at all",
+    q3 == "Always",
+    sub_avg_accuracy > .8
+  )
+
+participants_by_experiment_duration <-
+  preprocessed_df_usable_participants_full_data_set %>% 
+  filter(forced_choice == 0) %>%
+  group_by(subid, batch) %>%
+  summarise(
+    max_time_elapsed = max(time_elapsed_main_exp) / 60000,
+    median_choice_time = median(choice_time) / 1000
+  )
+
+trials_following_massive_delays <- 
+preprocessed_df %>%
+    filter(
+        subid %in% subids_with_enough_trials,
+        q1 == "Not at all",
+        q2 == "Not at all",
+        q3 == "Always",
+        sub_avg_accuracy > .8
+    ) %>%
+    group_by(subid, forced_choice) %>%
+    mutate(perc_mult = if_else(forced_choice == 1, NA_real_, mean(selection == "mult"))) %>%
+    group_by(subid) %>%
+    mutate(perc_mult = mean(perc_mult, na.rm = T)) %>%
+    filter(
+        between(perc_mult, .15, .85)
+    ) %>%
+    ungroup() %>%
+    mutate(choice_time = choice_time / (60 * 1000)) %>%
+    filter(choice_time > 20) %>%
+    select(subid, game_nr, trial_nr, batch, choice_time) %>%
+    arrange(subid, choice_time)
+
+pcpts_taking_massive_delays <- trials_following_massive_delays %>%
+  pull(subid) %>%
+  unique
+
+custom_compare_paired_fits <- function(pair_compairison, coef_of_interest, keep_batch,
+                                keep_separate_by_exposure,
+                                keep_iv, keep_aggregation, keep_continuum,
+                                group_1, group_2, group_1_exposure,
+                                group_2_exposure, min_duration, max_duration,
+                                type_of_test, run_test = T,
+                                pcpts_to_exclude = c()){
+  
+  paired_fits <- load_paired_fits(
+    keep_batch, keep_separate_by_exposure, keep_iv,
+    keep_aggregation, keep_continuum, group_1, group_2, group_1_exposure,
+    group_2_exposure
+  ) %>%
+    filter(!subid %in% pcpts_to_exclude) %>%
+    arrange(subid, free_choice_label) %>%
+    left_join(participants_by_experiment_duration) %>%
+    filter(max_time_elapsed >= min_duration, max_time_elapsed <= max_duration)
+  
+  n_participants <- n_distinct(paired_fits$subid)
+  
+  if (run_test){
+    exec(
+      type_of_test,
+      paired_fits %>%
+        filter(free_choice_label == group_1) %>%
+        pull(!!coef_of_interest),
+      paired_fits %>%
+        filter(free_choice_label == group_2) %>%
+        pull(!!coef_of_interest),
+      paired = T,
+      alternative = pair_compairison
+    ) %>%
+      broom::tidy() %>%
+      mutate(num_participants = n_participants)
+  } else{
+    pivot_wider(
+      paired_fits,
+      id = c(
+        batch, subid, free_choice_trial, equal_exposure, separate_by_exposure,
+        iv, aggregation, continuum, max_time_elapsed, median_choice_time
+      ),
+      names_from = horizon_type,
+      values_from = c(
+        horizon, free_choice_label, total_mult_chosen, total_trials, data, 
+        temp_coef, difficulty_coef, side_coef, information_coef
+      )
+    )
+  }
+
+}
+
+```
+
+### The model we are using to fit the data
+
+
+$$
+p_{mult} = \frac{1}{1 + exp(\frac{R_{mult} - R_{add} + \alpha(I_{mult} - I_{add}) + D(M_{add} - M_{mult}) + B}{\sqrt2\sigma})}
+$$
+
+### Are the coefficients significantly different between the short and long horizons?
+```{r main_test_of_coefficients}
+
+map2_dfr(
+  c("greater", "less", "less"),
+  c("difficulty", "information", "temp"),
+  ~custom_compare_paired_fits(
+  .x, paste0(.y, "_coef"), "replication", F, "rt", "percentile",
+  "continuous", "Short horizon, free choice 1", "Long horizon, free choice 1",
+  F, F, 0, Inf, "t.test"
+  ) %>%
+    mutate(coefficient = .y) %>%
+    select(coefficient, estimate, statistic, p.value)
+)
+
+```
+
+### Coefficient estimates for long vs. short horizons for exploratory and replication data
+
+```{r visualize coefficients, fig.width=10, fig.height=15}
+
+
+map(
+  c("difficulty", "information", "temp"),
+  ~{
+    
+    my_aggregation = "percentile"
+    my_coef = paste0(.x, "_coef")
+    my_iv = "rt"
+
+exploratory_short <- here("Analysis", "main_task", "fits.rds") %>%
+  read_rds() %>%
+  filter(
+    batch == "exploratory",
+    separate_by_exposure == F,
+    iv == my_iv,
+    aggregation == my_aggregation,
+    continuum == "continuous",
+    (free_choice_label == "Short horizon, free choice 1" & equal_exposure == F) |
+      (free_choice_label == "Long horizon, free choice 1" & equal_exposure == F)
+  ) %>%
+  group_by(subid) %>%
+  filter(
+    min(total_mult_chosen) >= 3,
+    max(total_trials - total_mult_chosen) >= 3
+  ) %>%
+  ungroup() %>%
+  mutate(across(c(free_choice_trial), as_factor)) %>%
+  arrange(subid, free_choice_label) %>%
+  filter(free_choice_label == "Short horizon, free choice 1") %>%
+  pull(!!my_coef)
+
+exploratory_long <- here("Analysis", "main_task", "fits.rds") %>%
+  read_rds() %>%
+  filter(
+    batch == "exploratory",
+    separate_by_exposure == F,
+    iv == my_iv,
+    aggregation == my_aggregation,
+    continuum == "continuous",
+    (free_choice_label == "Short horizon, free choice 1" & equal_exposure == F) |
+      (free_choice_label == "Long horizon, free choice 1" & equal_exposure == F)
+  ) %>%
+  group_by(subid) %>%
+  filter(
+    min(total_mult_chosen) >= 3,
+    max(total_trials - total_mult_chosen) >= 3
+  ) %>%
+  ungroup() %>%
+  mutate(across(c(free_choice_trial), as_factor)) %>%
+  arrange(subid, free_choice_label) %>%
+  filter(free_choice_label == "Long horizon, free choice 1") %>%
+  pull(!!my_coef)
+
+replication_short <- here("Analysis", "main_task", "fits.rds") %>%
+  read_rds() %>%
+  filter(
+    batch == "replication",
+    separate_by_exposure == F,
+    iv == my_iv,
+    aggregation == my_aggregation,
+    continuum == "continuous",
+    (free_choice_label == "Short horizon, free choice 1" & equal_exposure == F) |
+      (free_choice_label == "Long horizon, free choice 1" & equal_exposure == F)
+  ) %>%
+  group_by(subid) %>%
+  filter(
+    min(total_mult_chosen) >= 3,
+    max(total_trials - total_mult_chosen) >= 3
+  ) %>%
+  ungroup() %>%
+  mutate(across(c(free_choice_trial), as_factor)) %>%
+  arrange(subid, free_choice_label) %>%
+  filter(free_choice_label == "Short horizon, free choice 1") %>%
+  pull(!!my_coef)
+
+
+replication_long <- here("Analysis", "main_task", "fits.rds") %>%
+  read_rds() %>%
+  filter(
+    batch == "replication",
+    separate_by_exposure == F,
+    iv == my_iv,
+    aggregation == my_aggregation,
+    continuum == "continuous",
+    (free_choice_label == "Short horizon, free choice 1" & equal_exposure == F) |
+      (free_choice_label == "Long horizon, free choice 1" & equal_exposure == F)
+  ) %>%
+  group_by(subid) %>%
+  filter(
+    min(total_mult_chosen) >= 3,
+    max(total_trials - total_mult_chosen) >= 3
+  ) %>%
+  ungroup() %>%
+  mutate(across(c(free_choice_trial), as_factor)) %>%
+  arrange(subid, free_choice_label) %>%
+  filter(free_choice_label == "Long horizon, free choice 1") %>%
+  pull(!!my_coef)
+
+
+bind_rows(
+  tibble(
+    x = "exploratory_short",
+    y = exploratory_short
+  ),
+  
+  tibble(
+    x = "exploratory_long",
+    y = exploratory_long
+  ),
+  
+  tibble(
+    x = "replication_short",
+    y = replication_short
+  ),
+  
+  tibble(
+    x = "replication_long",
+    y = replication_long
+  )
+) %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_violin() +
+  geom_jitter(width =.1) +
+  geom_boxplot(width = .1, outlier.shape = NA) +
+  theme(legend.position = "none") +
+  labs(
+    title = .x,
+    x = "",
+    y = "Coefficent Estimate per Participant"
+  )
+  }
+) %>%
+  reduce(`/`)
+
+
+```
+
+
+
+```{r, analysis_combos_df, rows.print=50}
+
+analysis_combos <- expand.grid(
+  pair_compairison = c("greater", "less"),
+  coef_of_interest = c("difficulty_coef", "information_coef", "temp_coef"),
+  keep_batch = c("exploratory", "replication"),
+  keep_separate_by_exposure = F,
+  keep_iv = c("rt", "difficulty"),
+  keep_aggregation = c("raw", "percentile"),
+  keep_continuum = "continuous",
+  group_1 = "Short horizon, free choice 1",
+  group_2 = "Long horizon, free choice 1",
+  min_duration = c(0),
+  max_duration = c(Inf),
+  type_of_test = c("t.test", "wilcox.test")
+) %>%
+  mutate(
+    group_1_exposure = keep_separate_by_exposure,
+    group_2_exposure = keep_separate_by_exposure
+  ) %>%
+  filter(max_duration > min_duration) %>%
+  filter(
+    (coef_of_interest == "difficulty_coef" &  pair_compairison == "greater") |
+      coef_of_interest != "difficulty_coef" & pair_compairison == "less") %>%
+  relocate(type_of_test, .after = last_col()) %>%
+  mutate(across(where(is.factor), as.character))
+
+map_dfr(1:nrow(analysis_combos), ~{
+  arow <- analysis_combos %>% filter(row_number() == .x)
+  
+  brow <- custom_compare_paired_fits(
+    arow$pair_compairison, arow$coef_of_interest, arow$keep_batch,
+    arow$keep_separate_by_exposure, arow$keep_iv, arow$keep_aggregation,
+    arow$keep_continuum, arow$group_1, arow$group_2, arow$group_1_exposure,
+    arow$group_2_exposure, arow$min_duration, arow$max_duration,
+    arow$type_of_test
+  )
+  
+  bind_cols(arow, brow)
+  
+}) %>%
+  arrange(coef_of_interest, keep_batch, -p.value) %>%
+  mutate(across(p.value, ~insight::format_p(.x))) %>%
+  select(coef_of_interest, keep_batch, p.value, keep_iv, keep_aggregation, type_of_test) %>%
+  rename_with(~str_replace_all(.x, "keep_", " "), starts_with("keep_"))
+
+```
+
+
+## Maybe we should be more vigilant of how long tasks are taking participants?
+
+### It doesn't appear that participants who finish the task quickly are particularly driving the null results (i.e., their coefficient isn't particulaly large).
+```{r, fig.width=10, fig.height=15}
+
+map(
+    c("max_time_elapsed", "median_choice_time"),
+    function(desired_x_axis){
+        map(c("exploratory", "replication"), ~
+                custom_compare_paired_fits(
+                    "greater", "difficulty_coef", .x, F, "rt", "percentile",
+                    "continuous", "Short horizon, free choice 1", "Long horizon, free choice 1",
+                    F, F, 0, Inf, "t.test", F
+                ) %>%
+                mutate(difficulty_coef_diff = difficulty_coef_Long - difficulty_coef_Short) %>%
+                filter(max_time_elapsed < 100) %>%
+                ggplot(aes(!!sym(desired_x_axis), difficulty_coef_diff)) +
+                geom_smooth() +
+                geom_point() +
+                labs(
+                    title = paste(
+                        .x,
+                        "batch,",
+                        ifelse(
+                            desired_x_axis == "max_time_elapsed",
+                            "experiment duration (including instrc)",
+                            "average free choice RT"
+                        )
+                        ),
+                    x = ifelse(
+                            desired_x_axis == "max_time_elapsed",
+                            "Minutes taken to go through entire task",
+                            "Average time to make a free choice (in seconds)"
+                        ),
+                    y = "Difficulty Coefficient"
+                )
+        ) %>%
+            reduce(`/`)
+    }
+) %>% reduce(`|`)
+
+
+```
+
+
+### Average amount of time spent on a free choice, over the course of the task (excluding 32 trials that lasted longer than 2 minutes)
+```{r task_quickness_over_course_of_experiment}
+
+free_choice_df %>%
+  mutate(choice_time = choice_time / (60 * 1000)) %>%
+  filter(choice_time < 2) %>%
+  ggplot(aes(overall_trial, choice_time)) +
+  geom_smooth()
+
+```
+
+
+### Some participants took a massive amount of time (breaks) to complete some of the trials
+```{r long_breaks, rows.print=50}
+
+trials_following_massive_delays
+```
+
+### But modeling the results without these participants doesn't make our results any more significant
+
+```{r results_arent_better_if_we_discard_participants_who_break}
+
+custom_compare_paired_fits(
+                    "greater", "difficulty_coef", "replication", F, "rt", "percentile",
+                    "continuous", "Short horizon, free choice 1", "Long horizon, free choice 1",
+                    F, F, 0, Inf, "t.test", T, pcpts_taking_massive_delays
+                ) %>%
+  pull(p.value)
+```
+
+### However, if we keep the data from all participants and filter each of these participants by how far along they were in the task, the replication data look more promising
+
+```{r adssa}
+
+tribble(
+  ~"First_x_Trials", ~"Exploratory", ~"Replication",
+  20,                0.05671,        0.4849,
+  40,                1.053e-05,      0.002351,
+  60,                2.019e-05,      0.03906,
+  80,                2.729e-07,      0.05509
+)
+```
+
+## Choice Curves (for replication data)
+
+### How much harder mult is than add side and likelihood of choosing mult
+
+Difficulty is measured here by raw baseline RT
+
+```{r fig.width=10}
+
+input <- list()
+
+input$batch_choice_curve <- "replication"   # "exploratory" "replication"
+input$y_var_choice_curve <- "mult" # accuracy bigger_rand bigger_side bigger_rew_exposed_cum_mean bigger_rew_exposed_cum_count bigger_rew_latent bigger_rew_exposed_cum_sd
+input$x_raw_or_percent <- "raw" # raw percent
+input$choice_combos_choice_curve <- c("Long horizon, free choice 1", "Short horizon, free choice 1") # "Short horizon, free choice 1" "Long horizon, free choice 1"  "Long horizon, free choice 2"  "Long horizon, free choice 3"  "Long horizon, free choice 4"  "Long horizon, free choice 5"
+input$x_comparison_group <- "mult" # rew_exposed_cum_sd rew_exposed_cum_mean rew_latent side rand
+input$x_comparison_dimension <- "rt" # rew_exposed_cum_mean rew_latent difficulty rand rew_exposed_cum_sd
+input$show_CI_choice_curve <- T # F
+
+choice_and_learning_plots("choice_curve")
+```
+
+Difficulty is measured here by raw baseline self-rated difficulty
+
+```{r fig.width=10}
+
+input$batch_choice_curve <- "replication"   # "exploratory" "replication"
+input$y_var_choice_curve <- "mult" # accuracy bigger_rand bigger_side bigger_rew_exposed_cum_mean bigger_rew_exposed_cum_count bigger_rew_latent bigger_rew_exposed_cum_sd
+input$x_raw_or_percent <- "raw" # raw percent
+input$choice_combos_choice_curve <- c("Long horizon, free choice 1", "Short horizon, free choice 1") # "Short horizon, free choice 1" "Long horizon, free choice 1"  "Long horizon, free choice 2"  "Long horizon, free choice 3"  "Long horizon, free choice 4"  "Long horizon, free choice 5"
+input$x_comparison_group <- "mult" # rew_exposed_cum_sd rew_exposed_cum_mean rew_latent side rand
+input$x_comparison_dimension <- "difficulty" # rew_exposed_cum_mean rew_latent difficulty rand rew_exposed_cum_sd
+input$show_CI_choice_curve <- T # F
+
+choice_and_learning_plots("choice_curve")
+```
+
+
+### Next two plots are same as previous two, except difficulty has been scaled between 1-100 rather than being in raw units
+
+Difficulty is measured here by scaled baseline RT
+
+```{r fig.width=10}
+
+input$batch_choice_curve <- "replication"   # "exploratory" "replication"
+input$y_var_choice_curve <- "mult" # accuracy bigger_rand bigger_side bigger_rew_exposed_cum_mean bigger_rew_exposed_cum_count bigger_rew_latent bigger_rew_exposed_cum_sd
+input$x_raw_or_percent <- "percent" # raw percent
+input$choice_combos_choice_curve <- c("Long horizon, free choice 1", "Short horizon, free choice 1") # "Short horizon, free choice 1" "Long horizon, free choice 1"  "Long horizon, free choice 2"  "Long horizon, free choice 3"  "Long horizon, free choice 4"  "Long horizon, free choice 5"
+input$x_comparison_group <- "mult" # rew_exposed_cum_sd rew_exposed_cum_mean rew_latent side rand
+input$x_comparison_dimension <- "rt" # rew_exposed_cum_mean rew_latent difficulty rand rew_exposed_cum_sd
+input$show_CI_choice_curve <- T # F
+
+choice_and_learning_plots("choice_curve")
+```
+
+Difficulty is measured here by scaled baseline self-rated difficulty
+
+```{r fig.width=10}
+
+input$batch_choice_curve <- "replication"   # "exploratory" "replication"
+input$y_var_choice_curve <- "mult" # accuracy bigger_rand bigger_side bigger_rew_exposed_cum_mean bigger_rew_exposed_cum_count bigger_rew_latent bigger_rew_exposed_cum_sd
+input$x_raw_or_percent <- "percent" # raw percent
+input$choice_combos_choice_curve <- c("Long horizon, free choice 1", "Short horizon, free choice 1") # "Short horizon, free choice 1" "Long horizon, free choice 1"  "Long horizon, free choice 2"  "Long horizon, free choice 3"  "Long horizon, free choice 4"  "Long horizon, free choice 5"
+input$x_comparison_group <- "mult" # rew_exposed_cum_sd rew_exposed_cum_mean rew_latent side rand
+input$x_comparison_dimension <- "difficulty" # rew_exposed_cum_mean rew_latent difficulty rand rew_exposed_cum_sd
+input$show_CI_choice_curve <- T # F
+
+choice_and_learning_plots("choice_curve")
+```
+
+
+### Probability of choosing mult based on how much more or less rewarding (in points) it's been, compared to addition side
+
+```{r fig.width=10}
+
+input$batch_choice_curve <- "replication"   # "exploratory" "replication"
+input$y_var_choice_curve <- "mult" # mult accuracy bigger_rand bigger_side bigger_rew_exposed_cum_mean bigger_rew_exposed_cum_count bigger_rew_latent bigger_rew_exposed_cum_sd
+input$x_raw_or_percent <- "raw" # raw percent
+input$choice_combos_choice_curve <- c("Long horizon, free choice 1", "Short horizon, free choice 1") # "Short horizon, free choice 1" "Long horizon, free choice 1"  "Long horizon, free choice 2"  "Long horizon, free choice 3"  "Long horizon, free choice 4"  "Long horizon, free choice 5"
+input$x_comparison_group <- "mult" # mult rew_exposed_cum_sd rew_exposed_cum_mean rew_latent side rand
+input$x_comparison_dimension <- "rew_exposed_cum_mean" # rt rew_exposed_cum_mean rew_latent difficulty rand rew_exposed_cum_sd
+input$show_CI_choice_curve <- T # T F
+choice_and_learning_plots("choice_curve")
+```
+
+
+## Choice Curves (for exploratory data)
+
+### How much harder mult is than add side and likelihood of choosing mult
+
+Difficulty is measured here by raw baseline RT
+
+```{r fig.width=10}
+
+input <- list()
+
+input$batch_choice_curve <- "exploratory"   # "exploratory" "replication"
+input$y_var_choice_curve <- "mult" # accuracy bigger_rand bigger_side bigger_rew_exposed_cum_mean bigger_rew_exposed_cum_count bigger_rew_latent bigger_rew_exposed_cum_sd
+input$x_raw_or_percent <- "raw" # raw percent
+input$choice_combos_choice_curve <- c("Long horizon, free choice 1", "Short horizon, free choice 1") # "Short horizon, free choice 1" "Long horizon, free choice 1"  "Long horizon, free choice 2"  "Long horizon, free choice 3"  "Long horizon, free choice 4"  "Long horizon, free choice 5"
+input$x_comparison_group <- "mult" # rew_exposed_cum_sd rew_exposed_cum_mean rew_latent side rand
+input$x_comparison_dimension <- "rt" # rew_exposed_cum_mean rew_latent difficulty rand rew_exposed_cum_sd
+input$show_CI_choice_curve <- T # F
+
+choice_and_learning_plots("choice_curve")
+```
+
+Difficulty is measured here by raw baseline self-rated difficulty
+
+```{r fig.width=10}
+
+input$batch_choice_curve <- "exploratory"   # "exploratory" "replication"
+input$y_var_choice_curve <- "mult" # accuracy bigger_rand bigger_side bigger_rew_exposed_cum_mean bigger_rew_exposed_cum_count bigger_rew_latent bigger_rew_exposed_cum_sd
+input$x_raw_or_percent <- "raw" # raw percent
+input$choice_combos_choice_curve <- c("Long horizon, free choice 1", "Short horizon, free choice 1") # "Short horizon, free choice 1" "Long horizon, free choice 1"  "Long horizon, free choice 2"  "Long horizon, free choice 3"  "Long horizon, free choice 4"  "Long horizon, free choice 5"
+input$x_comparison_group <- "mult" # rew_exposed_cum_sd rew_exposed_cum_mean rew_latent side rand
+input$x_comparison_dimension <- "difficulty" # rew_exposed_cum_mean rew_latent difficulty rand rew_exposed_cum_sd
+input$show_CI_choice_curve <- T # F
+
+choice_and_learning_plots("choice_curve")
+```
+
+
+### Next two plots are same as previous two, except difficulty has been scaled between 1-100 rather than being in raw units
+
+Difficulty is measured here by scaled baseline RT
+
+```{r fig.width=10}
+
+input$batch_choice_curve <- "exploratory"   # "exploratory" "replication"
+input$y_var_choice_curve <- "mult" # accuracy bigger_rand bigger_side bigger_rew_exposed_cum_mean bigger_rew_exposed_cum_count bigger_rew_latent bigger_rew_exposed_cum_sd
+input$x_raw_or_percent <- "percent" # raw percent
+input$choice_combos_choice_curve <- c("Long horizon, free choice 1", "Short horizon, free choice 1") # "Short horizon, free choice 1" "Long horizon, free choice 1"  "Long horizon, free choice 2"  "Long horizon, free choice 3"  "Long horizon, free choice 4"  "Long horizon, free choice 5"
+input$x_comparison_group <- "mult" # rew_exposed_cum_sd rew_exposed_cum_mean rew_latent side rand
+input$x_comparison_dimension <- "rt" # rew_exposed_cum_mean rew_latent difficulty rand rew_exposed_cum_sd
+input$show_CI_choice_curve <- T # F
+
+choice_and_learning_plots("choice_curve")
+```
+
+Difficulty is measured here by scaled baseline self-rated difficulty
+
+```{r fig.width=10}
+
+input$batch_choice_curve <- "exploratory"   # "exploratory" "replication"
+input$y_var_choice_curve <- "mult" # accuracy bigger_rand bigger_side bigger_rew_exposed_cum_mean bigger_rew_exposed_cum_count bigger_rew_latent bigger_rew_exposed_cum_sd
+input$x_raw_or_percent <- "percent" # raw percent
+input$choice_combos_choice_curve <- c("Long horizon, free choice 1", "Short horizon, free choice 1") # "Short horizon, free choice 1" "Long horizon, free choice 1"  "Long horizon, free choice 2"  "Long horizon, free choice 3"  "Long horizon, free choice 4"  "Long horizon, free choice 5"
+input$x_comparison_group <- "mult" # rew_exposed_cum_sd rew_exposed_cum_mean rew_latent side rand
+input$x_comparison_dimension <- "difficulty" # rew_exposed_cum_mean rew_latent difficulty rand rew_exposed_cum_sd
+input$show_CI_choice_curve <- T # F
+
+choice_and_learning_plots("choice_curve")
+```
+
+
+### Probability of choosing mult based on how much more or less rewarding (in points) it's been, compared to addition side
+
+```{r fig.width=10}
+
+input$batch_choice_curve <- "exploratory"   # "exploratory" "replication"
+input$y_var_choice_curve <- "mult" # mult accuracy bigger_rand bigger_side bigger_rew_exposed_cum_mean bigger_rew_exposed_cum_count bigger_rew_latent bigger_rew_exposed_cum_sd
+input$x_raw_or_percent <- "raw" # raw percent
+input$choice_combos_choice_curve <- c("Long horizon, free choice 1", "Short horizon, free choice 1") # "Short horizon, free choice 1" "Long horizon, free choice 1"  "Long horizon, free choice 2"  "Long horizon, free choice 3"  "Long horizon, free choice 4"  "Long horizon, free choice 5"
+input$x_comparison_group <- "mult" # mult rew_exposed_cum_sd rew_exposed_cum_mean rew_latent side rand
+input$x_comparison_dimension <- "rew_exposed_cum_mean" # rt rew_exposed_cum_mean rew_latent difficulty rand rew_exposed_cum_sd
+input$show_CI_choice_curve <- T # T F
+choice_and_learning_plots("choice_curve")
+```
+
+
