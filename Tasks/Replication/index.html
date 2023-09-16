@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WUSTL SONA task</title>
+  <script src="jspsych/jspsych.js"></script>
+  <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="jspsych/plugins/jspsych-external-html.js"></script>
+  <script src="jspsych/plugins/jspsych-instructions.js"></script>
+  <script src="jspsych/plugins/jspsych-call-function.js"></script>
+  <script src="jspsych/plugins/jspsych-add-mult.js"></script>
+  <script src="jspsych/plugins/jspsych-bandit-practice.js"></script>
+  <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="jspsych/plugins/jspsych-html-slider-response.js"></script>
+  <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+  <script src="jspsych/plugins/jspsych-survey-text.js"></script>
+  <script src="jspsych/plugins/jspsych-survey-multi-select.js"></script>
+  <script src="jspsych/plugins/jspsych-survey-multi-choice-wk.js"></script>
+
+
+  <script src="additional_variables.js"></script>
+  <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body></body>
+<script>
+
+var subid = jsPsych.data.getURLVariable("sonaid")
+// var subid = jsPsych.randomization.randomID(4) //for testing
+
+//consent block
+var check_consent = function(elem) {
+  if (document.getElementById('consent_checkbox').checked) {
+    return true;
+  }
+  else {
+    alert("If you wish to participate, you must check the box next to the statement 'I agree to participate in this study.'");
+    return false;
+  }
+  return false;
+};
+
+var consent_block = {
+  type:'external-html',
+  url: "consent.html",
+  cont_btn: "start",
+  check_fn: check_consent
+}
+
+var long_horizon = 9
+var short_horizon = 5
+
+
+// vars to initialize at the beginning of the exp
+var default_left = '<div style=background-color:#5f91ec;color:#5f91ec;">&nbsp</div>'
+var default_right = '<div style=background-color:#ffcc80;color:#ffcc80;">&nbsp</div>'
+var default_center = '<div style=background-color:white;color:white;">XX</div>'
+var selected_color_r = '#ffad33'
+var selected_color_l = '#1b61e4'
+
+var l_lever_up = '<div class = "leftup"><div class = "leftcircle"></div></div>'
+var l_lever_down = '<div class = "leftdown"><div class = "leftcircle"></div></div>'
+var r_lever_up = '<div class = "rightup"><div class = "rightcircle"></div></div>'
+var r_lever_down = '<div class = "rightdown"><div class = "rightcircle"></div></div>'
+
+var trial_hist_l = []
+var trial_hist_r = []
+var default_l = [default_left,default_left,default_left,default_left,default_left,default_left,default_left,default_left,default_left]
+var default_r = [default_right,default_right,default_right,default_right,default_right,default_right,default_right,default_right,default_right]
+var boxes = ['box_0','box_1','box_2','box_3','box_4','box_5','box_6','box_7','box_8']
+var boxes_r = ['box_0_r','box_1_r','box_2_r','box_3_r','box_4_r','box_5_r','box_6_r','box_7_r','box_8_r']
+
+var side = jsPsych.randomization.shuffle(['left','right'])
+var left_arithmetic = []
+var right_arithmetic = []
+var arithmetic_side = (side[0] == 'left') ? (left_arithmetic = 'addition',right_arithmetic = 'multiplication') : (left_arithmetic = 'multiplication',right_arithmetic = 'addition')
+
+//response variables
+var correct_key = ''
+var correct_responses = ['f','j']
+var keys = [70, 74]
+
+//task variables
+var current_trial = 0
+var max = 100
+var min = 1
+var iti_length = 500
+var response_window = 3000
+var nrgames = 40// x2 (each horizon)
+var timeline = []
+var games = []
+var game_nr = -2
+
+// reward structure based on Wilson et al., 2014.
+var sd = 8
+
+//Initialize forced choice trials (4 trials, either 3x1/2x2/1x3)
+if (Math.random()<0.5) {
+  fc = [3,1]
+} else {
+  fc = [2,2]
+}
+if (Math.random()<0.5) {
+  fc_side = [['left'],['right']]
+} else {
+  fc_side = [['right'],['left']]
+}
+var side_1 = jsPsych.randomization.sampleWithReplacement(fc_side[0],fc[0])
+var side_2 = jsPsych.randomization.sampleWithReplacement(fc_side[1],fc[1])
+var forced_choice = jsPsych.randomization.shuffle(side_1.concat(side_2))
+
+//Initialize reward
+var a1 = []
+var a2 = []
+bandit_mean = jsPsych.randomization.sampleWithoutReplacement([40,60],1)[0]
+difference = jsPsych.randomization.sampleWithoutReplacement([-20,-8,-4, 4, 8, 12, 20],1)[0]
+difference_bandit = bandit_mean+difference
+
+for (i = 0; i < 1000; i++) {
+  a1[i] = Math.floor(createMemberInNormalDistribution(bandit_mean,sd))
+  a2[i] = Math.floor(createMemberInNormalDistribution(difference_bandit,sd))
+}
+rews = [a1,a2]
+if (Math.random()<0.5) { //coin toss to determine which bandit side gets 40/60 mean and which bandit gets difference mean
+  rews = [rews[1],rews[0]]
+}
+
+//initialize number arrays
+var num_set_one  = []
+var num_set_two  = []
+
+//create multiplication array
+var array = []
+for (let i = 1; i <= 24; i ++) {
+  for (let j = i; j <= 24; j ++) {
+    array.push({num_set_one: i, num_set_two: j})
+    // console.log(i,j)
+  }
+}
+
+//10 practice math problems:2 addition problems, 2 easy mult problems, and six hard mult problems
+var n_1 = [14,21,7,2,14,8,13,16,6,19]
+var n_2 = [5,13,10,15,7,21,14,7,19,23]
+
+var p_math = jsPsych.randomization.shuffle([
+  {num_set_one: n_1[0], num_set_two: n_2[0],condition:'+'}, //add
+  {num_set_one: n_1[1], num_set_two: n_2[1],condition:'+'}, //add
+  {num_set_one: n_1[2], num_set_two: n_2[2],condition:'x'}, //easy mult
+  {num_set_one: n_1[3], num_set_two: n_2[3],condition:'x'}, //easy mult
+  {num_set_one: n_1[4], num_set_two: n_2[4],condition:'x'}, //hard mult
+  {num_set_one: n_1[5], num_set_two: n_2[5],condition:'x'}, //hard mult
+  {num_set_one: n_1[6], num_set_two: n_2[6],condition:'x'}, //hard mult
+  {num_set_one: n_1[7], num_set_two: n_2[7],condition:'x'}, //hard mult
+  {num_set_one: n_1[8], num_set_two: n_2[8],condition:'x'}, //hard mult
+  {num_set_one: n_1[9], num_set_two: n_2[9],condition:'x'}, //hard mult
+])
+
+//remove 2x2 and practice problems
+n_1.forEach((num1, index) => {
+  const num2 = n_2[index];
+  array= array.filter(function(item) {
+    if ((item.num_set_one == num1 && item.num_set_two == num2) ||(item.num_set_one == num2 && item.num_set_two == num1) ||(item.num_set_one == 2 && item.num_set_two == 2) ){
+      return false
+    }else{
+      return true
+    }
+  })
+})
+
+//final set of numbers (num_set_one and num_set_two)
+var numbers = jsPsych.randomization.shuffle(array)
+// console.log(numbers)
+
+//Initialize number set
+stim_one = [-1,-1,-1,-1]
+stim_two = [-1,-1,-1,-1]
+number_stimuli = numbers.splice(0,1)
+number_stimuli.forEach((number, index) => {
+  stim_one.push(number.num_set_one)
+  stim_two.push(number.num_set_two)
+})
+
+
+var instructions_1_block = {
+  type: "instructions",
+  pages: instructions1,
+  key_forward: 'spacebar',
+  show_clickable_nav: true,
+}
+
+var instructions_2a_block = {
+  type: "instructions",
+  pages: [instructions2a,instructions2b],
+  key_forward: 'spacebar',
+  show_clickable_nav: true,
+}
+var instructions_2b_block = {
+  type: "instructions",
+  pages: instructions2c,
+  key_forward: 'spacebar',
+  show_clickable_nav: true,
+}
+var instructions_3_block = {
+  type: "instructions",
+  pages: instructions3(),
+  key_forward: 'spacebar',
+  show_clickable_nav: true,
+}
+
+var instructions_4_block = {
+  type: "instructions",
+  pages: instructions4(),
+  key_forward: 'spacebar',
+  show_clickable_nav: true,
+}
+var instructions_5_block = {
+  type: "instructions",
+  pages: instructions5(),
+  key_forward: 'spacebar',
+  show_clickable_nav: true,
+}
+
+var instructions_6_block = {
+  type: "instructions",
+  pages: instructions6(),
+  key_forward: 'spacebar',
+  show_clickable_nav: true,
+}
+//blank screen for ps to prepare to start task
+var pre_block = {
+  type: 'html-keyboard-response',
+  stimulus: '',
+  choices: jsPsych.NO_KEYS,
+  trial_duration: iti_length,
+}
+
+var practice = function(horizon_length,p_block){
+  var p_bandit = {
+    timeline: [
+      {
+        type: "bandit-practice",
+        stimulus_one: jsPsych.timelineVariable('num_set_two'),
+        stimulus_two: jsPsych.timelineVariable('num_set_one'),
+        condition: jsPsych.timelineVariable('condition'),
+        horizon: horizon_length,
+        rews_a: [82,56,45,66,77,34,57,68,72],
+        rews_b: [54,46,58,29,38,61,49,42,40],
+        practice_block:p_block,
+        on_finish: function(data){
+          if(data.accuracy == 1){
+            data.correct = true
+          } else {
+            data.correct = false
+          }
+          trial_count = jsPsych.data.get().filter({trial_type: 'bandit-practice'}).count()
+
+          if (current_trial%horizon_length==0) {
+            trial_hist_l = []
+            trial_hist_r = []
+            default_l = [default_left,default_left,default_left,default_left,default_left,default_left,default_left,default_left,default_left]
+            default_r = [default_right,default_right,default_right,default_right,default_right,default_right,default_right,default_right,default_right]
+            current_trial = 0
+          }
+        }
+      },
+    ],
+    timeline_variables:p_math.slice(0,horizon_length),
+  }
+  return p_bandit
+}
+
+var game = function(horizon_length,practice){
+  var bandit = {
+    timeline: [
+      {
+        type: "add-mult",
+        stimulus_one: function(){
+          if (current_trial%horizon_length==0){ //reinitialize math numbers at the start of each game
+            stim_one = [-1,-1,-1,-1]
+            stim_two = [-1,-1,-1,-1]
+            number_stimuli = numbers.splice(0,horizon_length-4)
+            number_stimuli.forEach((number, index) => {
+              stim_one.push(number.num_set_one)
+              stim_two.push(number.num_set_two)
+            })
+          }
+          stimulus_one = stim_one[current_trial]
+          return stimulus_one
+        },
+        stimulus_two: function(){
+          stimulus_two = stim_two[current_trial]
+          return stimulus_two
+        },
+        practice_block:practice,
+        horizon: horizon_length,
+        forced_choice:function() {
+          if (current_trial%horizon_length==0){ //reinitialize forced choice trials at the start of each game
+            if (Math.random()<0.5) {
+              fc = [3,1]
+            } else {
+              fc = [2,2]
+            }
+            if (Math.random()<0.5) {
+              fc_side = [['left'],['right']]
+            } else {
+              fc_side = [['right'],['left']]
+            }
+            side_1 = jsPsych.randomization.sampleWithReplacement(fc_side[0],fc[0])
+            side_2 = jsPsych.randomization.sampleWithReplacement(fc_side[1],fc[1])
+            forced_choice = jsPsych.randomization.shuffle(side_1.concat(side_2))
+          }
+          return forced_choice
+        },
+        rews: function() {
+          if (current_trial%horizon_length==0){ //reinitialize reward at the start of each game
+            var a1 = []
+            var a2 = []
+            bandit_mean = jsPsych.randomization.sampleWithoutReplacement([40,60],1)[0]
+            difference = jsPsych.randomization.sampleWithoutReplacement([4, 8, 12, 20, 30],1)[0]
+            difference_bandit = (bandit_mean == 40) ? (bandit_mean2 = bandit_mean+difference) : (bandit_mean2 = bandit_mean-difference)
+            for (i = 0; i < 1000; i++) {
+              a1[i] = Math.floor(createMemberInNormalDistribution(bandit_mean,sd))
+              a2[i] = Math.floor(createMemberInNormalDistribution(bandit_mean2,sd))
+            }
+            rews = [a1,a2]
+            if (Math.random()<0.5) { //coin toss to determine which bandit side gets 40/60 mean and which bandit gets difference mean
+              rews = [rews[1],rews[0]]
+            }
+          }
+          return rews
+        },
+        on_finish: function(data){
+          if(data.accuracy == 1){
+            data.correct = true
+          } else {
+            data.correct = false
+          }
+          trial_count = jsPsych.data.get().filter({trial_type: 'add-mult'}).count()
+          if (current_trial%horizon_length==0) {
+            trial_hist_l = []
+            trial_hist_r = []
+            default_l = [default_left,default_left,default_left,default_left,default_left,default_left,default_left,default_left,default_left]
+            default_r = [default_right,default_right,default_right,default_right,default_right,default_right,default_right,default_right,default_right]
+            current_trial = 0
+            game_nr = game_nr+1
+          }
+        }
+      },
+    ],
+    repetitions:horizon_length,
+  }
+  return bandit
+}
+
+//create practice p_block
+var practice_block = [practice(long_horizon,1),instructions_2a_block,instructions_2b_block, practice(long_horizon,2), instructions_3_block, practice(10,3),instructions_4_block,game(short_horizon,1), instructions_5_block,game(long_horizon,1), instructions_6_block]
+for (var i = 0; i < 1; i++) {
+  timeline = timeline.concat(practice_block)
+}
+var practice_phase = {
+  timeline,
+}
+
+//create test block
+games =jsPsych.randomization.repeat([game(short_horizon,0),game(long_horizon,0)],nrgames)
+
+for (var i = 0; i < 1; i++) {
+  timeline = []
+  timeline = timeline.concat(games)
+}
+
+var game_set = {
+  timeline,
+}
+
+var experience_questions = [
+  {prompt: "During the task, did you use a calculator? ", options: ["Always", "Most of the time", "Some of the time","Not at all"],required: true},
+  {prompt: "During the task, did you write out the math problems on a notepad?", options: ["Always", "Most of the time", "Some of the time","Not at all"], required: true},
+  {prompt: "During the task, how often did you do a math problem entirely in your head?", options: ["Always", "Most of the time", "Some of the time","Not at all"], required: true}
+
+]
+var questions_block = {
+  type: 'survey-multi-choice-wk',
+  preamble: 'Before the task is done, we want to ask you a few questions. <br><b> Please be honest, your responses will not affect your credit.<b>',
+  questions: experience_questions,
+}
+
+
+var save_data_block = {
+  type: 'call-function',
+  func: function(){
+    p_math = jsPsych.data.get().filter({trial_type:'bandit-practice',block:3}).json()
+    p_bandit =jsPsych.data.get().filter({trial_type:'add-mult',practice:1}).json()
+    test_data =jsPsych.data.get().filter({trial_type:'add-mult',practice:0}).json()
+    save_data(p_math,'metaexplore_p_math_rep')
+    save_data(p_bandit,'metaexplore_p_bandit_rep')
+    save_data(test_data,'meta_explore_rep')
+  },
+}
+var strategy_ans = []
+
+var demographics_block = {
+  timeline: [
+    {
+      type: 'survey-text',
+      preamble: ["You're almost done! Please let us know the following:<br>"],
+      questions: [{prompt: "During the task, did you use any strategies to guide which bandit to pick? Or, which information factored into your choice?<br><br>", required: true, rows: 5, columns: 40},{prompt: "How old are you?", required: true}, {prompt: "What is your gender?", required: true}],
+    }
+  ],
+  loop_function: function(data){
+    var strategy_ans = JSON.parse(jsPsych.data.getLastTrialData().select('responses').values).Q0
+    console.log(strategy_ans)
+    var age_ans = JSON.parse(jsPsych.data.getLastTrialData().select('responses').values).Q1
+    gender = JSON.parse(jsPsych.data.getLastTrialData().select('responses').values).Q2
+    console.log(gender, age_ans, strategy_ans)
+    if ((age_ans == '')||(gender == '')||(strategy_ans == '')) {
+      alert("Please make sure you answer all questions.")
+      return true
+    }
+    if (isNaN(age_ans)) {
+      alert("Please enter your age as a number (make sure to remove any spaces)")
+      return true
+    } else {
+      age = parseInt(age_ans)
+      return false
+    }
+  },
+}
+
+var save_subinfo_block = {
+  type: 'call-function',
+  func: function(){
+    experience_data = JSON.parse(jsPsych.data.get().filter({trial_type: 'survey-multi-choice-wk'}).select('responses').values)
+    text_data = JSON.parse(jsPsych.data.get().filter({trial_type: 'survey-text'}).select('responses').values)
+    // console.log(demographics_data.Q0, age)
+    subinfo = {
+      subid: subid,
+      age: text_data.Q1,
+      gender: text_data.Q2,
+      add_side:side[0],
+      mult_side:side[1],
+      q1:experience_data.Q0,
+      q2:experience_data.Q1,
+      q3:experience_data.Q2,
+      q4:text_data.Q0,
+
+      time_elapsed: jsPsych.data.getLastTrialData().select('time_elapsed').values[0],
+    }
+    sub_data = (JSON.stringify([subinfo]))
+    save_data(sub_data,'metaexplore_subinfo_rep')
+  },
+}
+
+var debriefing_block = {
+  type:'external-html',
+  url: "debrief.html",
+  cont_btn: "start",
+}
+
+
+jsPsych.pluginAPI.preloadImages(images, function(){ startExperiment()})
+
+function startExperiment(){
+  jsPsych.init({
+    timeline: [
+      consent_block,
+      instructions_1_block,
+      practice_phase,
+      pre_block,
+      game_set,
+      questions_block,
+      save_data_block,
+      demographics_block,
+      save_subinfo_block,
+      debriefing_block,
+    ],
+    on_finish: function(){
+      window.location = "https://wupsych.sona-systems.com/webstudy_credit.aspx?experiment_id=443&credit_token=65fe16b3b8a84178aff1a65c52448102&survey_code="+subid
+
+    }
+  })
+}
+
+</script>
+</html>

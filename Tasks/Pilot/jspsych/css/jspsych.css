@@ -1,0 +1,351 @@
+/*
+ * CSS for jsPsych experiments.
+ *
+ * This stylesheet provides minimal styling to make jsPsych
+ * experiments look polished without any additional styles.
+ */
+
+ @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+
+/* Container holding jsPsych content */
+
+ .jspsych-display-element {
+   display: flex;
+   flex-direction: column;
+   overflow-y: auto;
+ }
+
+ .jspsych-display-element: {
+   outline: none;
+ }
+
+ .jspsych-content-wrapper {
+   display: flex;
+   margin: auto;
+   flex: 1 1 100%;
+   width: 100%;
+   margin-top: -15%;
+ }
+
+ .jspsych-content {
+   max-width: 95%; /* this is mainly an IE 10-11 fix */
+   text-align: center;
+   margin: auto; /* this is for overflowing content */
+ }
+
+ .jspsych-top {
+   align-items: flex-start;
+ }
+
+ .jspsych-middle {
+   align-items: center;
+ }
+
+ .image {
+    position: relative;
+    width: 100%;
+ }
+
+/* fonts and type */
+
+.outline {
+    -webkit-text-stroke: 2px white;
+}
+
+.jspsych-display-element {
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-size: 18px;
+  line-height: 1.6em;
+}
+
+/* Form elements like input fields and buttons */
+
+.jspsych-display-element input[type="text"] {
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-size: 14px;
+}
+
+
+.jspsych-display-element {
+    width: 800px;
+    margin: 20% auto 50px auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 400px;
+}
+.jspsych-content{
+    width: 1200px;
+    margin: 20% auto 50px auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 400px;
+}
+
+/* borrowing Bootstrap style for btn elements, but combining styles a bit */
+.jspsych-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  cursor: pointer;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.jspsych-btn:hover {
+  background-color: #ddd;
+  border-color: #aaa;
+}
+
+.jspsych-btn:disabled {
+  background-color: #eee;
+  color: #aaa;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* jsPsych progress bar */
+
+#jspsych-progressbar-container {
+  color: #555;
+  border-bottom: 1px solid #dedede;
+  background-color: #f9f9f9;
+  margin-bottom: 1em;
+  text-align: center;
+  padding: 8px 0px;
+  width: 100%;
+  line-height: 1em;
+}
+#jspsych-progressbar-container span {
+  font-size: 14px;
+  padding-right: 14px;
+}
+#jspsych-progressbar-outer {
+  background-color: #eee;
+  width: 50%;
+  margin: auto;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+#jspsych-progressbar-inner {
+  background-color: #aaa;
+  width: 0%;
+  height: 100%;
+}
+
+/* Control appearance of jsPsych.data.displayData() */
+#jspsych-data-display {
+  text-align: left;
+}
+
+ .instructions{
+   margin-top: -20%;
+ }
+ .container {
+   position: relative;
+   font-family: Arial;
+ }
+
+ .text-block {
+   position: absolute;
+   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+   font-size: 50px;
+   left: 30%;
+   color: grey;
+ }
+
+ .p2-text-block {
+   position: absolute;
+   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+   font-size: 50px;
+   color: grey;
+   left: 30%;
+ }
+
+.correct{
+  float:left;
+  width:40%;
+  text-align: center;
+  font-size: 45px;
+  display: inline-block;
+  color: black;
+}
+
+.img{
+  width: 50%;
+}
+
+.dull {
+  opacity: .3;
+  float: left;
+  width: 40%;
+  text-align: center;
+  font-size: 45px;
+  color: grey;
+  display: inline-block;
+}
+
+
+.center {
+  position: absolute;
+  margin: auto;
+  top: 10%;
+  left: 0;
+  right: 0;
+  bottom: 15%;
+  max-width:430px;
+  max-height:360px;
+  width: auto;
+  height: auto;
+}
+
+.centered {
+  position: absolute;
+  left: 47%;
+  font-size:55px;
+  font-weight: bold;
+  color: blue;
+  transform: translate(-50%, -50%);
+}
+
+#jspsych-box0, #jspsych-box1, #jspsych-box2, #jspsych-box3, #jspsych-box4, #jspsych-box5, #jspsych-box6, #jspsych-box7, #jspsych-box8 {
+	position: relative;
+	display: inline-block;
+	height: 100px;
+	width: 100px;
+	line-height: 100px;
+	font-size: 60px;
+	vertical-align: top;
+	background-repeat: no-repeat;
+
+}
+
+
+sides {
+  padding-left: 50px;
+  margin-left: -50px;
+  padding-right: 50px;
+  margin-right: -50px;
+  padding-top: 90px;
+  margin-top: -90px;
+  padding-bottom: 90px;
+  margin-bottom: -90px;
+}
+
+ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  padding-left: 50px;
+  margin-left: -50px;
+  padding-right: 50px;
+  margin-right: -50px;
+  padding-top: 90px;
+  margin-top: -90px;
+  padding-bottom: 90px;
+  margin-bottom: -90px;
+}
+
+sides::before,
+sides::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+}
+
+sides::before {
+  right: 100%;
+}
+
+sides::after {
+  left: 100%;
+}
+
+li:hover a {
+  color: red;
+}
+
+#jspsych-center-fill {
+	position: relative;
+	display: inline-block;
+  height: 50%;
+  width: 30%;
+  vertical-align: top;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-right: -5%;
+}
+
+#jspsych-center-topbottom {
+	position: relative;
+	display: inline-block;
+	height: 30%;
+	width: 100%;
+	vertical-align: top;
+	background-repeat: no-repeat;
+}
+
+#jspsych-center-center {
+	position: relative;
+	display: inline-block;
+	height: 30%;
+	width: 100%;
+	vertical-align: top;
+	background-repeat: no-repeat;
+}
+
+#jspsych-center-left {
+	position: relative;
+	display: inline-block;
+	height: 30%;
+	width: 30%;
+	vertical-align: top;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-right: -5%;
+}
+
+#jspsych-center-stim {
+	position: relative;
+	display: inline-block;
+  height: 30%;
+	width: 30%;
+	vertical-align: top;
+  margin-top: 10%;
+}
+
+
+#jspsych-center-right {
+	position: relative;
+	display: inline-block;
+  height: 30%;
+	width: 30%;
+	vertical-align: top;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-left: -5%;
+
+}
+#jspsych-bottom {
+	width: 900px;
+  display: inline-block;
+  margin-top: -80%;
+
+}

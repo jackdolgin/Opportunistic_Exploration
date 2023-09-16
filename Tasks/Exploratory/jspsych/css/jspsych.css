@@ -1,0 +1,711 @@
+/*
+ * CSS for jsPsych experiments.
+ *
+ * This stylesheet provides minimal styling to make jsPsych
+ * experiments look polished without any additional styles.
+ */
+
+ @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+
+/* Container holding jsPsych content */
+
+ .jspsych-display-element {
+   display: flex;
+   flex-direction: column;
+   overflow-y: auto;
+ }
+
+ .jspsych-display-element: {
+   outline: none;
+ }
+
+ .jspsych-content-wrapper {
+   display: flex;
+   margin: auto;
+   flex: 1 1 100%;
+   width: 100%;
+   margin-top: -15%;
+ }
+
+
+ .jspsych-content {
+   max-width: 95%; /* this is mainly an IE 10-11 fix */
+   text-align: center;
+   margin: auto; /* this is for overflowing content */
+ }
+
+ .jspsych-top {
+   align-items: flex-start;
+ }
+
+ .jspsych-middle {
+   align-items: center;
+ }
+
+ .image {
+    position: relative;
+    width: 100%;
+ }
+
+ /* p {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    width: 100%;
+    font-family: 'Open Sans', 'Arial', sans-serif;
+    font-size: 60px;
+ } */
+
+/* fonts and type */
+
+.outline {
+    -webkit-text-stroke: 2px white;
+}
+
+.jspsych-display-element {
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-size: 18px;
+  line-height: 1.6em;
+}
+
+/* Form elements like input fields and buttons */
+
+.jspsych-display-element input[type="text"] {
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-size: 14px;
+}
+
+
+.center_text{
+  /* height: 10em; */
+   /* display: flex; */
+   align-items: center;
+   justify-content: center;
+  /* margin-top: 15%; */
+  margin: 20% auto 50px auto;
+
+ }
+
+
+.jspsych-display-element {
+    width: 800px;
+    margin: 20% auto 50px auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 400px;
+}
+.jspsych-content{
+    width: 1200px;
+    margin: 17% auto 50px auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 400px;
+}
+
+/* borrowing Bootstrap style for btn elements, but combining styles a bit */
+.jspsych-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  cursor: pointer;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.jspsych-btn:hover {
+  background-color: #ddd;
+  border-color: #aaa;
+}
+
+.jspsych-btn:disabled {
+  background-color: #eee;
+  color: #aaa;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* jsPsych progress bar */
+
+#jspsych-progressbar-container {
+  color: #555;
+  border-bottom: 1px solid #dedede;
+  background-color: #f9f9f9;
+  margin-bottom: 1em;
+  text-align: center;
+  padding: 8px 0px;
+  width: 100%;
+  line-height: 1em;
+}
+#jspsych-progressbar-container span {
+  font-size: 14px;
+  padding-right: 14px;
+}
+#jspsych-progressbar-outer {
+  background-color: #eee;
+  width: 50%;
+  margin: auto;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+#jspsych-progressbar-inner {
+  background-color: #aaa;
+  width: 0%;
+  height: 100%;
+}
+
+/* Control appearance of jsPsych.data.displayData() */
+#jspsych-data-display {
+  text-align: left;
+}
+
+/*
+ *
+ * IRCD
+ *
+ */
+
+ .instructions{
+   margin-top: -20%;
+ }
+ .container {
+   position: relative;
+   font-family: Arial;
+ }
+
+ .text-block {
+   position: absolute;
+   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+   font-size: 50px;
+   /* top: 50%; */
+   left: 30%;
+   color: grey;
+
+   /* font-size:35px; */
+   /* transform: translate(-50%, -50%); */
+ }
+
+ .p2-text-block {
+   position: absolute;
+   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+   font-size: 50px;
+   color: grey;
+
+   /* top: -20%; */
+   /* margin-bottom: -75%; */
+   left: 30%;
+   /* font-size:35px; */
+   /* transform: translate(-50%, -50%); */
+ }
+
+.correct{
+  /* float:left;
+  width:40%;
+  text-align: center;
+  font-size: 45px; */
+  display: inline-block;
+  color: green;
+  /* text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; */
+
+
+}
+
+.arrowon{
+  font-size: 30px;
+  color: black;
+
+}
+
+.arrowoff{
+  font-size: 60px;
+  color: #DCDCDC;
+
+}
+
+
+.img{
+  width: 50%;
+}
+
+.dull {
+  opacity: .3;
+  float: left;
+  width: 40%;
+  text-align: center;
+  font-size: 45px;
+  color: grey;
+  display: inline-block;
+}
+
+.pcenter {
+  position: absolute;
+  margin: auto;
+  top: 10%;
+  left: 0;
+  right: 0;
+  bottom: 15%;
+  /* margin-left: -5%; */
+  max-width:500px;
+  max-height:300px;
+  width: auto;
+  height: auto;
+}
+.center {
+  position: absolute;
+  margin: auto;
+  top: 10%;
+  left: 0;
+  right: 0;
+  bottom: 15%;
+  max-width:430px;
+  max-height:360px;
+  width: auto;
+  height: auto;
+}
+
+.centered {
+  /* position: absolute; */
+  /* top: 50%; */
+  /* left: 47%; */
+  /* font-size:55px; */
+  font-weight: bold;
+  color: black;
+  width:100px;
+  height:80;
+  /* max-height:100%; */
+  /* -webkit-text-stroke: 1.75px white; */
+  /* transform: translate(-50%, -50%); */
+
+}
+
+.left_val, .right_val {
+    float: left;
+    width: 48%;
+    font-size:50px;
+    margin: 0;
+    padding: 0;
+}
+.left_val {
+    margin-right: 4%;
+}
+.pleft_val, .pright_val {
+    float: left;
+    width: 32%;
+    font-size:50px;
+    margin: 0;
+    padding: 0;
+}
+.pleft_val {
+    margin-right: 4%;
+}
+.cross {
+  position: absolute;
+    top: 50px;
+    left: 50%;
+    margin-right: -50%;
+    margin-right: 25%;
+
+    transform: translate(-50%, -50%);
+    font-size:85px;
+    max-width:500px;
+    max-height:300px;
+    -webkit-text-stroke: 1.5px white;
+}
+
+.pcross {
+  position: absolute;
+  margin: auto;
+  top: 10%;
+  left: 0;
+  right: 0;
+  bottom: 15%;
+  max-width:430px;
+  max-height:360px;
+  width: auto;
+  height: auto;
+  font-size:85px;
+  -webkit-text-stroke: 1.5px white;
+}
+
+.word {
+  position: absolute;
+  /* top: 20%; */
+  left: 50%;
+  font-size:55px;
+  color: blue;
+  font-weight: 700;
+  -webkit-text-stroke: 1.75px white;
+  transform: translate(-50%, -50%);
+}
+
+.keys {
+  /* position: absolute; */
+  margin: auto;
+  width: 50%;
+  top: 62%;
+  left: 25%;
+}
+
+.reminderkeys {
+  /* position: absolute; */
+  margin: auto;
+  width: 50%;
+  top: 40%;
+  left: 25%;
+}
+/*
+ *
+ * PLUGIN: jspsych-stim
+ *
+ */
+
+
+#jspsych-box0-l, #jspsych-box1-l, #jspsych-box2-l, #jspsych-box3-l, #jspsych-box4-l, #jspsych-box5-l, #jspsych-box6-l, #jspsych-box7-l{
+	position: relative;
+	display: inline-block;
+	width: 180px;
+	line-height: 80px;
+  max-height: 80px;
+	font-size: 60px;
+  outline: 5px solid #154eb7;
+
+}
+
+#jspsych-box0-r, #jspsych-box1-r, #jspsych-box2-r, #jspsych-box3-r, #jspsych-box4-r, #jspsych-box5-r, #jspsych-box6-r, #jspsych-box7-r {
+	position: relative;
+	display: inline-block;
+	/* height: 120px; */
+  outline: 5px solid orange;
+	width: 180px;
+	line-height: 80px;
+	font-size: 60px;
+}
+
+#jspsych-center-box0,#jspsych-center-box1, #jspsych-center-box2, #jspsych-center-box3, #jspsych-center-box4, #jspsych-center-box5, #jspsych-center-box6, #jspsych-center-box7{
+	position: relative;
+	display: inline-block;
+	/* height: 120px; */
+  /* outline: 5px solid pink; */
+	width: 220px;
+	line-height: 80px;
+	font-size: 60px;
+}
+
+#jspsych-pbox0-r, #jspsych-pbox1-r, #jspsych-pbox2-r, #jspsych-pbox3-r, #jspsych-pbox4-r, #jspsych-pbox5-r, #jspsych-pbox6-r, #jspsych-pbox7-r {
+	position: relative;
+	display: inline-block;
+	/* height: 120px; */
+  outline: 5px solid #4700b3;
+	width: 180px;
+	line-height: 80px;
+	font-size: 60px;
+}
+
+#jspsych-pbox0-l, #jspsych-pbox1-l, #jspsych-pbox2-l, #jspsych-pbox3-l, #jspsych-pbox4-l, #jspsych-pbox5-l, #jspsych-pbox6-l, #jspsych-pbox7-l{
+	position: relative;
+	display: inline-block;
+	width: 180px;
+	line-height: 80px;
+  max-height: 80px;
+	font-size: 60px;
+  outline: 5px solid #bdbd2e;
+
+}
+
+sides {
+  padding-left: 50px;
+  margin-left: -50px;
+  padding-right: 50px;
+  margin-right: -50px;
+  padding-top: 90px;
+  margin-top: -90px;
+  padding-bottom: 90px;
+  margin-bottom: -90px;
+}
+p {
+   margin: 0px;
+   padding: 0px;
+}
+ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  padding-left: 50px;
+  margin-left: -50px;
+  padding-right: 50px;
+  margin-right: -50px;
+  padding-top: 90px;
+  margin-top: -90px;
+  padding-bottom: 90px;
+  margin-bottom: -90px;
+}
+
+sides::before,
+sides::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+}
+
+sides::before {
+  right: 100%;
+}
+
+sides::after {
+  left: 100%;
+}
+
+li:hover a {
+  color: red;
+}
+
+#jspsych-center-fill {
+	position: relative;
+	display: inline-block;
+  height: 50%;
+  width: 30%;
+  vertical-align: top;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-right: -5%;
+	/* height: 50px;
+	width: 400px;
+	line-height: 100px;
+	font-size: 60px;
+	vertical-align: top;
+	background-repeat: no-repeat;
+	background-position: center bottom; */
+}
+
+#jspsych-center-topbottom {
+	position: relative;
+	display: inline-block;
+	height: 30%;
+	width: 100%;
+	vertical-align: top;
+	background-repeat: no-repeat;
+	/* background-position: center bottom; */
+}
+
+#jspsych-center-center {
+	position: relative;
+	display: inline-block;
+	height: 30%;
+	width: 100%;
+	vertical-align: top;
+	background-repeat: no-repeat;
+	/* background-position: center bottom; */
+}
+
+.leftup {
+        width: 112px;
+        height: 47px;
+        border-bottom: 4px solid #154eb7;
+        -webkit-transform:
+            translateY(-80px)
+            translateX(-98px)
+            rotate(27deg);
+        position: absolute;
+        top: 50px;
+    }
+
+  .rightup {
+      width: 112px;
+      height: 47px;
+      border-bottom: 4px solid orange;
+      -webkit-transform:
+          translateY(-80px)
+          translateX(185px)
+          rotate(-26deg);
+      position: absolute;
+      top: 50px;
+      left: -18px;
+  }
+
+  .leftdown {
+          width: 112px;
+          height: 47px;
+          border-bottom: 4px solid #154eb7;
+          -webkit-transform:
+              translateY(-35px)
+              translateX(-120px)
+              rotate(-27deg);
+          position: absolute;
+          top: 50px;
+      }
+
+
+    .rightdown {
+        width: 112px;
+        height: 47px;
+        border-bottom: 4px solid orange;
+        -webkit-transform:
+            translateY(-35px)
+            translateX(205px)
+            rotate(27deg);
+        position: absolute;
+        top: 50px;
+        left: -18px;
+    }
+
+    .leftcircle {
+      background: #154eb7;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      z-index: 2;
+        -webkit-transform:
+            translateY(35px)
+    }
+
+
+    .rightcircle {
+      background: orange;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      z-index: 2;
+        -webkit-transform:
+            translateY(35px)
+            translateX(90px)
+    }
+
+.problem-left {
+  padding-bottom: 18px;
+  font-size: 85px;
+
+}
+
+.problem-right {
+  padding-bottom: 18px;
+  padding-top: -18px;
+  font-size: 85px;
+}
+.pleftup {
+        width: 112px;
+        height: 47px;
+        border-bottom: 4px solid #bdbd2e;
+        -webkit-transform:
+            translateY(-80px)
+            translateX(-98px)
+            rotate(27deg);
+        position: absolute;
+        top: 50px;
+    }
+
+  .prightup {
+      width: 112px;
+      height: 47px;
+      border-bottom: 4px solid #4700b3;
+      -webkit-transform:
+          translateY(-80px)
+          translateX(185px)
+          rotate(-26deg);
+      position: absolute;
+      top: 50px;
+      left: -18px;
+  }
+
+  .pleftdown {
+          width: 112px;
+          height: 47px;
+          border-bottom: 4px solid #bdbd2e;
+          -webkit-transform:
+              translateY(-35px)
+              translateX(-120px)
+              rotate(-27deg);
+          position: absolute;
+          top: 50px;
+      }
+
+
+    .prightdown {
+        width: 112px;
+        height: 47px;
+        border-bottom: 4px solid #4700b3;
+        -webkit-transform:
+            translateY(-35px)
+            translateX(205px)
+            rotate(27deg);
+        position: absolute;
+        top: 50px;
+        left: -18px;
+    }
+
+    .pleftcircle {
+      background: #bdbd2e;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      z-index: 2;
+        -webkit-transform:
+            translateY(35px)
+    }
+
+
+    .prightcircle {
+      background: #4700b3;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      z-index: 2;
+        -webkit-transform:
+            translateY(35px)
+            translateX(90px)
+    }
+#jspsych-center-left {
+	position: relative;
+	display: inline-block;
+	height: auto;
+	width: 200px;
+  /* outline: 5px solid green; */
+	vertical-align: top;
+}
+
+#jspsych-center-stim {
+	position: relative;
+	display: inline-block;
+	height: 500px;
+	width: 250px;
+	vertical-align: center;
+  font-size: 60px;
+  width: 220px;
+  /* margin-left: 75px;
+  margin-right: 75px;
+  margin-top: 50px;
+  margin-bottom: 50px; */
+}
+
+#jspsych-center-right {
+	position: relative;
+	display: inline-block;
+	height: 500px;
+	width: 200px;
+  /* outline: 5px solid orange; */
+	vertical-align: top;
+}
+
+
+#jspsych-bottom {
+	width: 900px;
+  display: inline-block;
+  margin-top: -80%;
+
+}

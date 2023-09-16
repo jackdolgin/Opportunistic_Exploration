@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meta-exploration Pilot task</title>
+  <script src="jspsych/jspsych.js"></script>
+  <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="jspsych/plugins/jspsych-external-html.js"></script>
+  <script src="jspsych/plugins/jspsych-instructions.js"></script>
+  <script src="jspsych/plugins/jspsych-call-function.js"></script>
+  <script src="jspsych/plugins/jspsych-add-mult.js"></script>
+  <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="jspsych/plugins/jspsych-html-slider-response.js"></script>
+  <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+  <script src="jspsych/plugins/jspsych-survey-text.js"></script>
+  <script src="additional_variables.js"></script>
+  <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body></body>
+<script>
+
+var subid = jsPsych.data.getURLVariable("sonaid")
+//var subid = jsPsych.randomization.randomID(4) //for testing code
+
+//consent block
+var check_consent = function(elem) {
+  if (document.getElementById('consent_checkbox').checked) {
+    return true;
+  }
+  else {
+    alert("If you wish to participate, you must check the box next to the statement 'I agree to participate in this study.'");
+    return false;
+  }
+  return false;
+};
+
+var consent_block = {
+  type:'external-html',
+  url: "consent.html",
+  cont_btn: "start",
+  check_fn: check_consent
+}
+
+//task variables
+var nrtrials = 150
+var nrblocks = 2
+var trialsperblock = nrtrials/nrblocks
+var iti_length = 500
+var response_window = 3000
+
+//response variables
+var correct_key = ''
+var correct_responses = ['f','j']
+var keys = [70, 74]
+var difficulty_rating = []
+var slider_rt = []
+
+
+// randomize mult/add order
+var conds = jsPsych.randomization.shuffle(['add','mult'])
+var cond_sign = jsPsych.randomization.shuffle(['+','x'])
+
+//initialize stimuli arrays
+var num_set_one  = []
+var num_set_two  = []
+
+//create multiplication array
+var array_mult = []
+for (let i = 1; i <= 24; i ++) {
+  for (let j = i; j <= 24; j ++) {
+    array_mult.push({num_set_one: i, num_set_two: j,condition:'x'})
+  }
+}
+
+//create addition array
+var array_add = []
+for (let i = 1; i <= 24; i ++) {
+  for (let j = i; j <= 24; j ++) {
+    array_add.push({num_set_one: i, num_set_two: j,condition:'+'})
+  }
+}
+
+//create four groups for each condition that loops through them:
+//store which condition they are getting starting at 1, 2 , 3 and 4
+
+add_1 = array_add.filter(function(value, index, Arr) {
+  return (index) % 4 == 0;
+})
+add_2 = array_add.filter(function(value, index, Arr) {
+  return (index+3) % 4 == 0;
+})
+add_3 = array_add.filter(function(value, index, Arr) {
+  return (index+2) % 4 == 0;
+})
+add_4 = array_add.filter(function(value, index, Arr) {
+  return (index+1) % 4 == 0;
+})
+
+mult_1 = array_mult.filter(function(value, index, Arr) {
+  return (index) % 4 == 0;
+})
+mult_2 = array_mult.filter(function(value, index, Arr) {
+  return (index+3) % 4 == 0;
+})
+mult_3 = array_mult.filter(function(value, index, Arr) {
+  return (index+2) % 4 == 0;
+})
+mult_4 = array_mult.filter(function(value, index, Arr) {
+  return (index+1) % 4 == 0;
+})
+
+var all_arrays = [[add_1,add_2,add_3,add_4], [mult_1,mult_2,mult_3,mult_4]]
+var sample = jsPsych.randomization.sampleWithoutReplacement([2,3],1)
+var sample_mult = jsPsych.randomization.sampleWithoutReplacement([1,2,2],1)
+
+var arrays = all_arrays[0][sample[0]]
+var mult_array = all_arrays[1][sample_mult[0]]
+
+
+//combine mult and addition arrays
+Array.prototype.push.apply(arrays,mult_array)
+
+//remove 2x2
+arrays= arrays.filter(function(item) {
+  if (item.num_set_one == 2 && item.num_set_two == 2){
+    return false
+  }else{
+    return true
+  }
+})
+
+var numbers = jsPsych.randomization.shuffle(arrays)
+
+var instructions_1_block = {
+  type: "instructions",
+  pages: [instructions_1a_text,instructions_1b_text,instructions_1c_text,instructions_1d_text],
+  key_forward: 'spacebar',
+  show_clickable_nav: true,
+}
+
+//blank screen for ps to prepare to start task
+var pre_block = {
+  type: 'html-keyboard-response',
+  stimulus: '',
+  choices: jsPsych.NO_KEYS,
+  trial_duration: iti_length,
+}
+
+var slider_trial = {
+  type: 'html-slider-response',
+  stimulus: '<p>How difficult did you find the problem you just completed? Use the slider below.</p>',
+  labels: ['Very easy','Very hard'],
+  slider_width: 500,
+  require_movement: true,
+  on_finish: function(data){
+    difficulty_rating = jsPsych.data.getLastTrialData().select('response').values
+    slider_rt = jsPsych.data.getLastTrialData().select('rt').values
+  }
+}
+
+var feedback = {
+  type: 'html-keyboard-response',
+  stimulus: function(){
+    var last_trial_correct = jsPsych.data.get().last(2).values()[0].correct;
+    if(last_trial_correct){
+      return '<p style="color:green;font-size:160%;">CORRECT</p>'
+    } else {
+      return '<p style="color:red;font-size:160%;">INCORRECT</p>'
+    }
+  },
+  trial_duration: 500,
+}
+
+var math_block = {
+  timeline: [
+    {
+      type: "add-mult",
+      stimulus_one: jsPsych.timelineVariable('num_set_two'),
+      stimulus_two: jsPsych.timelineVariable('num_set_one'),
+      condition: jsPsych.timelineVariable('condition'),
+      on_finish: function(data){
+        if(data.accuracy == 1){
+          data.correct = true
+        } else {
+          data.correct = false
+        }
+      }
+    },
+    slider_trial,
+    feedback,
+  ],
+  timeline_variables:numbers,
+  trialsperblock:trialsperblock,
+}
+
+var save_data_block = {
+  type: 'call-function',
+  func: function(){
+    test_data =jsPsych.data.get().filter({trial_type:'add-mult'}).json()
+    slider_data = jsPsych.data.get().filter({trial_type: 'html-slider-response'}).json()
+    data_json = change_slider_data(test_data,slider_data)
+    save_data(JSON.stringify(data_json),'meta_explore_pilot')
+  },
+}
+
+var demographics_block = {
+  timeline: [
+    {
+      type: 'survey-text',
+      preamble: ["Please provide us with some information about yourself:"],
+      questions: [{prompt: "How old are you?", required: true}, {prompt: "What is your gender?", required: true}],
+    }
+  ],
+  loop_function: function(data){
+    var age_ans = JSON.parse(jsPsych.data.getLastTrialData().select('responses').values).Q0
+    gender = JSON.parse(jsPsych.data.getLastTrialData().select('responses').values).Q1
+    if ((age_ans == '')||(gender == '')) {
+      alert("Please make sure you answer both questions.")
+      return true
+    }
+    if (isNaN(age_ans)) {
+      alert("Please enter your age as a number (make sure to remove any spaces)")
+      return true
+    } else {
+      age = parseInt(age_ans)
+      return false
+    }
+  },
+}
+
+var save_subinfo_block = {
+  type: 'call-function',
+  func: function(){
+    demographics_data = jsPsych.data.getLastTrialData()
+    subinfo = {
+      subid: subid,
+      age: age,
+      gender: gender,
+      time_elapsed: demographics_data.select('time_elapsed').values[0],
+      add_condition:sample[0],
+      mult_condition:sample_mult[0]
+    }
+    sub_data = (JSON.stringify([subinfo]))
+    save_data(sub_data,'metaexplore_pilot_subinfo')
+  },
+}
+
+var debriefing_block = {
+  type:'external-html',
+  url: "debrief.html",
+  cont_btn: "start",
+}
+
+var end_block = {
+  type:'external-html',
+  url: "end.html",
+}
+
+jsPsych.pluginAPI.preloadImages(images, function(){ startExperiment()})
+
+function startExperiment(){
+  jsPsych.init({
+    timeline: [
+      consent_block,
+      instructions_1_block,
+      pre_block,
+      math_block,
+      save_data_block,
+      demographics_block,
+      save_subinfo_block,
+      debriefing_block,
+    ],
+    on_finish: function(){
+      window.location = "https://wupsych.sona-systems.com/webstudy_credit.aspx?experiment_id=342&credit_token=85f387f051ba44a4bf91d87ecd475d2d&survey_code="+subid
+    }
+  })
+}
+
+</script>
+</html>
