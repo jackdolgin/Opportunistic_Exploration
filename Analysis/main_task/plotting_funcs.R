@@ -1,6 +1,3 @@
-
-medium <- "manuscript" # value is either manuscript or shiny
-
 if (medium == "manuscript"){
   input <- list()
   input$batch_fits <- "replication"
@@ -23,21 +20,18 @@ if (medium == "manuscript"){
   input$batch_learning_curve <- "replication"
   input$y_var_learning_curve <- "mult"
   input$show_CI_learning_curve <- T
-  # #
-  # # medium <- "shiny"
 }
 
-choice_font <- "Fira Sans"
-font_add_google(choice_font, choice_font)
+font_add_google(ggplot_font, ggplot_font)
 showtext_auto()
 
 shared_graph_theme_all_three <- list(
   theme(
-    strip.text = element_text(size = 16, family = choice_font),
-    axis.title.x = element_text(size = 18, family = choice_font),
-    axis.title.y = element_text(size = 18, family = choice_font),
-    axis.text.x = element_text(size = 13, family = choice_font),
-    axis.text.y = element_text(size = 13, family = choice_font),
+    strip.text = element_text(size = 16, family = ggplot_font),
+    axis.title.x = element_text(size = 18, family = ggplot_font),
+    axis.title.y = element_text(size = 18, family = ggplot_font),
+    axis.text.x = element_text(size = 13, family = ggplot_font),
+    axis.text.y = element_text(size = 13, family = ggplot_font),
   )
 )
 
@@ -395,10 +389,10 @@ choice_and_learning_plots <- function(plot_type){
       theme(
         plot.title = element_text(
           size = 26, hjust = 0.5, margin = margin(t = 10, b = 10, l = 0, r = 0),
-          family = choice_font
+          family = ggplot_font
         ),
-        legend.text = element_text(size = 16, family = choice_font),
-        legend.title = element_text(size = 20, family = choice_font)
+        legend.text = element_text(size = 16, family = ggplot_font),
+        legend.title = element_text(size = 20, family = ggplot_font)
       )
     )
     
@@ -588,7 +582,7 @@ fits_plot <- function(outer_iterator_vec){
                   "Bandits had been", plot_title, "Sampled"
                 )),
                 theme(plot.title =  element_text(
-                  size = 28, family = choice_font, hjust = 0.5,
+                  size = 28, family = ggplot_font, hjust = 0.5,
                   margin = margin(t = 10, b = 10, l = 0, r = 0)
                 ))
               )
@@ -700,8 +694,8 @@ fits_plot <- function(outer_iterator_vec){
                     theme(
                       strip.text.x = element_text(size = 21, vjust = 1),
                       axis.text.x = element_text(size = 14),
-                      axis.title.y = element_text(size = 14, family = choice_font),
-                      axis.text.y = element_text(size = 11, family = choice_font),
+                      axis.title.y = element_text(size = 14, family = ggplot_font),
+                      axis.text.y = element_text(size = 11, family = ggplot_font),
                     )
                   )
                 }
@@ -744,8 +738,8 @@ fits_plot <- function(outer_iterator_vec){
                 font_size_adj_manuscript <- if (medium == "manuscript"){
                   list(
                     theme(
-                      axis.title.y = element_text(size = 14, family = choice_font),
-                      axis.text.y = element_text(size = 11, family = choice_font),
+                      axis.title.y = element_text(size = 14, family = ggplot_font),
+                      axis.text.y = element_text(size = 11, family = ggplot_font),
                     )
                   )
                 }
@@ -780,8 +774,8 @@ fits_plot <- function(outer_iterator_vec){
                   list(
                     theme(
                       axis.text.x = element_text(size = 14),
-                      axis.title.y = element_text(size = 14, family = choice_font),
-                      axis.text.y = element_text(size = 11, family = choice_font),
+                      axis.title.y = element_text(size = 14, family = ggplot_font),
+                      axis.text.y = element_text(size = 11, family = ggplot_font),
                     )
                   )
                 }
@@ -828,9 +822,9 @@ fits_plot <- function(outer_iterator_vec){
                   list(
                     theme(
                       axis.text.x = element_text(size = 11),
-                      axis.title.x = element_text(size = 14, family = choice_font),
-                      axis.title.y = element_text(size = 14, family = choice_font),
-                      axis.text.y = element_text(size = 11, family = choice_font),
+                      axis.title.x = element_text(size = 14, family = ggplot_font),
+                      axis.title.y = element_text(size = 14, family = ggplot_font),
+                      axis.text.y = element_text(size = 11, family = ggplot_font),
                     )
                   )
                 }
@@ -909,9 +903,9 @@ indiv_diffs_math <- function(){
     ) +
     theme_minimal() +
     theme(
-      axis.title.y = element_text(size = 15, family = choice_font),
-      axis.text.x = element_text(size = 15, family = choice_font),
-      axis.text.y = element_text(size = 11, family = choice_font),
+      axis.title.y = element_text(size = 15, family = ggplot_font),
+      axis.text.x = element_text(size = 15, family = ggplot_font),
+      axis.text.y = element_text(size = 11, family = ggplot_font),
     )
 }
 
@@ -920,10 +914,10 @@ heat_plotter <- function(measure, bottom_x_axis, big_title,
   
   shared_graph_theme <- list(
     theme(
-      axis.title.x = element_text(family = choice_font),
-      axis.title.y = element_text(family = choice_font),
-      axis.text.x = element_text(family = choice_font),
-      axis.text.y = element_text(family = choice_font),
+      axis.title.x = element_text(family = ggplot_font),
+      axis.title.y = element_text(family = ggplot_font),
+      axis.text.x = element_text(family = ggplot_font),
+      axis.text.y = element_text(family = ggplot_font),
     )
   )
   
@@ -945,10 +939,10 @@ heat_plotter <- function(measure, bottom_x_axis, big_title,
       plot.title = element_text(
         hjust = 0.5,
         # size = 26, hjust = 0.5, margin = margin(t = 10, b = 10, l = 0, r = 0),
-        family = choice_font
+        family = ggplot_font
       ),
-      legend.text = element_text(family = choice_font),
-      legend.title = element_text(family = choice_font)
+      legend.text = element_text(family = ggplot_font),
+      legend.title = element_text(family = ggplot_font)
     ) +
     scale_y_continuous(breaks=seq(2, 24, 2)) +
     labs(title = big_title, x = "First Number", y = "Second Number")
