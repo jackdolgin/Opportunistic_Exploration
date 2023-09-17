@@ -382,7 +382,7 @@ choice_and_learning_plots <- function(plot_type){
     
     layers_list <- list(
       geom_point(size = 4),
-      geom_line(size=1.5),
+      geom_line(linewidth=1.5),
       theme_bw(),
       removeGridX(),
       shared_graph_theme_all_three,

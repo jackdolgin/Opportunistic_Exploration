@@ -11,5 +11,5 @@ gaus_prior <<- c(0, 20)
 global_optimizer_lower_bound <<- -100
 global_optimizer_upper_bound <<- 100
 max_iterations_per_fit <<- 1000
-medium <- "manuscript" # "manuscript" or "shiny"
-ggplot_font <- "Fira Sans"
+medium <<- "shiny" # "manuscript" or "shiny"
+ggplot_font <<- "Fira Sans"
