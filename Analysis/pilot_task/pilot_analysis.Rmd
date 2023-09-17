@@ -1,0 +1,559 @@
+---
+title: "Meta-Explore Pilot Data, Examined"
+date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    theme: united
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    toc_depth: 2
+    number_sections: false
+    code_folding: hide
+    code_download: true
+---
+
+```{css, echo=FALSE}
+body {
+  font-size: 1.6rem;
+  text-align: justify;
+}
+
+.title {
+  font-size: 47px;
+  color: firebrick;
+}
+
+h1,h2,h3,h4,h5 {
+  text-align: left;
+}
+```
+
+```{r preferences, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, error=FALSE, message=FALSE,
+                      fig.asp=.7, fig.dim = c(16, 7), dev='svg')
+```
+
+```{r import}
+if (!require(devtools)) install.packages("pacman")
+pacman::p_load(rtemps, ggpubr, Rmisc, tidyverse, here, magrittr, patchwork,
+               gghalves)
+```
+
+```{r prepData}
+source(here("Analysis", "pilot_task", "prep_pilot_analysis.R"))
+```
+
+
+```{r plotFunctions}
+plotter <- function(df, x, y, x_label, y_label, min_x, max_x, min_y, max_y,
+                     label_nudge, y_seq_start, y_seq_end, y_seq_delta, geom) {
+  ggplot(eval(sym(df)), aes(!!sym(x), !!sym(y), color = Task)) +
+    geom +
+    labs(title = paste0("Relationship between\n", x_label, " and ", y_label),
+         subtitle = "as a function of the type of math problem",
+         x = x_label,
+         y = y_label) +
+    stat_cor(aes(label = paste(..r.label.., sep = "~‘")),
+             position = position_nudge(y = label_nudge),
+             show.legend = FALSE) +
+    theme_minimal() +
+    scale_colour_manual(values = c("#0072B2", "#D55E00")) +
+    coord_cartesian(xlim = c(min_x, max_x), ylim = c(min_y, max_y)) +
+    scale_y_continuous(breaks=seq(y_seq_start, y_seq_end, y_seq_delta))
+}
+
+heat_plotter <- function(measure, measure_text, by_task_min, by_task_max,
+                         by_task_midpoint, compared_min, compared_max,
+                         compared_midpont, low_color, mid_color,
+                         high_color) {
+  
+  heat_by_task <- function(task) {
+    pilot_data_summarized %>%
+      filter(Task == task) %>%
+      ggplot(aes(High_Num, Low_Num, fill=!!sym(measure))) +
+      geom_tile() +
+      scale_fill_gradient2(low=low_color, mid=mid_color, high=high_color,
+                           na.value = "#802835", midpoint = by_task_midpoint,
+                           limits=c(by_task_min, by_task_max)) +
+      labs(subtitle =paste(sym(measure_text), "for", task, "Task,\nby",
+                           if_else(task == "Addition", 
+                                   "Addends",
+                                   "Multiplicands")),
+           x = "", y = "")
+  }
+  
+  heats_compared <- pilot_data_summarized %>%
+    arrange(desc(Task)) %>%
+    group_by(Low_Num, High_Num) %>%
+    mutate(comparison = lead(!!sym(measure))) %>%
+    slice_head() %>%
+    mutate(`Mult - Add` = !!sym(measure) - comparison) %>%
+    ggplot(aes(High_Num, Low_Num, fill=`Mult - Add`)) +
+    geom_tile() +
+    scale_fill_gradient2(low=low_color, mid=mid_color, high=high_color,
+                         na.value = "#802835", midpoint = compared_midpont,
+                         limits=c(compared_min, compared_max)) +
+    scale_x_continuous(breaks=1:24) +
+    theme(panel.grid.minor.x = element_blank()) +
+    scale_y_continuous(breaks=seq(2, 24, 2)) +
+    labs(title = paste("Multiplication", sym(measure_text), "\n- Addition",
+                       sym(measure_text)),
+         x = "", y = "")
+  
+  (c("Addition", "Multiplication") %>%
+      map(heat_by_task) %>%
+      reduce(`+`) + plot_layout(guides = 'collect') +
+      theme(legend.position = "right")) %>%
+    divide_by(heats_compared)
+}
+
+intra_diffs <- function(task, color_scheme, x1, x2, side_1){
+  df <- filter(d, Task == task)
+  rts <- pull(df, RT)
+  cis <- CI(rts)[1] - CI(rts)[3]
+  list(
+    geom_point(data = df, color = color_scheme, size = 1.5, alpha = .6),
+    geom_half_boxplot(data = df, position = position_nudge(x = x1),
+                      side = "r", outlier.shape = NA, center = TRUE,
+                      errorbar.draw = FALSE, width = .2, fill = color_scheme),
+    geom_half_violin(data = df,position = position_nudge(x = x2 * .3),
+                     side = side_1, fill = color_scheme),
+    geom_point(data = df, aes(y = mean(rts)),
+               position = position_nudge(x = x2 * .13), color = color_scheme,
+               alpha = .6, size = 1.5),
+    geom_errorbar(data = df, aes(y = mean(rts), ymin = mean(rts) - cis,
+                                 ymax = mean(rts) + cis),
+                  position = position_nudge(x2 * .13), color = color_scheme,
+                  width = 0.05, size = 0.4, alpha = .5)
+  )
+}
+
+aurora_plotter <- function(Task_Compare_1, Task_Compare_2, min_y, max_y) {
+  
+  Combo_RT_setup <- filter(pilot_data, Task == Task_Compare_1, Accuracy == 100)
+  
+  df_plot_3 <- Combo_RT_setup %>%
+    group_by(Low_Num, High_Num) %>%
+    summarise(across(RT, mean), .groups = "drop") %>%
+    mutate(df_rank_absolute = dense_rank(desc(RT)),
+           df_rank_percentile = percent_rank(RT))
+  
+  df_plot_3_setup <- left_join(Combo_RT_setup,
+                               df_plot_3, by = c("Low_Num", "High_Num"))
+  
+  df_plot_3 %>%
+    expand(nesting(Low_Num, High_Num, df_rank_absolute, RT, df_rank_percentile),
+           next_rows = full_seq(min_y:max_y, 1)) %>%
+    ungroup() %>%
+    mutate(Correlation = pmap_dbl(., function(df_rank_absolute, next_rows, ...){
+      
+      tryCatch(
+        {
+          df_rank_low <- df_rank_absolute - next_rows
+          df_rank_high <- df_rank_absolute
+          
+          data_split <- if (Task_Compare_1 == Task_Compare_2) {
+            df_plot_3_setup %>%
+              group_by(df_rank_absolute >= df_rank_low &
+                         df_rank_absolute < df_rank_high) %>%
+              group_split()
+          } else {
+            list(
+              filter(df_plot_3_setup, df_rank_absolute >= df_rank_low,
+                     df_rank_absolute < df_rank_high),
+              pilot_data %>%
+                filter(Task == Task_Compare_2, Accuracy == 100) %>%
+                rename(RT.x = RT)
+            )
+          }
+          
+          ready_for_cor <-  data_split %>%
+            map_df(function(z){
+              z %>%
+                group_by(Sub_ID) %>%
+                summarise(RT_mean = mean(RT.x),
+                          total_instances = n(),
+                          .groups="drop") %>%
+                mutate(rand_name = runif(1, min=0, max=10^9))
+            }) %>%
+            group_by(Sub_ID) %>%
+            filter(min(total_instances) >= 3) %>%
+            ungroup() %>%
+            select(-total_instances) %>%
+            pivot_wider(names_from = rand_name, values_from = RT_mean) %>%
+            filter(across(everything(), ~ !is.na(.x)))
+          
+          cor(pull(ready_for_cor, 2),
+              pull(ready_for_cor, 3))
+        },
+        error=function(e) {
+          return(0)
+        }
+      )
+    }
+    )
+    ) %>%
+    ggplot(aes(df_rank_percentile, next_rows, fill= Correlation)) +
+    geom_raster() +
+    scale_fill_viridis_c(direction = 1, limits = c(-.2, 1)) +
+    theme_minimal() +
+    scale_x_continuous(breaks = seq(.1, .9, .1)) +
+    scale_y_continuous(breaks = seq(min_y, max_y, 2)) +
+    labs(title = paste(Task_Compare_1, "Problems that Best Predict",
+                       if_else(Task_Compare_1 == Task_Compare_2, "the Others",
+                               paste("All the", Task_Compare_2, "Problems"))),
+         subtitle = paste("Correlation is participants' average RT on correct",
+                          "trials",
+                          if_else(Task_Compare_1 == Task_Compare_2,
+                                  paste("among either combinations in the",
+                                        "snippet or out of it"),
+                                  paste(tolower(Task_Compare_2), "problems",
+                                        "as predicted by a snippet of ",
+                                        tolower(Task_Compare_1), "problems")),
+                          "\nEach snippet is the", tolower(Task_Compare_1),
+                          "combinations that are the xth easiest or one of the",
+                          "next y-axis-value subsequently most difficult",
+                          "combinations"),
+         caption=paste("The hope of this plot is to see how well we could",
+                       "glean a participant's threshold for difficulty if we",
+                       "give them only a\nfew trials. Although the y-axis",
+                       "discusses how well presenting from", min_y, "to",
+                       max_y, "predict one's general performance, the y-axis",
+                       "\nis a little misleading because only a quarter of all",
+                       "number combinations were presented to each",
+                       "participant. So if we did\nwant to use practice",
+                       "trials as a sort of proxy, we might be able to use",
+                       "even fewer than the values seen on the y-axis."),
+         x = paste("A", if_else(Task_Compare_1 == "Multiplication",
+                                "Multiplicand", "Addend"),
+                   "Combination that is this", "Ranked-Percentage Easy among",
+                   "All Combinations"),
+         y = "This many of the Next Most Difficult Combinations")
+}
+
+
+plot_10_theme <- list(
+  theme_minimal(),
+  theme(
+    axis.line=element_line(color="white"), 
+    plot.title = element_text(color="white"),
+    plot.background = element_rect(fill="#1e394a"),
+    panel.grid.major=element_blank(),
+    panel.grid.minor=element_blank(),
+    panel.border=element_blank(),
+    panel.background=element_blank(),
+    axis.text.x=element_text(angle=0, color="white", size=16, vjust= 0.5),
+    axis.text.y=element_text(angle=0, color="white", size=16), 
+    strip.text=element_text(face="bold", size=22),
+    axis.line.x = element_line(color="white", size = 0.5),
+    axis.line.y = element_line(color="white", size = 0.5),
+    axis.ticks = element_blank(),
+    strip.text.y=element_text(color="white"),
+    strip.background = element_rect(fill="#1e394a"),
+    legend.position="none",
+    axis.title = element_text(size=24, face="bold", color="white"),
+    panel.spacing.x = unit(1.25,"lines"),
+    panel.spacing.y = unit(1.75,"lines"))
+)
+```
+
+# Individual Differences {-}
+
+##  Multiplication Accuracy {-}
+
+You can tell here that there was quite a range in terms of how people fared in terms of multiplication accuracy during the task. The following analyses don't exclude any participants if their overall multiplication accuracy was below a certain value, but perhaps we should decide on such a floor, since I wonder how much of bad accuracy is a reflection of ability vs. effort.
+
+```{r plot1}
+pilot_data %>%
+  group_by(Sub_ID) %>%
+  filter(Task == "Multiplication") %>%
+  summarise(Performance = mean(Accuracy),
+            Response_Time = mean(RT)) %>%
+  ggplot(aes(Response_Time, Performance)) +
+  geom_point(size = .5) +
+  labs(title = paste("Individual Differences in Addition and Response Time",
+                     "on Multiplication Problems"),
+       caption = paste(n_distinct(pilot_data$Sub_ID), "participants"),
+       x = "Response Time (seconds)",
+       y = "Accuracy (as a percent of all mult. problems)") +
+  theme_minimal()
+```
+
+----
+
+## Predictors {-}
+
+### Relationship between Addition and Multiplication Response Times {-}
+
+This data is filtered just for correct trials, and it shows that while people were certainly faster for addition problems than multiplication problems, there was also a pretty close relationship between how fast someone was for addition as they were for multiplication.
+
+```{r plot2}
+d <- pilot_data %>%
+  filter(Accuracy == 100) %>%
+  group_by(Task, Sub_ID) %>%
+  summarise(RT = mean(RT, na.rm = FALSE))
+
+ggplot(d, aes(x = Task, y = RT)) +
+  intra_diffs("Addition", "#0072B2", -.28, -1, "l") +
+  intra_diffs("Multiplication", "#D55E00", .18, 1, "r") +
+  geom_line(aes(group = Sub_ID), color = 'lightgray', alpha = .3) +
+  labs(title = paste("Individual Differences in Correct Response Times for",
+                     "Addition and Multiplication"),
+       x = "Math Type",
+       y = "Average Response Time (seconds)"
+  ) +
+  theme_minimal()
+```
+
+----
+
+### How Well Multiplication Problems Predict Response Time on the Other Multiplication Problems {-}
+
+The idea of this plot is to see whether we can predict an individual's response time for most correct multiplication problems as a function of only a sampling of correct multiplication problems. The brightest colors show that the snippet that is most predictive of all the other multiplication problems is if we look at response times to the problems that, averaged across all participants, were in the 85th-95th percentile of easiness (so pretty difficult problems). The x-axis is the lowest percentile multiplication problem in the snippet, and the y-axis is how many multiplication problems should compose this snippet. It's also worth noting that increasing a snippet's span (i.e. at larger y values) doesn't necessarily lead to it more accurately predicting the rest of the multiplication problems' response times, and if anything is detrimental to the predictions. That's not to say that more trials in a sample leads to worse predictions, but just that when adding more trials means widening the scope of how difficult the problems in the sample were, the predictions might be more diluted.
+
+```{r plot3}
+aurora_plotter("Multiplication", "Multiplication", 8, 20)
+```
+
+----
+
+### Homing in on a High-Fidelity Multiplication Predicting Snippet{-}
+
+Now that we know which multiplication problems best predict the other ones, we can zoom in on this correlation. Clearly there is a tight correlation between an individual's average response time for correct multiplication problems that are vs. are not in the 85-95th range of easiness. Only participants who had at least 3 correct trials in the snippet were included.
+
+```{r, plot4}
+pilot_data %>%
+  filter(Task == "Multiplication", Accuracy == 100) %>%
+  group_by(Low_Num, High_Num) %>%
+  mutate(Combo_RT_mean = mean(RT)) %>%
+  ungroup() %>%
+  mutate(df_rank_percentile = percent_rank(Combo_RT_mean)) %>%
+  group_by(Sub_ID,
+           sweetspot = df_rank_percentile >= .85 & df_rank_percentile < .95) %>%
+  summarise(across(RT, mean),
+            total = n() ) %>%
+  ungroup() %>%
+  filter(total >= 3) %>%
+  group_by(Sub_ID) %>%
+  filter(n() > 1) %>%
+  ungroup() %>%
+  select(-total) %>%
+  pivot_wider(names_from = sweetspot, values_from = RT) %>%
+  magrittr::set_names(c("Sub_ID", "Full", "Sample")) %>%
+  ggplot(aes(x=Sample, y=Full)) +
+  geom_point() +
+  geom_smooth() +
+  stat_cor(aes(label = paste(..r.label.., sep = "~‘")),
+           # position = position_nudge(y = RT),
+           show.legend = FALSE) +
+  labs(title = paste("How well the 85th-95th Easiest Multiplication Prbolems",
+                     "Predict Response Time on the Other Problems"),
+       x = "Response Time Among Snippet",
+       y = "Response Time of the Other Mult. Combinations",
+       caption = "Each dot is one participant") +
+  theme_minimal()
+```
+
+----
+
+### How Well Addition Problems Predict Response Time on Multiplication Problems {-}
+
+This plot has the same logic to it as the other Northern-Lights-esque plot just above, except this time the multiplication snippets are actually predicting addition response times, not fellow multiplication problems. The area that's most predictive in the plot above is almost the same as in this plot, but the predictions in this plot are (perhaps unsurprisingly) more muted.
+
+```{r plot5}
+aurora_plotter("Addition", "Multiplication", 8, 20)
+```
+
+---
+
+```{r plot6}
+aurora_plotter("Addition", "Addition", 8, 20)
+```
+
+---
+
+```{r plot7}
+aurora_plotter("Multiplication", "Addition", 8, 20)
+```
+
+# Trends Across Participants {-}
+
+## Relationships b/w Dependent Vs {-}
+
+### Scatterplot of Trial-by-Trial Relationship between Difficulty Rating and Response Time {-}
+
+Only correct trials are plotted, and even though most of the trials last less than 10 seconds, there is certainly some variability, almost all of which is driven by multiplication problems.
+
+```{r plot8}
+correct_pilot_data <- filter(pilot_data, Accuracy == 100) 
+
+plotter("correct_pilot_data", "RT", "Difficulty", "Response Time",
+        "Rated Difficulty", 0, 75, 0, 110, 10, 0, 100, 10,
+        list(geom_point(size = .4))) +
+  labs(caption = paste("Each of the",
+                       nrow(correct_pilot_data),
+                       "dots represents one trial for one",
+                       "participant\n(filtered for trials with RT > 75)"))
+```
+
+----
+
+### Correlations between Response Time, Rated Difficulty, and Accuracy {-}
+
+The correlations for all of them are quite robust, especially for multiplication problems
+
+```{r plot9}
+list(
+  "pilot_data_summarized",
+  c("RT", "RT", "Accuracy"),
+  c("Difficulty", "Accuracy", "Difficulty"),
+  c("Response Time (seconds)", "Response Time (seconds)", "Accuracy (%)"),
+  c("Rated Difficulty", "Accuracy (%)", "Rated Difficulty"),
+  c(0, 0, 35),
+  c(30, 30, 100),
+  c(0, 35, 0),
+  c(75, 110, 75),
+  c(0, 10, 6),
+  c(0, 30, 0),
+  c(80, 100, 80),
+  10,
+  list(geom_point(size = 1))
+) %>%
+  pmap(plotter) %>%
+  reduce(`+`) +
+  plot_layout(guides = 'collect') +
+  plot_annotation(
+    title = "Averages for Each Combination of Addends and Multiplicands",
+    subtitle = paste("Each of the",
+                    nrow(pilot_data_summarized),
+                    "dots per graph represents one trial",
+                    "averaged across subgroups of approximately",
+                    round(n_distinct(pilot_data$Sub_ID) / 4),
+                    "participants\n"))
+```
+
+----
+
+## Notable Diffs b/w Numbr Cmbos {-}
+
+### No Clear Inflection Point for Multiplication Difficulty {-}
+
+When the difference between multiplication and addition response time among correct problems is plotted along the x axis, in ascending order, the 50% on the right vary more than the 50% on the left, suggesting that the distribution is skewed but not seemingly binary. The orange indicates how much change there is in RT moving one unit along the x axis, underscoring that there is more change further along right but the lack of as much change near the middle of the graph points to a relatively continuous distribution at least most of the way going from left to right. The top plot just transforms the bottom graph so that each step in that 'histogram' is moving one second in response time. So a high and wide-spanning step means that there are a lot of number combinations whose multiplication minus addition RT difference is all within a second of each other. More change in this RT difference from one combination to the next leads to shorter and narrower steps.
+
+```{r, plot10}
+plot_10_data <- pilot_data %>%
+  filter(Accuracy == 100) %>%
+  group_by(Low_Num, High_Num, Task) %>%
+  summarise(across(RT, mean)) %>%
+  ungroup() %>%
+  mutate(across(RT, ~. - lag(.))) %>%
+  filter(Task == "Multiplication") %>%
+  arrange(RT) %>%
+  mutate(Change = lead(RT) - RT,
+         row_rank = 100 * row_number() / n())
+
+small_10_plot <- plot_10_data$RT %>% min %>% floor
+big_10_plot <- plot_10_data$RT %>% max %>% ceiling
+plot_10_data_expanded <- plot_10_data %>%
+  expand(nesting(row_rank, Change),
+         RT = full_seq(c(small_10_plot, big_10_plot), 1))
+
+(plot_10_data %>%
+    group_by(ceiling(RT)) %>%
+    mutate(Group_Count = n()) %>%
+    ggplot(aes(row_rank, Group_Count)) +
+    geom_bar(stat='identity', width=1, fill = "white") +
+    plot_10_theme +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.title.x=element_blank(),
+           axis.title.y = element_text(size = 10),
+          plot.title = element_text(size=32)) +
+    ylab(paste("Number of Combinations Within 1",
+               "Second of Each Other, per Second", sep = "\n")) +
+    labs(title = paste("The Relatively Continuous (though skewed) Distribution",
+                       "\nof Multiplicand Combinations,in terms of easiness"))) /
+  
+(ggplot(plot_10_data, aes(row_rank, RT)) +
+  geom_raster(data = plot_10_data_expanded,
+              aes(row_rank, RT, fill = Change), interpolate = TRUE) +
+  geom_line(aes(x=row_rank, RT), color="white",size=1.5) +
+  scale_fill_gradient2(low="#1e394a", mid="#bc6c0d", high="#d26700",
+                       midpoint = 1.1) +
+  plot_10_theme +
+  coord_cartesian(ylim = c(small_10_plot + 1, big_10_plot -1)) +
+   theme(axis.title.y = element_text(size = 10)) +
+  scale_x_continuous(breaks=seq(25, 75, 25)) +
+   labs(x = paste("Where each Multiplicand Combination Ranks in Terms of",
+                  "Response Time\n(sorted in ascending order)"),
+        y = "Response Time\n(Seconds)"))
+```
+
+----
+
+### Most important graphs {-}
+
+We've already discussed the last two graphs plenty, so I'll just leave them below without saying anything more.
+
+```{r, plot11}
+list(
+  "pilot_data_high_nums",
+  "High_Num",
+  c("Accuracy", "RT", "Difficulty"),
+  "Largest Addend or Multiplicand",
+  c("Accuracy (%)", "Response Time (seconds)", "Rated Difficulty"),
+  0,
+  25,
+  c(65, 0, 0),
+  c(100, 15, 50),
+  50,
+  c(60, 0, 0),
+  c(100, 15, 50),
+  c(10, 3, 10),
+  list(
+    list(geom_line(size = 1), geom_point(size = 2))
+  )
+) %>%
+  pmap(plotter) %>%
+  reduce(`+`) +
+  plot_layout(guides = 'collect') +
+  plot_annotation(title = "Averages for Largest Addend and Multiplicand",
+                  subtitle = paste("Each value is collapsed across",
+                                  n_distinct(pilot_data$Sub_ID),
+                                  "participants\n"))
+```
+
+----
+
+```{r, plot12}
+list(
+  c("RT", "Accuracy", "Difficulty"),
+  c("Response Time", "Accuracy", "Rated Difficulty"),
+  c(0, 40, 0),
+  c(25, 100, 100),
+  c(0, 100, 0),
+  c(-2, -50, -10),
+  c(20, 10, 60),
+  0,
+  c("#0C6291", "#A63446", "#0C6291"),
+  "#FBFEF9",
+  c("#A63446", "#0C6291", "#A63446")
+) %>%
+  pmap(heat_plotter) %>%
+  reduce(`|`) +
+  plot_annotation(title = paste("Addition and Multiplication Problems, and",
+                                "their Difference"),
+                  subtitle = paste("grouped, left to right, by response time,",
+                                   "accuracy, and self-reported difficulty\n"))
+```
+
+---
+
+### R session info {-}
+
+```{r session info, comment=""}
+xfun::session_info()
+```
+

@@ -1,0 +1,772 @@
+subid,age,gender,add_side,mult_side,q1,q2,q3,q4,time_elapsed
+4711,20,Female,right,left,Some of the time,Not at all,Most of the time,NA,6098454
+3925,19,Female,left,right,Not at all,Not at all,Not at all,NA,1468479
+2720,19,Female,right,left,Not at all,Not at all,Always,NA,4457851
+4362,19,Female,left,right,Not at all,Not at all,Always,NA,1530080
+1425,21,Female,right,left,Not at all,Not at all,Always,NA,1919965
+4869,18,Female,right,left,Not at all,Not at all,Always,NA,2392873
+3244,19,Female,left,right,Not at all,Some of the time,Most of the time,NA,3155043
+4578,20,Male,right,left,Not at all,Not at all,Always,NA,4115673
+3493,19,Male,right,left,Not at all,Not at all,Most of the time,NA,1641125
+4770,18,Female,left,right,Not at all,Not at all,Always,NA,2156868
+4621,19,Male,right,left,Not at all,Not at all,Always,NA,3520146
+4744,21,Male,left,right,Not at all,Not at all,Always,NA,2147090
+4153,19,Female,left,right,Not at all,Not at all,Always,NA,1589547
+2447,20,Female,right,left,Some of the time,Not at all,Most of the time,NA,2454170
+2811,20,Female,right,left,Some of the time,Not at all,Most of the time,NA,2872466
+1203,20,Male,left,right,Some of the time,Not at all,Some of the time,NA,1811473
+2584,18,Male,left,right,Not at all,Some of the time,Most of the time,NA,3919949
+4507,21,Female,left,right,Not at all,Not at all,Always,NA,1919203
+471,20,Female,left,right,Not at all,Not at all,Most of the time,NA,1867567
+3950,20,Male,left,right,Not at all,Not at all,Always,NA,1864995
+962,20,Female,left,right,Some of the time,Not at all,Most of the time,NA,2837152
+2350,21,Female ,right,left,Not at all,Not at all,Always,NA,1478336
+2969,20,Male,right,left,Not at all,Not at all,Always,NA,1758328
+1133,20,Male,left,right,Not at all,Not at all,Always,NA,2783669
+955,21,Female,right,left,Not at all,Not at all,Always,NA,2335761
+4784,19,Male,right,left,Not at all,Some of the time,Most of the time,NA,2293959
+2346,21,Female,right,left,Not at all,Not at all,Always,NA,4516602
+4865,19,Male,right,left,Not at all,Not at all,Always,NA,2333802
+3306,20,Male,left,right,Not at all,Not at all,Always,NA,2233235
+4839,19,Male,right,left,Not at all,Not at all,Always,NA,993948
+4261,19,Male,left,right,Not at all,Not at all,Always,NA,1667724
+4539,18,Male,right,left,Not at all,Not at all,Always,NA,2003112
+4700,18,Female,left,right,Not at all,Not at all,Always,NA,1825220
+709,21,Female,right,left,Not at all,Not at all,Always,NA,2074199
+4191,19,Female,left,right,Some of the time,Not at all,Most of the time,NA,1805688
+4789,20,Male,right,left,Not at all,Not at all,Always,NA,1562831
+2940,20,Male,left,right,Not at all,Not at all,Always,NA,2524976
+4193,19,Female,right,left,Not at all,Not at all,Always,NA,1606046
+4893,21,Female,right,left,Not at all,Not at all,Always,NA,1403256
+641,20,Female,left,right,Not at all,Not at all,Always,NA,4003255
+1912,20,Female,right,left,Not at all,Not at all,Always,NA,2547690
+4888,19,Male,right,left,Not at all,Not at all,Always,NA,3080480
+4620,19,Female,right,left,Not at all,Not at all,Most of the time,NA,4280366
+4550,19,Female,right,left,Not at all,Not at all,Always,NA,2406455
+3205,20,Male,right,left,Not at all,Not at all,Always,NA,2019173
+2159,21,Male,left,right,Not at all,Not at all,Always,NA,2773401
+2249,22,Male,left,right,Not at all,Not at all,Always,NA,4627195
+1896,21,Female,left,right,Some of the time,Not at all,Most of the time,NA,2624757
+4655,18,Female,left,right,Not at all,Not at all,Most of the time,NA,3515081
+3713,21,Female,left,right,Some of the time,Not at all,Most of the time,NA,2107397
+4596,18,Female,right,left,Not at all,Not at all,Always,NA,3667962
+351,20,Female,left,right,Not at all,Not at all,Always,NA,2165529
+4793,21,Female,right,left,Not at all,Not at all,Always,NA,2062829
+4774,19,Female ,right,left,Not at all,Not at all,Always,NA,2953228
+589,21,Male,right,left,Not at all,Not at all,Always,NA,2098454
+611,20,Male,left,right,Some of the time,Not at all,Most of the time,NA,2362328
+4723,20,Female,right,left,Not at all,Not at all,Always,NA,2293002
+2746,19,Male,left,right,Not at all,Some of the time,Most of the time,NA,3269196
+4518,19,Female,left,right,Not at all,Not at all,Always,NA,2299866
+964,22,Male,right,left,Not at all,Not at all,Always,NA,2202166
+4818,22,Male,right,left,Not at all,Not at all,Always,NA,2335039
+4845,18,Female,right,left,Not at all,Some of the time,Some of the time,NA,1818786
+1004,20,Female,right,left,Not at all,Not at all,Always,NA,2248527
+3720,21,Female,left,right,Not at all,Not at all,Always,NA,3333577
+4819,19,Male,left,right,Not at all,Not at all,Always,NA,3101758
+938,22,Female,right,left,Not at all,Not at all,Always,NA,2433558
+4125,18,Female,left,right,Not at all,Not at all,Always,NA,2884733
+3000,21,Female,left,right,Not at all,Not at all,Always,NA,2459014
+4182,19,Male,left,right,Not at all,Not at all,Always,NA,2452316
+1545,22,Female,left,right,Not at all,Not at all,Most of the time,NA,3791832
+4392,19,Female,right,left,Not at all,Some of the time,Most of the time,NA,90887152
+2814,20,Male,right,left,Some of the time,Not at all,Most of the time,NA,3581010
+3570,20,Male,left,right,Not at all,Not at all,Always,NA,2153442
+4846,19,Female,right,left,Not at all,Not at all,Always,NA,5590266
+4521,19,Female,left,right,Not at all,Some of the time,Most of the time,NA,1975145
+1864,22,Female,left,right,Not at all,Not at all,Always,NA,1694051
+867,21,Female,left,right,Some of the time,Not at all,Some of the time,NA,1765507
+4357,19,Female,left,right,Not at all,Not at all,Always,NA,5059916
+668,22,Male,left,right,Not at all,Not at all,Always,NA,2346548
+2052,20,Female,left,right,Not at all,Not at all,Always,NA,2471020
+3078,21,Female,left,right,Not at all,Not at all,Always,NA,101723206
+820,21,Female,left,right,Not at all,Not at all,Always,NA,3903187
+3099,20,Male,right,left,Not at all,Not at all,Always,NA,1700639
+2041,20,Male,left,right,Not at all,Some of the time,Most of the time,NA,7668183
+4650,20,Female,left,right,Not at all,Not at all,Always,NA,2634999
+2469,21,Female,right,left,Not at all,Not at all,Always,NA,2125858
+4427,19,Female,right,left,Not at all,Not at all,Always,NA,2114008
+1770,22,Female,right,left,Not at all,Not at all,Always,NA,2602433
+4868,22,Male,left,right,Not at all,Not at all,Always,NA,1476243
+4892,19,nonbinary,right,left,Not at all,Not at all,Always,NA,3606374
+1985,21,Female,left,right,Not at all,Not at all,Most of the time,NA,2320982
+2699,19,Female,right,left,Not at all,Not at all,Always,NA,4786078
+4709,19,Female,right,left,Not at all,Some of the time,Most of the time,NA,3879872
+1738,21,Female,left,right,Not at all,Not at all,Always,NA,1554079
+4728,22,Male,left,right,Not at all,Not at all,Always,NA,2877443
+2239,21,Male,left,right,Not at all,Not at all,Always,NA,4455006
+4697,18,Male,right,left,Not at all,Some of the time,Most of the time,NA,2555177
+4140,19,Female,left,right,Not at all,Not at all,Always,NA,2336808
+4544,22,Female,right,left,Not at all,Not at all,Always,NA,1639001
+1329,20,Male,right,left,Not at all,Not at all,Always,NA,2638654
+4320,22,Male,left,right,Some of the time,Not at all,Most of the time,NA,1583182
+4689,21,Male,left,right,Not at all,Not at all,Always,NA,2133968
+1816,21,Female,left,right,Not at all,Not at all,Always,NA,3448528
+4866,18,Female,left,right,Not at all,Not at all,Always,NA,66373627
+4862,21,Male,left,right,Not at all,Not at all,Always,NA,1754777
+4418,19,Female,right,left,Not at all,Not at all,Always,NA,2224697
+454,21,Female,right,left,Not at all,Not at all,Most of the time,NA,13522914
+4787,22,Male,right,left,Not at all,Not at all,Always,NA,1705146
+1999,21,Male,right,left,Some of the time,Not at all,Most of the time,NA,2218762
+4904,18,Female,right,left,Not at all,Not at all,Always,NA,3500612
+4719,19,Female,left,right,Not at all,Not at all,Always,NA,2283469
+2737,20,Female,right,left,Not at all,Not at all,Always,NA,1700529
+1140,22,Male,left,right,Not at all,Not at all,Always,NA,1778761
+4717,20,Female,right,left,Not at all,Not at all,Always,NA,2615044
+4880,19,Male,right,left,Not at all,Not at all,Always,NA,56463035
+4360,18,Female,right,left,Not at all,Not at all,Always,NA,2271650
+4910,19,Female,left,right,Not at all,Not at all,Always,NA,2064302
+3680,18,Female,right,left,Not at all,Some of the time,Most of the time,NA,3078415
+2471,21,Male,left,right,Not at all,Not at all,Always,NA,1630845
+973,20,non-binary,right,left,Not at all,Not at all,Always,NA,3224067
+4574,19,Male,right,left,Not at all,Not at all,Always,NA,1473217
+2423,21,Male,right,left,Not at all,Not at all,Always,NA,4752530
+4532,24,Male,right,left,Not at all,Not at all,Always,NA,1713997
+1676,20,Female,left,right,Not at all,Not at all,Always,NA,3643515
+4873,22,Female,left,right,Not at all,Not at all,Always,NA,2384721
+4568,20,Male,right,left,Not at all,Not at all,Always,NA,1840470
+2441,20,Female ,left,right,Some of the time,Not at all,Most of the time,NA,106458390
+2845,20,Male,right,left,Not at all,Not at all,Always,NA,2636713
+2777,19,Female,right,left,Not at all,Not at all,Always,NA,2763769
+1122,20,Female,left,right,Not at all,Not at all,Always,NA,1491752
+3171,21,Male,left,right,Not at all,Not at all,Always,NA,2096008
+4896,20,Male,right,left,Some of the time,Some of the time,Most of the time,NA,256146719
+4822,18,Female,left,right,Not at all,Not at all,Always,NA,2187605
+5202,18,Female,right,left,Not at all,Not at all,Always,"Whenever I saw which slot machine had the highest numbers, I solved that particular equation for the rest of the rolls.  ",2709852
+5144,18,Female,left,right,Not at all,Not at all,Always,"I mostly picked all the choices in the column that had the highest average of the 2 examples. If it was close, sometimes I'd pick one from the other side. ",3545403
+5125,18,Female,right,left,Not at all,Some of the time,Most of the time,"I picked whichever was easier. If adding the numbers was easier, I did that. If multiplying was easier, I did that.",1704741
+5335,19,Male,left,right,Not at all,Not at all,Always,Pattern recognition,2391576
+2561,21,Female,left,right,Not at all,Not at all,Always,"I would consider the averages already presented in each column. If the averages were already really far apart, I would try to do the mathf or the column with the higher average. If the averages were fairly close, I would do the math for the column with the higher average to see if that extra information would increase the average a significant amount. If it did, I would continue doing the math for that column until the end. If the averages still seemed too similar, I would do the math for the other columms to get more information.",12485805
+5334,18,Male,right,left,Not at all,Not at all,Always,"I picked which ever had a higher average or a higher range, leading to a most likely higher mean.",22742387
+2848,20,Female,right,left,Some of the time,Not at all,Most of the time,I used guesstimations in my head of the highest average from the first four pulls,2233797
+2513,20,Female,left,right,Some of the time,Not at all,Most of the time,I usually decided based on which average seemed higher but sometimes I would just choose the addition side because it was easier to solve,2887052
+5270,22,Male,left,right,Not at all,Not at all,Always,I usually picked the slot machine with the higher known average.,2101213
+5088,18,Female,right,left,Not at all,Not at all,Always,Just depended on how large the numbers were and if I could do the multiplication in my head or not. ,2162401
+3850,19,Female,left,right,Not at all,Not at all,Always,"Choose bandit with overall high score. If its the multiplying bandit, i add only if im not sure. ",2074767
+4095,19,Female,right,left,Not at all,Not at all,Always,Whichever I thought was easier ,1736047
+5141,19,Female,right,left,Not at all,Some of the time,Most of the time,I looked at the numbers that appeared. I would try to do the problem that would get me on the side that had bigger numbers. ,2079838
+5130,19,Female,right,left,Not at all,Not at all,Always,"Which side would give me more points, how difficult the math problem was",2715850
+262,21,Female,right,left,Not at all,Not at all,Always,no,2741605
+5220,18,Female,left,right,Not at all,Not at all,Always,"I didn't fully calculate out the averages in my head, but I had a good understanding if it was averaging low numbers or high numbers. If it seemed pretty similar  I usually did one on each side to then continue to figure out which one to do. ",4725998
+5199,18,Female,left,right,Some of the time,Not at all,Most of the time,"To be honest, if there were two 2-digit numbers, I added it.",2590806
+5208,18,Female,right,left,Not at all,Not at all,Some of the time,Whichever slot machine seemed to be producing the higher numbers during that round was the machine that I went with (and stuck with unless the numbers it produced dropped significantly).,4281688
+4609,21,Male,right,left,Not at all,Not at all,Always,"I tried to see which one was giving out bigger numbers. That said, I would rarely change, even if the. machine I was on started giving out smaller numbers.",2251787
+5079,19,Female,right,left,Not at all,Not at all,Always,I did whichever had a higher average from before unless the multiplication was hard.,1866729
+2728,20,Female,right,left,Not at all,Not at all,Always,Which math was easier  for me to do ,2398993
+5351,18,Female,left,right,Not at all,Not at all,Always,"the known numbers, difficulty of calculation",2655610
+4668,20,Female ,right,left,Some of the time,Not at all,Most of the time,whatever was easier/quicker math ,2244302
+4070,20,Female,left,right,Not at all,Not at all,Always,"the forced-choice responses 
+the difficulty of the problem if done using multiplication ",2366490
+5314,18,Female,right,left,Not at all,Some of the time,Most of the time,"If the given numbers were higher for one side, I would be more likely to select the same side.",2694471
+5352,18,Female,left,right,Not at all,Not at all,Most of the time,"I don't do multiplication with two two-digit numbers. I didn't have a strategy to pick either side, I just pressed F and J at the same time to make it go faster.",3660632
+4948,18,Female,right,left,Not at all,Not at all,Always,"If the problem was significantly harder to multiply, I just added it instead. For simpler problems, I just randomly decided which to do.",2656776
+4361,19,Female,right,left,Not at all,Not at all,Always,didn't want to take the risk with higher numbers I wasn't sure if I'd get right so went with addition mostly ,2377506
+3413,20,Male,left,right,Not at all,Not at all,Always,Addition was easier,3502019
+5209,21,Female,left,right,Not at all,Not at all,Always,i try to use the side that has the highest average. sometimes I get lazy and do the addition even when the multiplication side seems to yield a higher number. Note: half the mistakes I made are due to typos. I get through them too fast,2157206
+3832,19,Female,right,left,Not at all,Not at all,Always,points revealed and went with the side that had the highest. Switched if the ones I picked are lower than the other side,3828429
+5216,18,Male,left,right,Not at all,Not at all,Always,"I realized that getting an answer wrong was very very bad, so even if I was sure the right side had a greater average, I still added the two numbers together if I didn't feel 90% confident that I could multiply them accurately",2701290
+2395,20,Female,right,left,Not at all,Not at all,Always,"I picked the side that had the highest average. sometimes if the averages were very close, I would choose whichever had an easier math problem ",2902176
+5048,17,Male,right,left,Not at all,Not at all,Always,which set had a higher mean value of previous shown numbers,2613359
+4078,19,Female,right,left,Not at all,Not at all,Always,guess the average and pick one side that seems to be higher,2643280
+4969,18,Male,right,left,Not at all,Not at all,Always,I chose based on the 4 numbers provided (I went for the bandit that has a bigger average),3154662
+5197,18,Male,left,right,Not at all,Not at all,Always,"If it had more given values, I tended to trust its average more. I also weighed the chance of computing an incorrect calculation (a difficult multiplication) versus the expected reward. In those scenarios I used some addition values even though I knew I would be getting less points but a guaranteed amount of points. I guess this was because I wanted to be quick in my answers and I thought spending too much time would defeat the purpose of the game. ",2038626
+5116,18,Male,left,right,Some of the time,Not at all,Most of the time,"A high percentage of the time I resorted to multiplication. I'm not sure why but I made a connection between points and difficulty of the problem and multiplication tends to be more difficult so I tried my best to do multiplication. When I was doing this initially, I used mental math only. Then I got to a point where I felt like I was wasting time trying to solve something mentally so I whipped out my calculator. Then after about 20 minutes, I took a break, and stopped using the calculator completely. For the remainder of the exercise, I continued to use mental math only but frequently did addition when the problem took a little longer than usual. Additionally, the incentive of the gift card made me want to do more multiplication because I thought it gave more points. Lastly, I sometimes switched to addition when I noticed some sort of pattern with the points where it looked like addition gave more points than multiplication.",11243816
+5359,18,Female,right,left,Not at all,Not at all,Always,I started with the bandit with the higher average for the first 4 numbers.,2750164
+5064,18,Male,right,left,Not at all,Not at all,Always,I tried to reveal an equal number of cards on each side or if the multiplication was difficult to perform I just solved for additon.,2106508
+4124,20,Male,left,right,Not at all,Not at all,Always,I tried to prioritize getting the correct answer,1961692
+4185,19,Female,right,left,Some of the time,Not at all,Most of the time,"I factored in how large the numbers from the forced choices were, and I usually chose the side that had the higher forced average.",44984554
+3515,20,Male,right,left,Not at all,Not at all,Always,"I would try to go for the one that I thought had the higher average, unless the math problem was too hard, then I would do addition. I would do addition when both numbers had two digits, 11 and up.",2479307
+5192,18,Female,left,right,Most of the time,Not at all,Some of the time,Which ever side was higher in value I just stuck with that side. ,3981246
+1530,21,Female,right,left,Not at all,Not at all,Most of the time,whichever seemed easier!,1435514
+5281,19,Female ,left,right,Not at all,Not at all,Always,For most I picked the bandit that had revealed the highest numbers. Sometimes the difficulty of the multiplication problem impacted by choice. ,4422554
+5327,18,Male,left,right,Not at all,Not at all,Always,Whichever side had the highest average at the time of picking is pretty much whichever side I went for. ,3912954
+3321,21,Female,left,right,Some of the time,Not at all,Most of the time,I picked the one that seemed to have more higher numbers show up,2784239
+5180,18,Female,left,right,Not at all,Some of the time,Most of the time,I tended to choose the side with higher numbers (even if sometimes multiplication had to be used). ,3097805
+5008,18,Female,right,left,Not at all,Not at all,Always,I tried to find a pattern or strategy so many times and was trying things out but right when I would think I figured it out the pattern would change and it wouldn't be true so by the end I gave up trying to use the information to guide my answer.,2448827
+3377,20,female/queer,right,left,Some of the time,Not at all,Always,"I used the previous values to determine which bandit was more likely to have a higher number, in addition to considering if an easier multiplication problem meant a lower score from the multiplication bandit.",2539389
+246,21,Female,right,left,Not at all,Not at all,Always,"If addition had higher values, I always did addition.
+
+If multiplication had higher values, I did multiplication when I felt confident about doing the math in my head, and did addition when I felt like I couldn't do the multiplication in my head.",1819375
+2499,20,Female,left,right,Not at all,Not at all,Always,The easiest one mentally ,2227193
+5127,19,Female,right,left,Not at all,Not at all,Always,I just did what ever was easiest (multiplication or addition). I didn't pick based on which would yield me the most points. ,1992521
+4163,19,Female,left,right,Some of the time,Not at all,Most of the time, not really ,1711930
+2383,20,Female,left,right,Not at all,Not at all,Always,"I do addition when the numbers are ones I can't multiply in my head. When the numbers are easy, I would go based on where I thought the bigger number would be.",2077318
+4385,19,Male,right,left,Not at all,Not at all,Always,I tried to pick whichever side had the higher average come up to that point. If one side had a very low number I wouldn't pick that one. On a couple of them I just didn't want to do the multiplication and so did addition even though it was the statistically incorrect choice. ,2292959
+4563,19,Female,left,right,Not at all,Not at all,Always,I looked at the values that were revealed through the forced decision and also the difficulty of the math problems.,2389267
+457,21,Prefer not to say,right,left,Not at all,Not at all,Always,No,1877842
+2876,20,Female,left,right,Most of the time,Not at all,Some of the time,I picked whichever side had higher numbers previously ,2259603
+5386,20,Female,left,right,Not at all,Not at all,Always,All mental math. ,2006776
+5046,21,trans man,right,left,Not at all,Not at all,Always,whichever math problem was easier and if they were both easy I based it on the average of each slot thus far,2647399
+3449,21,Male,right,left,Not at all,Not at all,Always,"Frankly, I did the addition one almost every time. Some of those 2 digit ones are just tough",1409784
+5227,19,Male,left,right,Not at all,Not at all,Always,whichever I solved quicker in my head,3140152
+2430,20,Female,right,left,Some of the time,Not at all,Most of the time,what the avg of the slots were,3071315
+788,21,Female,left,right,Not at all,Not at all,Always,I tried to pick the ones with higher previous values. If I could not multiply the numbers I would just add them. ,1798683
+4634,19,Female,right,left,Not at all,Some of the time,Most of the time,Tried to stay with one choice the entire trial. ,2201957
+3956,19,Female,right,left,Not at all,Not at all,Always,"NO. MOST OFTEN, I CHOSE THE EASIER CALCULATION, ESPECIALLY WITH TWO 2-DIGIT NUMBERS.",1468991
+5367,18,Female,left,right,Not at all,Not at all,Always,"Whichever slot had higher numbers, I would mainly choose that slot.",2113858
+4155,21,Female,right,left,Not at all,Not at all,Always,no,3057972
+5346,21,Male,right,left,Some of the time,Not at all,Some of the time,"no, just tried to do it as fast as possible",1503327
+2386,20,Male,right,left,Some of the time,Not at all,Some of the time,completely random,1478600
+5354,18,Female,right,left,Some of the time,Not at all,Most of the time,sometimes if the problem was easier to add or if it was a multiplication problem that I knew right away in my head ,2913373
+4627,21,Female ,left,right,Not at all,Not at all,Always,N/A,4875396
+2563,20,Female,left,right,Not at all,Not at all,Always,I usually did chose the same column based on the highest number shown. ,2773853
+5134,18,Female,right,left,Not at all,Not at all,Always,"If I was confident in my math skills for that problem, I would go with whatever I thought would yield the highest point value. If I wasn't confident in my math skills for a problem, I would choose addition regardless of what I thought would yield the highest point value.",2362555
+3388,20,Female,right,left,Not at all,Not at all,Always,"If the numbers in one slot machine were on average higher than the numbers in the other, I attempted to solve for that slot machine to hopefully get more points. But if the multiplication problem was too hard in my head, I just did addition, even if that slot machine had the lower overall number of points.",2504149
+4092,19,Female ,left,right,Not at all,Not at all,Most of the time,"if the numbers in the middle started off high, they were more likely to be outliers than numbers that were at the top.",3808537
+5100,18,Female,right,left,Not at all,Not at all,Always,I just thought about what method (multiplication or addition) would make me go fastest,2830833
+5338,18,Female,left,right,Not at all,Not at all,Most of the time,I pick which ever column had the highest numbers,7430128
+2757,20,Female,right,left,Not at all,Not at all,Always,Ability to do the math accurately in my head. Side with higher numbers. How much work it would be to do the math in my head. ,2752930
+3035,22,Female,left,right,Not at all,Not at all,Always,Chose the one that seems to have higher average but did not calculate them.,2437969
+4113,19,Female,right,left,Not at all,Not at all,Always,"I mainly would choose the bandit that had the highest numbers in the forced choices. Also, if I got a lower number in one bandit for one turn, I would choose the other one for the next. ",2442540
+2659,20,Female,right,left,Some of the time,Not at all,Most of the time,no,3756871
+3440,20,Female,left,right,Not at all,Not at all,Always,The difficulty of calculation,2364622
+5139,18,Female,right,left,Not at all,Not at all,Always,"I tried to pick the slot column with the highest average from what I'd seen in the forced choices. Then, I would pick all the rest of the slots in that round from that column.",2848593
+3860,19,Cis-Male,left,right,Not at all,Not at all,Always,"I would try to guess the average of each side based on the forced choice pulls. If it was unclear I would just try to pick numbers with the biggest gains. If the ranges between given numbers was really large, I feel I went for the other side then. I wish for harder problems I just did the addition because I realized that getting any points is better than getting the question wrong and getting no points.",3458181
+5285,18,Female,right,left,Not at all,Not at all,Always,Whether it was easier to add or multiply the numbers,2568879
+5233,19,Male,right,left,Not at all,Not at all,Most of the time,"no
+",1793564
+5336,18,Female,left,right,Not at all,Not at all,Always,"Of the 4 forced pulls, I saw which side yielded the higher average score and chose from there. But near the end, I got tired and would choose adding the numbers if they were hard even if choosing multiplication was smarter.",2674944
+2633,20,Female,left,right,Not at all,Not at all,Always,no,2059237
+4141,19,Female,right,left,Not at all,Not at all,Always,"I would look at which of the forced choices had bigger numbers before choosing whether to add or multiply. Also, if the numbers were hard to multiply sometimes I would just add. ",2542286
+3897,20,Male,right,left,Not at all,Not at all,Always,"I looked at the available numbers and averaged them. I usually pulled on the side with the higher average. If the averages were pretty close, I chose based on the easier math equation. I tend to avoid sides with just one number showing unless the average of the other side was much lower than that one number.",7881444
+2398,20,Male,left,right,Not at all,Some of the time,Some of the time,No.,2446759
+5189,18,Female,left,right,Not at all,Not at all,Always,Whichever feels easier to calculate in mind; first instinct,1656555
+2912,20,Male,right,left,Not at all,Not at all,Always,Whichever had higher numbers to begin with,2927653
+3849,20,Female,right,left,Not at all,Not at all,Always,I just guess the averages.,2823276
+5184,18,Female,right,left,Not at all,Not at all,Always,The easiest way to solve ,2261126
+3890,20,Female,left,right,Some of the time,Not at all,Most of the time,If the calculation was easier depending on the side I would do that,3242518
+5296,19,Male,right,left,Not at all,Not at all,Some of the time,"No, it was mental math!",1214786
+5282,21,Male,left,right,Not at all,Not at all,Always,Whichever one had the highest average,3005188
+5277,19,Female ,right,left,Not at all,Not at all,Always,I just chose whatever math problem I could do the fastest. Mental math is my greatest weakness.  ,2236609
+5378,18,Male ,right,left,Not at all,Not at all,Always,most of the time I chose addition for the questions with larger numbers since many of them were harder to multiply,2436212
+5213,18,Female,left,right,Not at all,Not at all,Always,"I picked the side based on previous numbers. So if I was shown (through forced pick) that the average of one side seemed to be higher I would try to pick that side. Occasionally if I didn't feel like doing a certain operation I would just pick addition because it was easier, but I tried to not let that affect me and just do whichever side I thought was best even if the operation was tedious through head math.",2772582
+5044,19,Male,right,left,Not at all,Not at all,Not at all,No,1694858
+2782,21,Female,left,right,Not at all,Not at all,Always,"If adding the values was easier, I did that instead of multiplying.",1810563
+4190,19,Female,left,right,Not at all,Not at all,Always,"Whichever was easier for me to calculate, so most of the time I did addition but if I could mentally do multiplication I did that",1716262
+3820,19,Female,right,left,Not at all,Not at all,Always,no strategies,1441701
+5080,18,Male,left,right,Not at all,Not at all,Always,"The values in the set, so if one already had like a 70 and a 60, then I would try to do that math instead of the other. ",29685256
+3631,20,Female,right,left,Not at all,Not at all,Always,"I just kind of looked to see which side had the highest numbers from the forced trials and mostly tried to do the math problems for that set, unless the multiplication was too hard, then I would just do addition, regardless.",2340595
+5057,18,Female,left,right,Some of the time,Not at all,Most of the time,the sum of the numbers in each column ,2273402
+5377,18,Female,right,left,Not at all,Not at all,Always,previous numbers,2319270
+5036,18,Female,left,right,Not at all,Most of the time,Some of the time,I guessed which side would have more points based on the information already provided,2825593
+3379,21,Female,left,right,Not at all,Not at all,Always,I would look at which had higher numbers previously and try to discern any patterns between the two columns ,46673220
+5156,18,Female,left,right,Not at all,Not at all,Always,I picked the side with an overall higher average. The first few numbers were a good indicator as to the values of the covered numbers.,2918274
+2431,21,Male,left,right,Not at all,Not at all,Always,"If the multiplication was difficult, I added the numbers",2748111
+5275,19,Female,right,left,Not at all,Not at all,Always,"if the math problem was simple, i would choose the bandit with highest yield. if it was easier to multiply or add depending then I would choose that.",7767949
+5309,21,Female,right,left,Some of the time,Not at all,Most of the time,I used the bandit which yielded the highest numbers in the demonstrations. ,2246106
+2642,20,Female,right,left,Not at all,Not at all,Most of the time,"1) The first forced choices made me predict the average values of the column (even if they may not be correct);
+2) If the two numbers were two digits, I usually went for addition because it was easier.",1776011
+2495,20,Female,left,right,Most of the time,Not at all,Most of the time,no,2687790
+5000,18,Female,left,right,Not at all,Not at all,Always,"1st 4 numbers shown, average of 1st 4 numbers shown",5124104
+2794,20,Male,right,left,Not at all,Not at all,Always,First it depended on which side had higher numbers revealed in the forced slots. However if the multiplication was high effort and couldn't be easily figured out I'd go with addition.,4992036
+5038,19,Female,right,left,Not at all,Some of the time,Most of the time,I just looked at the trend of which column had higher numbers ,3471418
+5323,18,Female,left,right,Not at all,Not at all,Always,I chose the one where the average looked higher. ,3072790
+4638,19,Female,left,right,Not at all,Not at all,Always,difficulty of the multiplication,1903697
+3601,20,Female,left,right,Not at all,Not at all,Always,I think I picked which one to solve more on which problem would be easier to get the answer right to. I would rather solve an easy problem I could get right then risk solving a problem that's harder and getting it wrong. ,1715715
+3972,19,Female,right,left,Not at all,Not at all,Always,the scores i saw first,5081513
+253,21,Female,left,right,Not at all,Not at all,Always,"At times, I chose from the addition band because I thought addition was easier. This was when the reward for the multiplication side was more comparable, or when I thought I would get the multiplication wrong. There was a bit there where I got multiple addition problems wrong in a row that I'm pretty sure I solved correctly.",3246209
+5183,20,Female,right,left,Not at all,Some of the time,Most of the time,"Pick the side with the highest average in the forced picks. When the two sides are roughly the same, pick the easier question",3535411
+3359,21,Female,right,left,Not at all,Not at all,Always,"If the slot machine had relatively high numbers during the first four forced tries, then I was more likely to pick that slot machine. I am also better at addition in my head than subtraction, especially for more complicated problems, so I gravitated towards the addition slot more often.",3308856
+5248,18,Female,left,right,Not at all,Not at all,Always,I usually tried to pick the bandit had had the fewest amount of numbers picked already. If the numbers were bigger I was more likely to do addition because it was easier. ,2898536
+5280,19,Female,right,left,Not at all,Not at all,Always,I think that I tended to chose to pick whichever side seemed to have the highest average from the first four slots.,2992039
+5350,18,Female,right,left,Not at all,Not at all,Always,"averages of previous numbers tended to guide what I chose next, but not always",2939936
+5420,19,Female,right,left,Some of the time,Not at all,Most of the time,Stuck with the side that had higher outputs before I had to choose,2322591
+5101,18,Male,left,right,Not at all,Not at all,Always,"If the difference in average of values shown was large, I would pick only numbers from that side. If it was unclear, I would alternate until I could make an educated guess as to which average was higher and choose that side.",5375722
+3989,20,Female,left,right,Not at all,Not at all,Always,No,3200348
+5108,18,Female,right,left,Not at all,Not at all,Always,"No strategy, random",2434668
+5373,18,Male,left,right,Some of the time,Not at all,Most of the time,Whichever numbers were trending higher on whichever side during the forced selections were usually the row I chose for the remaining selections.,1970671
+4154,19,Male,right,left,Not at all,Not at all,Always,"I tended to go with the column that provided more rewards, even though it may not have resulted in more rewards. In addition, when the math problems were multiple digits, I tended to go with addition rather than multiplication.",1956679
+5333,19,Male,left,right,Not at all,Not at all,Most of the time,"I would look at the initial 4 options and just in general use it as a guide. If the addition was higher i would go with it, if multiplication seemed higher i would do it on all the problems i felt were manageable to do in my head. If both were close after first 4 i would try and do one of each if it seemed do-able in my head.  ",3179700
+2622,21,Female,left,right,Some of the time,Not at all,Most of the time,"I picked depending on the numbers that were displayed in each column through the forced pulls. If a column looked as though ti was decreasing, I picked the opposite one and etc. I searched for any patterns. ",5009866
+2935,21,Female,left,right,Not at all,Not at all,Always,Based on the locked in choices,1641704
+285,21,Female,left,right,Not at all,Not at all,Always,No,3049329
+5382,18,Female,right,left,Not at all,Not at all,Always,"Questions with single digit numbers I multiplied them. Otherwise, I used addition.",1936955
+5440,18,Male,left,right,Not at all,Some of the time,Most of the time,"Whichever column was giving me the most points, I used that mathematical operation",10276857
+3383,21,Male ,left,right,Not at all,Not at all,Always,I tried to average out the numbers that were shown and pick the higher one. ,1591904
+5089,18,Male,left,right,Not at all,Not at all,Always,I used the average of the numbers presented to me to make an educated guess.,2556685
+5096,18,Male,right,left,Some of the time,Not at all,Most of the time,Tried to get the average and then picked the higher one,2056695
+5211,18,Male,right,left,Not at all,Not at all,Always,Almost always I exclusively solved problems on the side that had the greatest average through the first four,2943960
+4258,19,Female ,left,right,Not at all,Not at all,Always,I estimated an average for the few numbers shown on each side and continued each time with the larger of the two,2568076
+5408,18,Female,left,right,Not at all,Not at all,Always,some addition stood out as easier (ex: 21  9) and some multiplication stuck out as easier (anything times 10 or 1) I also went based off of patterns given to me,2243274
+2001,21,Female,right,left,Not at all,Not at all,Always,"When most numbers seen are bigger than the other side. Near the end, some harder multiplication questions made me just want to add. ",3649290
+2033,21,Female,right,left,Not at all,Not at all,Not at all,I just did whichever calculation was easier.,2440249
+5401,19,Male,right,left,Not at all,Not at all,Always,compare the difference between each number in two sides ,2147625
+2651,21,Female,left,right,Not at all,Not at all,Always,I sort of added the existing numbers to see which sum was greater for either the yellow or blue column and then choose to either multiply or add.,2169014
+265,21,Female,left,right,Not at all,Not at all,Always,I chose my answers based on the history of values in each column and whether they were increasing or decreasing by large amounts across levels.,2406505
+4260,19,Female ,right,left,Not at all,Not at all,Always,I used the patterns of the previous numbers ,2023450
+3821,19,Female,left,right,Not at all,Not at all,Always,"Since the averages for each was either bigger or smaller than the other, I usually picked the ones with the higher given numbers and just stuck with that column the whole time",3049124
+4682,21,Female,left,right,Not at all,Not at all,Always,I wanted to go faster so I usually did addition.,1561202
+3507,21,Female,right,left,Not at all,Not at all,Always,"I tried to look and see if I could find a pattern on each column. For example, if in the forced column results, one column had lower numbers, I would assume that column has a generally low average, so I would want to stay away from it. But as the problems got harder, if I didn't think I could get the answer quickly in my head I would choose the other operator (This usually happened with multiplying double digits by other double digits, where I would decide to do addition since it's easier)",2457352
+4584,21,Female,right,left,Not at all,Not at all,Always,bigger numbers more often,2702658
+5228,18,Female,left,right,Not at all,Not at all,Always,if the numbers were higher on average on one side in the first few trials i stuck to that side,3142386
+806,21,Female,right,left,Not at all,Not at all,Always,I looked at the numbers I was given and picked based on which one seemed to have a higher average. ,2565768
+5205,19,Female,right,left,Not at all,Not at all,Always,"I always looked at the averages of the numbers already revealed in the slots to make my next guest, using the average of a portion of the slots as an estimate.",3268841
+4094,20,Female,right,left,Not at all,Not at all,Always,"I tried to stick to the slot with the highest numbers. However, if the highest slot was the multiplication side and I knew the numbers would be hard for me to multiply, I would switch to the addition side because it would be better to receive a lower number of points than no points at all.",2540276
+3208,20,Female,right,left,Not at all,Not at all,Always,"I only picked the multiplication bandit if I knew I could do the multiplication correctly, without a doubt, because I did not want to get it wrong and get no points in that round. I also factored in the amount of points each bandit was worth--if the addition bandit was trending with higher values, then I did not risk multiplication.",2282945
+3157,21,Female,right,left,Not at all,Not at all,Always,If a multiplication problem was easy to do in my head then I would often times do the multiplication problem. If the numbers were too hard to multiply in my head then  I added them because addition is a lot easier to do mentally,1757928
+5240,18,Male,left,right,Not at all,Not at all,Always,The column that had the larger numbers or the easier math problem,2126052
+5294,21,Female,right,left,Not at all,Not at all,Always,I chose whichever bandit appeared to have a higher average based on the forced choices. Sometimes I would get tired of multiplying bigger numbers so I would just add them because it was easier.,2934453
+5164,23,Female,right,left,Not at all,Not at all,Always, read out loud ,7849671
+5293,18,Female,left,right,Not at all,Not at all,Always,"If I saw higher numbers on one column versus the other, I tried solving math problems for that column UNLESS the multiplication was too hard and then sometimes I just did addition because I would rather get some points then none",2352061
+4884,19,Female,right,left,Not at all,Some of the time,Most of the time,Just tried to add up in my head as quickly as possible without writing it down,2379026
+4751,19,Female,left,right,Some of the time,Most of the time,Some of the time,If one column was consistently higher than the other then I would just go with that one the whole time.,4500278
+2399,22,Female,left,right,Some of the time,Not at all,Most of the time,I would use the values from the forced picks to decide which side I was going to favor ,3178329
+763,21,Male,left,right,Not at all,Not at all,Always,"If there were multiple previous numbers that were small or if they varied greatly between something medium and something small, I would pick the slot that was either showing higher numbers or more consistent. But also, sometimes I just didn't feel like doing the multiplication in my head because it was too big of a number, so I just did the addition to get through it quicker.",2778413
+3814,20,Female,left,right,Not at all,Not at all,Always,I would go with the bandit with the highest average or add if he numbers were too difficult.,1711821
+5155,20,Female,right,left,Some of the time,Some of the time,Most of the time,"I generally picked the one with the higher numbers at first, and then changed accordingly ",2637429
+5243,19,Male,right,left,Not at all,Not at all,Always,Simple probability and generally guessing and comparing the averages of the given numbers. ,2496694
+5269,18,Male,left,right,Not at all,Not at all,Always,Look at the numbers,1826117
+5136,18,Male,right,left,Not at all,Not at all,Always,"I took the average of the previous scores, or approximated the average in my head.",2392415
+5441,20,Male,right,left,Not at all,Some of the time,Most of the time,"After getting the first question wrong, I knew that I wouldn't get the amazon gift card. Ever since then, I just picked the one with the easier math",2728373
+5056,19,Female,left,right,Not at all,Not at all,Always,"I looked at the numbers that we were given in the ""forced choice"" part and mostly picked the lane that looked more consistently higher, if my new number changed which lane looked more consistently higher I would switch lanes.",2970990
+4027,19,Female,right,left,Not at all,Not at all,Always,trying to guess an estimate of the average. ,2446506
+2714,20,Female ,right,left,Some of the time,Some of the time,Most of the time,Did it randomly but tried to do as much variation as possible ,2575128
+5012,19,Male,right,left,Not at all,Not at all,Always,"Yes. A lot of info factored in. A lot of the time, I would intentionally choose neither if I felt as if I had a clearly above average value. I guessed that it was an above average value when I had the highest or second highest of 4 results shown. Definitely didn't stick to that principle every time. I was impulsive occasionally. Didn't want to overthink a game.",2190745
+2247,22,Male,left,right,Not at all,Not at all,Always,"Initially, I thought we could only add ",2686757
+5142,19,Male,left,right,Not at all,Not at all,Always,"Usually I picked which one simply showed the greatest number, regardless of whether it also showed a number less than the other one.",76162730
+5267,18,Female,right,left,Not at all,Not at all,Always,I chose the same column for all of them based on the highest average of the revealed bandits,3752527
+2673,21,Female,right,left,Not at all,Not at all,Always,"if the numbers that the forced choices revealed on each side were similar, I would switch sides for each choice based on how simple the problem was to add or multiply. ",2474306
+2454,21,Male,left,right,Not at all,Not at all,Always,"if the first four choices make one column more appealing than the other, i stick with that column. if not, i try the next few slots until i determine if one column is better than the other",2871929
+5110,18,Male,left,right,Not at all,Not at all,Always,"Based on which 4 numbers were shown and had the highest average, I picked.",2825352
+4914,19,Female,right,left,Not at all,Not at all,Always,to compare the previous numbers ,1914064
+5009,18,Female,left,right,Not at all,Not at all,Always,"If the addition was simpler I would do the addition, but if the multiplication problem was something I knew off the top of my head I would do the multiplication.",2530592
+5416,19,Female,right,left,Some of the time,Not at all,Most of the time,I went with the higher values in the first four forced choices to choose which column I'd stick with.,6461096
+5454,20,Female,left,right,Not at all,Not at all,Always,"If I was given three values on one side, I would generally try to test another number on the side with one value to ensure I had a more accurate sense of each side's average. ",2690850
+3690,20,Female,right,left,Not at all,Not at all,Always,"I would try to follow the side of slot where there were better points coming from, however, I'm not great at mental math so sometimes I would pick the easier one to do in my head instead.",1739349
+5226,18,Female,left,right,Not at all,Some of the time,Most of the time,which column had higher numbers,1966314
+3303,21,Female,right,left,Not at all,Not at all,Always,"The averages of the numbers so far was my first pick of which column to choose. Then, I determined if I could multiply the numbers accurately if I wanted to choose the left column, and if I could not, I added them so that I would still get points even though it wasn't my first choice to do the right column.",2240190
+1749,21,Female,right,left,Not at all,Not at all,Always,"I first looked at the average of the numbers of the columns to decide which calculation I would try to go for. Then, I would look at the calculation and if I could easily do it in my head I would choose that option. If I couldn't to the trend option, I would do addition as it is simpler for mental math.",2338386
+5212,18,Female,left,right,Not at all,Not at all,Always,"If the average of the numbers were greater on one of the slots, I continued to open that slot. ",3469731
+5090,19,Female,left,right,Not at all,Not at all,Always,If a column consistently had a higher number then I would stick with the column. ,2513819
+3835,20,Female,right,left,Some of the time,Not at all,Most of the time,"If the numbers revealed in the forced selection were higher on one side, I generally started with that side. If only one number was revealed on either side, I would start with that side and then go from there according to whichever side generally had higher numbers.",3173949
+3983,19,Female,left,right,Not at all,Not at all,Most of the time,I multiplied ,4035199
+2796,20,Female,left,right,Not at all,Not at all,Always,"when higher numbers, would typically do addition over multiplication. if had a 1 or a 10, would multiply more",1874795
+5375,19,Female,right,left,Not at all,Not at all,Always,Most of the time I chose the side that had the highest average number.,6999524
+5181,18,Male,right,left,Not at all,Not at all,Always,right was bigger numbers,1621911
+3496,20,Male,right,left,Some of the time,Not at all,Most of the time,I would base my answers on the values of the forced choices and continue with that slot. ,2703551
+3502,21,Female,right,left,Not at all,Not at all,Always,whichever was faster to do in my head ,1875500
+5455,18,Male,right,left,Not at all,Not at all,Always,"sometimes it was whichever was easier, sometimes it was based on the numbers given",3565651
+5426,19,Male,right,left,Not at all,Not at all,Always,"I decided by seeing the trend on each side. However, if I could not properly calculate the multiplication side, I would take whatever points I could get on the addition side. ",3409177
+3789,20,Female ,left,right,Not at all,Not at all,Always,I almost always used addition because it was easier. ,2000114
+4118,19,Female,right,left,Not at all,Not at all,Always,"About half way through, I went off the number that the machine had already generated. If I noticed that the numbers were higher one side then I attempted to mostly solve problems on that side. ",2569894
+5034,18,Female,left,right,Some of the time,Not at all,Most of the time,I picked the bigger number,2095724
+5456,18,Female ,right,left,Not at all,Some of the time,Most of the time,"Towards the end, it was getting a bit tedious to have to answer the math problems, so I started to choose more addition than multiplication.",2541573
+4257,19,Female ,right,left,Not at all,Some of the time,Most of the time,If one had significantly higher values I would choose that but if they were close I would alternate until I thought I figured out which had higher values more often. ,2831644
+5121,19,Male ,left,right,Not at all,Not at all,Always,I picked the method (did math) based the information given in prior boxes and tried to see which would be the most optimal decision for me.,2063447
+2658,20,Male,right,left,Not at all,Not at all,Always,"Average of scores, and knowing I was more likely to mess up on multiplication.",1871492
+2860,21,Female,left,right,Not at all,Some of the time,Most of the time,no ,1720073
+4279,19,Female,left,right,Not at all,Not at all,Always,I just tried to pick the side that had a trend of greater numbers.,3135388
+5093,19,Female,right,left,Not at all,Not at all,Always,"i only multiplied if it was smaller numbers, otherwise i added",2707008
+5448,20,Male,left,right,Not at all,Not at all,Not at all,just based on which number is bigger,3632068
+5299,19,Female,left,right,Not at all,Not at all,Always,No,2566604
+2884,20,Female,right,left,Not at all,Not at all,Always,Mental math,2308571
+4513,19,Female,left,right,Not at all,Most of the time,Some of the time,"Based on the first four rows, I determined which column had a higher average and then choose values in the column with the higher average for the rest of the game. I tried out some different strategies throughout but that one seemed to work the best.",2987335
+4980,18,Female,left,right,Not at all,Not at all,Always,I did the math that seemed easiest to me in the moment (i.e 15 13 seemed easier than 15x13),2150914
+2840,20,Female ,right,left,Not at all,Not at all,Always,Just whatever was easiest. ,1861271
+4549,18,Female,left,right,Not at all,Not at all,Always,Looked at the frequency of numbers above 50 in the forced slots. ,2258461
+4658,20,Female ,right,left,Not at all,Not at all,Always,"Generally I picked whichever slot machine was producing higher values with the forced decisions and stuck with it. However, if there was a problem I knew I couldn't multiply in my head, I always did addition so I would get at least some points. ",2250491
+4195,19,Female,right,left,Not at all,Not at all,Always,which had higher numbers before,2218922
+3232,19,Female,left,right,Some of the time,Some of the time,Some of the time,pattern,2277109
+3350,20,Female,left,right,Not at all,Not at all,Always,I generally picked whichever one I thought I was more likely to get correct.,1814770
+5447,20,Female,left,right,Not at all,Not at all,Always,I tried to follow the trend of high values and continue choosing that column,3822746
+5379,19,Male ,right,left,Not at all,Not at all,Always,"After 1 calculation, whichever had the higher average was the future bandit I'd choose",1703202
+2732,21,Female,right,left,Some of the time,Some of the time,Some of the time,"If one side has higher numbers, I assumed the average was higher and went with that side. If they were pretty much the same numbers, I picked randomly (or based on which math equation I could do more quickly in my head)",2818443
+2545,20,Male,right,left,Not at all,Not at all,Always,"In general, pick the bandit with a higher mean. However, when the numbers are large, I would choose the addition to minimize the chance of error.",8608695
+3870,19,Female,left,right,Not at all,Not at all,Always,depending on average of numbers I saw,3033746
+5175,18,Male ,right,left,Not at all,Not at all,Always,Depending on the numbers before (bigger numbers would be the category I would attempt to answer). ,2037977
+5358,18,Female,right,left,Not at all,Not at all,Not at all,mental math ,1595942
+5027,18,Male,right,left,Not at all,Not at all,Always,I quickly averaged the numbers that were revealed and tested some more out. Followed trends,17353271
+1102,18,Female,right,left,Not at all,Not at all,Most of the time,no,1589771
+5107,18,Female,left,right,Not at all,Not at all,Always,"The numbers revealed during the forced choice definitely influenced which column I focused more in on. If the numbers were not relatively easy to multiply though, I added them. If the numbers were easy to round to different numbers that were easy to multiply (10, 20) I did that and then performed the necessary addition afterwards.",3565874
+5102,19,Male,left,right,Not at all,Some of the time,Most of the time,Whichever looked to have had the highest average number,2731344
+5529,20,Female,left,right,Some of the time,Not at all,Most of the time,I used the numbers I had already seen to help me pick,2468096
+1846,21,Male,right,left,Not at all,Not at all,Always,"If one slot machine seemed to have a higher average after the 4 forced pulls, I would use that one for the rest of the pulls. If the multiplication one seemed to have the higher average, about halfway through I adjusted my strategy to do singular addition pulls if the multiplication problem was taking too long in my head.",2814252
+5020,18,Female,right,left,Not at all,Not at all,Always,I factored in whether addition or multiplication would be easier,3295862
+5295,19,Male,left,right,Not at all,Not at all,Always,I typically picked the side with the highest average during the first four pulls and stuck with it,2295368
+5697,20,Male,right,left,Some of the time,Not at all,Most of the time,"i looked at the averages i was given from the first four, if they were close i tested each side once, then played the odds",2341368
+5635,19,Male,right,left,Not at all,Not at all,Most of the time,I started seeing the pattern of which column was higher in the intial predetermined things. ,2497371
+5114,18,Female,left,right,Not at all,Not at all,Always,"I tried to choose the side that had bigger numbers for the forced pulls. Sometimes, the math became too tedious and I just chose the addition. ",1773303
+5664,19,Male ,right,left,Not at all,Not at all,Always,Multiplied by 10 or 20 and then added or subtracted,2434781
+5489,19,Female,right,left,Not at all,Not at all,Always,I used the previous values in the column to guess which column would have higher values,2196520
+5449,18,Male,left,right,Not at all,Not at all,Always,No,1344175
+5438,19,Female,left,right,Not at all,Not at all,Always,Just whatever my heart felt,2108405
+5075,18,Male,left,right,Not at all,Not at all,Always,"Went off of whichever one had the highest average, unless I needed more info in which I did the one with less blocks revelaed",2237058
+5605,18,Male,right,left,Not at all,Not at all,Always,"I usually chose the side with the highest average value (from estimating in my head). However, if I only knew one value in one side and knew many values in the other side, and they had similar average values, I usually chose the side with one known value so that I could find out more about that side.",1976444
+4721,19,Female,left,right,Not at all,Not at all,Always,Adding is easier so I tried to add as much as possible,2181771
+5069,19,Male,left,right,Not at all,Not at all,Always,huh?,1853757
+5609,18,Female,left,right,Not at all,Not at all,Always,"Either whether the numbers shown were higher, or if the multiplication was difficult I did the addition problem.",2169419
+5010,19,Female,left,right,Not at all,Not at all,Always,i tried to follow a trend,3004380
+5670,19,Male,left,right,Not at all,Not at all,Most of the time,I just picked one without thinking,2094642
+5580,19,Female,left,right,Not at all,Not at all,Always,"To be honest, when the numbers were close during the forced lever pulls, the ones I chose were based off of whichever side had the easier math. I found myself eventually avoiding difficult multiplication if I wasn't sure it would give me a large reward. ",2153559
+5683,18,Male,left,right,Not at all,Some of the time,Most of the time,using multiplication for common things and addition for harder problems ,4832343
+5684,18,Male,right,left,Not at all,Not at all,Always,Whatever side seemed to have higher numbers I would pick unless the numbers were too difficult for multiplication ,1505735
+5589,18,non-binary,right,left,Not at all,Not at all,Always,whichever side previously had a number over fifty I chose for my next number,5990298
+5218,19,Male,right,left,Not at all,Not at all,Always,"yes, I looked at which column had the greatest average ",3233862
+5245,21,Male,right,left,Not at all,Not at all,Always,"Once I got >1 number on each side, I mentally averaged each. I then rolled solely on that side with the higher average (unless subsequent reveals were low enough to change my mind). 
+
+I did not consider difficulty of the problem, trusting in my mental math skills. This hurt me thrice. ",3041624
+4071,21,Female,right,left,Not at all,Not at all,Always,whichever one was easiest,1664903
+5585,18,Male,right,left,Not at all,Not at all,Always,The easiness of math problem effected my decision. ,2467446
+2535,22,Female,right,left,Not at all,Not at all,Always,"I sometimes chose the problem based on what was easier to calculate, but I mostly chose based on my perception of which column had a higher range.",2821186
+5112,18,Female,right,left,Not at all,Not at all,Always,i realized which side had larger numbers,11103074
+5019,18,Female,left,right,Some of the time,Not at all,Most of the time,"if the column's given numbers were getting bigger or smaller
+
+are they trying to trick me? sometimes I would choose the one that had the smaller",2923296
+5191,21,Female,left,right,Not at all,Not at all,Always,I can add better than multiply so focus on getting all points over gambling on multiplication questions I might get wrong,2113543
+489,21,Female,left,right,Most of the time,Not at all,Some of the time,"higher numbers meant more higher numbers! and if I wasn't sure, I'd try to balance the two until I passed judgement on which side was more profitable",3163482
+3264,21,Male,right,left,Not at all,Not at all,Always,I looked at which side has the more and choose the other side,6079023
+2019,21,Male,left,right,Not at all,Some of the time,Some of the time,i first did it randomly but then just picked which slot had the highest average over all and answered straight down that one slot but sometimes I got lazy and did the easier problem,2420359
+2254,21,Female,left,right,Not at all,Some of the time,Some of the time,Followed my gut for most of it. ,2952690
+5650,19,Female ,right,left,Not at all,Not at all,Always,I looked at which of the forced numbers were higher than the other to hopefully see if the average was higher. ,2051681
+5698,19,Male,right,left,Not at all,Not at all,Always,"I looked at the numbers prior, and whichever side had previously higher numbers was the bandit I picked.",1799314
+5468,19,Male,left,right,Not at all,Not at all,Always,I tried to go on the slot machine that was showing the highest numbers. ,3767941
+5190,18,Female,left,right,Some of the time,Not at all,Most of the time,Just the vibes,3370823
+5559,20,Male,left,right,Not at all,Not at all,Always,Sometimes if I saw a trend I would pick the one with the bigger numbers even if I knew it was totally random ,1628401
+4651,21,Female,left,right,Not at all,Not at all,Most of the time,no ,1992013
+4523,20,Female,left,right,Not at all,Not at all,Always,mental math,2153800
+5187,18,Male,left,right,Some of the time,Not at all,Most of the time,"I roughly estimated the average of the #s that were revealed in each column and then based my further approach off that. Additionally, when I saw a multiplication problem that was rather difficult to do in my head (vs addition), I still chose to multiply because I figured that the reward would be higher given fewer people would generally be persuaded to pick it.",2575386
+5509,20,Male,left,right,Some of the time,Not at all,Always,try to imagine that the shown results form an interval containing the average; try to unlock more numbers in both sides before making a choice. sometimes may be rebellious and do the harder calculation. ,3047869
+4988,19,Male,left,right,Not at all,Not at all,Always,"I Tried to average the numbers in my head. When indifferent, I went for addition as it had less room for error in the math.",1873244
+3193,20,Male,right,left,Not at all,Not at all,Always,"Based on the given information, I made an educated guess as to which pillar had the highest average and then would choose the bandit of that pillar. ",2911629
+2306,21,Female,right,left,Not at all,Some of the time,Always,If the numbers were decreasing I would pick the other. If there was no pattern I would pick the higher number bandit ,2586112
+5274,19,Male,left,right,Not at all,Not at all,Always,patterns,3026872
+5696,20,Female,right,left,Not at all,Not at all,Always,taking the average of what I saw previously,2397834
+4428,19,Male Nonbinary,left,right,Not at all,Not at all,Always,Roughly average of the scores in the column in my brain; used my finger to physically draw the problems out in the real world without marking anything. Sometimes I would check the other column to see if it had a larger average.,3026047
+5631,19,Female,right,left,Not at all,Not at all,Always,i picked addition most of the time because it was easier to complete in my head ,69790184
+5151,19,Male,left,right,Not at all,Not at all,Always,How easy the problems were,2646933
+5266,18,Female,right,left,Some of the time,Not at all,Most of the time,which was easier ,1734409
+1459,21,Male,right,left,Not at all,Not at all,Always,I usually chose the side that showed higher numbers except if that side was multiplication and the problem took me too long to think about.,1811637
+4645,22,Male,left,right,Not at all,Not at all,Always,I decided based on the numbers shown by the forced selections,1434895
+5701,18,Female ,right,left,Most of the time,Not at all,Some of the time,not really!,2406142
+5494,18,Female,right,left,Not at all,Not at all,Always,which column had larger numbers and also how hard the problem would be to multiply (more likely to get wrong),3050583
+2830,20,Male,left,right,Not at all,Not at all,Always,no,1642282
+5561,18,Male,right,left,Not at all,Not at all,Always,whichever had the highest average from the options shown,3373405
+4998,19,Male,left,right,Not at all,Not at all,Always,at first I tried to see the trend but I got tired and towards the end I found myself adding more.,2831101
+5534,18,Female,right,left,Not at all,Not at all,Always,no,1895326
+4970,18,Female,left,right,Not at all,Not at all,Always,I looked at the lowest number on the bandit and whichever was higher I tried to do. If the multiplication was too difficult or I was too lazy to complete it I would do the addition. ,10211757
+5329,18,Female,left,right,Not at all,Some of the time,Most of the time,whichever slot had the most amount of high numbers,3594879
+5607,19,Male,left,right,Not at all,Not at all,Always,"not at all, well, for some hard multiplications, I chose the addition ",2059572
+4328,19,Female,right,left,Not at all,Not at all,Always,A lot of it was if I wanted to risk getting it wrong. ,2595326
+4237,19,Male,right,left,Not at all,Not at all,Always,Which ever slot had the current highest total,2240842
+5415,19,Male,left,right,Not at all,Not at all,Always,"I just picked the easiest way to answer the question, unless I saw that one side was obviously going to have a higher average than the other.",3950988
+4708,20,Male,right,left,Not at all,Not at all,Always,Higher subjective average,3081968
+5616,18,Male,left,right,Not at all,Not at all,Always,The math problem factored into my choice,1798708
+5633,19,Male,left,right,Not at all,Some of the time,Most of the time,"I tried to choose based on which side had the higher numbers, but usually ended up doing whatever came to my mind first",2300457
+5366,18,Female,right,left,Not at all,Some of the time,Some of the time,the math problems,1924734
+5418,20,Female,right,left,Not at all,Not at all,Always,no,23531803
+5681,19,Female,left,right,Not at all,Not at all,Always,I thought about which side had higher earnings and how hard the multiplication would be. ,1922137
+3893,20,Female,right,left,Not at all,Not at all,Always,How difficult the mental math would be depending on addition or multiplication. ,6007854
+5400,19,Female,left,right,Not at all,Not at all,Always,"If the averages seemed close, then I always did addition since it was usually easier than multiplication.",2516959
+2664,22,Male,left,right,Not at all,Not at all,Always,Not really just which numbers shown were higher,1962049
+5221,19,Female,right,left,Not at all,Not at all,Always,i just multiplied the simpler numbers and added the more complex ones,2201575
+3186,21,Female,right,left,Not at all,Some of the time,Most of the time,random,2461365
+4985,18,Female,left,right,Some of the time,Most of the time,Some of the time,I decided which column to focus on based on the sum of the numbers after the first 4 results.,7061080
+5578,21,Female,left,right,Not at all,Not at all,Always,"I'd look at the highest and lowest values revealed to me and made an estimate on what the average was for each lane. I would then only go down that side no matter the difficulty of the math question. If the values were similar on both sides I would multiply easier values and add hard ones, then go back to my original strategy if a pattern showed itself.",2415590
+5362,18,Female,left,right,Some of the time,Not at all,Some of the time,NO,1649536
+5543,19,Male,left,right,Not at all,Not at all,Always,I did whichever mode of calculation was easier/popped into my head first.,1753787
+5558,19,Male,right,left,Not at all,Not at all,Always,I would mostly use the highest average of the given numbers to decide which column I would focus on,3686842
+5043,18,Female,left,right,Not at all,Not at all,Always,i chose addition for the larger numbers and multiplication for the easy ones.,3587290
+5311,19,Female,right,left,Some of the time,Not at all,Most of the time,"I picked sides based on which one had the highest average, If they were similar on both sides, I did the addition side because its easier to calculate. ",2387596
+5486,20,Male,right,left,Not at all,Not at all,Always,some multiples were easy to remember than others. Others had the same answer which I could easily remember ,60245634
+4138,20,Female,right,left,Some of the time,Not at all,Most of the time,I used the averages of the forced choices.,3256421
+5672,18,Female,left,right,Some of the time,Not at all,Most of the time,"If one side had significantly larger numbers in the forced pulls, I would continue with that side, unless the next pull was equal or less than a number on the opposite side",3155041
+5374,18,Female,left,right,Not at all,Some of the time,Most of the time,"I found that addition was an easier choice for most mental math overall. I often employed the number of digits in each problem into my choice. For single digits, I used multiplication, and double digits, addition. ",5790852
+4801,18,Female,left,right,Not at all,Not at all,Always,"Looked at the other values in the column, also had to assess whether or not solving a hard problem was worth it. ",3626889
+5477,19,Male,left,right,Some of the time,Not at all,Most of the time,"Honestly, if one side had better numbers than the other I picked it all the way through unless the next one/two were significantly lower. Also, I tend to do the easier problems",2367473
+5328,18,Male,right,left,Some of the time,Not at all,Most of the time,use addition if I couldn't use mulitplication,2136559
+5596,17,Female,left,right,Not at all,Not at all,Always,"I mostly picked the side with larger numbers and if they were similar, I tested both sides to see which side was bigger to make my final decisions",5356809
+5467,18,Male,right,left,Not at all,Not at all,Always,followed pattern of slot machine,1315813
+5124,18,Male,left,right,Not at all,Not at all,Always,purely based on the difficulty of the problem and the average set,3021842
+4127,21,Female,right,left,Not at all,Not at all,Always,"Based on the four pre-rolled for me, I made an educated guess on where to choose. However, I was more biased to the addition side when the numbers started to get higher. Sometimes, I also leaned into the multiplying side if the numbers were lower (quicker to do in my head).",3117239
+5465,18,Female,left,right,Not at all,Not at all,Always,I looked at which of the machines had given the better forced picks and if I knew I would not be able to get the mental math right when multiplying I would add them instead even if that was not what I wanted to do,2416328
+5532,18,Female,right,left,Not at all,Not at all,Most of the time,I picked the ones with higher values,2951583
+360,21,cis female,left,right,Not at all,Not at all,Always,"I chose to do addition when it would have been harder to do multiplication, regardless of how many expected points I would get. I'm not very good at mental math, so I figured that it would be more beneficial to receive less points than possibly none at all.",2372503
+4780,20,Male,left,right,Not at all,Not at all,Most of the time,"The only thing that mattered was if the numbers on one side were higher. If they were, I'd go for those. However, if the multiplication wasn't something I was willing to do, I instead did the addition even if it cost me points",2618098
+5146,19,Female,left,right,Not at all,Not at all,Always,At first it was random and then i started looking at the first four arrows and then doing the same pattern for the last 4 ,1875289
+5341,19,Female,right,left,Not at all,Not at all,Most of the time,no,1221349
+5510,19,Male,left,right,Not at all,Not at all,Always,I tried taking the average.,1709533
+4413,19,Male,right,left,Not at all,Not at all,Always,I chose the side that had higher values in the initial rounds,2617029
+5326,19,Male,right,left,Not at all,Not at all,Always,"Each time I had the choice between the two levers, I chose the one from the column with the greater average.",5853433
+5049,19,Female,left,right,Not at all,Not at all,Always,"I didn't really use any strategies, I mostly did what was quicker. At first I assumed that the multiplication points may have been worth more, but that didn't appear to be the case.",2630806
+5567,18,Male,left,right,Not at all,Not at all,Always,tried to really focus and make good educated guesses,2023760
+4783,20,nonbinary,right,left,Not at all,Not at all,Always,sometimes i looked at the current averages of the columns ,3369010
+5703,19,Male,right,left,Not at all,Not at all,Always,"I dont really know, summing is easier.",4091017
+5258,18,Male,left,right,Some of the time,Not at all,Most of the time,"It usually depended on the numbers shown, I'd lean towards whichever machine seemed to have a higher average, if they were around the same then I looked for more data.",2461041
+5304,22,Male,right,left,Not at all,Not at all,Always,"I primarily used the average of the revealed payouts to choose, but sometimes, for the 8 choice slots, when one side had 1 revealed and the other had 3 revealed, and the one was slightly less than the average of the three, I would select the one again to get a better estimate of the slot's average.",2756467
+4813,20,Male,right,left,Not at all,Not at all,Always,I always picked the one that had the highest average from the numbers shown,3054986
+4912,19,Female,left,right,Some of the time,Some of the time,Most of the time,"I have a few tricks memorized for mental math, so I just used those",3143166
+5470,20,Female,right,left,Not at all,Not at all,Always,I looked at the values that were previously in the same bandit and chose based on that,2479482
+5704,18,Male,right,left,Not at all,Not at all,Always,Approximating averages,3295450
+5223,19,Male,right,left,Not at all,Not at all,Always,I usually picked the side that had a greater average among the first 4 forced pulls. Occasionally I would switch to the other side if I was getting low numbers.,2006606
+4600,21,Female,right,left,Not at all,Not at all,Some of the time,tbh no I just did it randomly bc the instructions kinda confused me,1876468
+5663,18,Female,left,right,Not at all,Not at all,Always,"I used addition most of the time unless multiplication seemed easier. For example, if the number had zeros.",2002844
+3981,18,Male,left,right,Not at all,Not at all,Always,"No, I just chose whatever I felt like was easier to do.",1761255
+4218,19,Female,left,right,Not at all,Not at all,Always,I did the higher numbers or the differences between them that are higher,1545678
+5629,18,Female,right,left,Not at all,Not at all,Always,"I looked at the numbers and chose to do the easier operation between addition and multiplication based on my own memorization of times tables. If I did not know the product of the numbers immediately, I chose to do addition.",2008292
+2755,21,Female,left,right,Not at all,Not at all,Always,no,2183343
+5500,18,Male,left,right,Some of the time,Not at all,Most of the time,"it was mostly based off of what ones had the high values that were revealed. Sometimes if the numbers were fairly similar and one of the slot machines only had 1 number reveled, I would go with that one because its higher risk.",3206853
+5535,18,Male,left,right,Not at all,Not at all,Always,if I didn't know the multiplication instantly I did the addition ,5015785
+5254,19,Male,right,left,Not at all,Not at all,Always,no,4621121
+3970,19,Female,left,right,Not at all,Not at all,Always,Nope,106251540
+5674,19,Female ,left,right,Not at all,Not at all,Always,Mostly I picked addition because it was easier with the larger numbers. ,2019242
+5706,21,Male,left,right,Not at all,Not at all,Always,"A little bit, just saw which side seemed to generally have higher",2855014
+5545,19,Male,right,left,Not at all,Not at all,Always,ease of x or  ,1299374
+3320,20,Male,left,right,Not at all,Not at all,Always,I tried to just use the average of what was given to pick which side to stick to and therefore use the appropriate calculation,2057031
+5452,18,Male,left,right,Not at all,Not at all,Always,I tried to figure out which one had the highest average from the first four pulls and stuck with that column unless the subsequent numbers were consistently lower than the revealed numbers from the other column.,3752526
+5653,19,Female,right,left,Not at all,Not at all,Always,I mainly focused on which side had higher sum of numbers and then leaned towards that one.,3225735
+5519,21,Female,left,right,Not at all,Not at all,Always,"The information provided in the first 4 numbers revealed, the general average of those numbers, as well as how much info we had from each slot factored into my decisions.",2831779
+5085,18,Female,left,right,Not at all,Not at all,Always,usually addition since it was easier,1362403
+919,21,Male,right,left,Not at all,Not at all,Always,"I looked at the first 40 values and if two one slot had a clear higher average than the other, I chose the same column every time. If it was unclear, I just picked the one with the easier math problem to solve until I got enough information to decide which column I would pick throughout.",2623457
+5637,18,nonbinary,right,left,Not at all,Not at all,Always,whichever was easier,2183433
+3160,20,Female ,left,right,Not at all,Not at all,Always,No ,1267112
+4987,19,Male,right,left,Not at all,Not at all,Always,The last digits. Square of a number. Breaking down a number to tens and single digits numbers. ,1857703
+5671,18,Male,left,right,Not at all,Not at all,Always,I tried spending half my turns gathering equal amounts of information on both sides and then progressed via the progressive average.,3063695
+5617,20,Male,right,left,Not at all,Not at all,Always,no,1997241
+4478,22,Male,right,left,Not at all,Not at all,Always,no,1949377
+4525,21,Male,left,right,Not at all,Not at all,Always,I picked the one that had the appeared to have the highest average based on the values I had already seen.,2079967
+4355,21,Female,right,left,Not at all,Not at all,Always,the forced choices guided my decisions. also how easily i could do the math to be honest,3097321
+5431,20,Female,left,right,Not at all,Not at all,Always,"I just tried to pick an equal amount from each slot machine - so if one had four, I would also try to reveal four on the other one. ",70117095
+5461,20,Female,right,left,Some of the time,Not at all,Most of the time,"If the math multiplication problem looked really hard, I usually just chose to do addition regardless of the previous pattern of numbers. If the math problem seemed more easily doable for addition or multiplication, I would look at the previous pattern of numbers do guide my decision.",2777185
+813,21,Male,left,right,Not at all,Not at all,Always,always left,2165951
+5668,18,Female,left,right,Not at all,Not at all,Always,average of presented numbers on each side,2503151
+4452,19,Female,right,left,Not at all,Not at all,Always,I DID MULTIPLICATION UNLESS IT WAS too difficult to complete immediately,4091130
+3687,20,Female,left,right,Not at all,Not at all,Always,the values that were presented within each machine. Higher numbers persuaded that bandit,3226237
+5083,18,Female,left,right,Not at all,Not at all,Always,Consistency of high numbers in a slot,2838841
+5288,22,Female,right,left,Not at all,Not at all,Always,"Most of the times it was which side, the X or  ,  was easier. But sometime I tried to figure out a pattern of the numbers.",15561032
+5549,18,Male,right,left,Not at all,Not at all,Always,Whichever was an easier calculation.,277772861
+5643,19,Male,right,left,Not at all,Not at all,Always,The average of the scores shown,1986615
+5647,18,Male,left,right,Not at all,Some of the time,Most of the time,Averaged the numbers we were forced to pick. I would choose the bandit with a higher average.,1908729
+5316,19,Male,right,left,Not at all,Not at all,Always,I had no idea what was supposed to guild my reason for multiplying or adding.,2688975
+5669,18,Male,left,right,Not at all,Not at all,Always,"No, just did it. ",2671040
+5655,21,Male,left,right,Not at all,Not at all,Always,I would always continue with the column with a higher average from forced picks. If ambiguous which was better I would use addition because its easier,2122776
+5642,18,Male,left,right,Not at all,Some of the time,Most of the time,"I typically did the math for the slot machine which tended to have the higher numbers, or if the multiplication was too complex, I would just do addition.",2364014
+4972,18,Male,right,left,Not at all,Some of the time,Most of the time,Observed general trends within each set to aim for the safest option.,1946034
+5661,19,Male,right,left,Not at all,Not at all,Always,whichever side had the higher average,2519131
+5428,18,Male,right,left,Some of the time,Not at all,Most of the time,I usually went with the ones with the higher beginning numbers,343206179
+3652,21,Female,left,right,Not at all,Not at all,Always,I picked whichever I could do faster in my head.,3857085
+5284,18,Female,right,left,Not at all,Not at all,Not at all,.,27261738
+4330,20,Female,right,left,Not at all,Not at all,Always,"I usually just did whichever bandit was easier. Or, in rare cases when one side looked like it would have more points I would go for the harder multiplication problem",2829350
+4038,19,Male,right,left,Some of the time,Not at all,Most of the time,I roughly took the average of each column and then stuck with the column that had the higher average.,2378642
+5673,18,Male,right,left,Not at all,Not at all,Always,I just picked the side with the higher numbers in the first four forced choices.,1997126
+3184,21,Female,left,right,Not at all,Not at all,Always,I made my decision based on the numbers on the forced choices and then I would factor in how difficult the math problem would be to multiply.,2831217
+5363,19,Male,right,left,Not at all,Not at all,Always,blue,2234435
+4967,18,Female,left,right,Not at all,Not at all,Always,I chose the bandit that had the easiest math problem. If multiplication was easier I did that and vice versa if addition was easier.,5286415
+5682,18,Male,right,left,Not at all,Not at all,Always,The average of the revealed numbers of each slot.,2025882
+5140,19,Male,right,left,Not at all,Some of the time,Most of the time,the pattern of the previous numbers,2110912
+3656,21,Female,right,left,Some of the time,Not at all,Most of the time,"If several numbers in one bandit appeared to be higher on average than the other bandit/side, then I would pick that side.",6061898
+5397,18,Male,right,left,Not at all,Not at all,Always,"I looked at which was of the numbers was higher in the amounts given. Occasionally, I would just default to which operation was easier to do. ",3665182
+5581,17,Female,right,left,Not at all,Not at all,Always,"Depending on which side seemed to have higher numbers, I would go for that side. If I were asked to solve a problem in the middle of the column, I would choose a side that I didn't have a lot of information on just so I could see more of that side too before making a decision on which column to end with. ",4325435
+5474,18,Female ,left,right,Not at all,Some of the time,Most of the time,no,2406468
+5708,19,Male ,right,left,Not at all,Not at all,Always,Whichever had the greatest forced numbers i went with mostly,3411082
+4254,19,Male,right,left,Not at all,Some of the time,Most of the time,N/a,41937549
+5552,19,Male,right,left,Some of the time,Not at all,Some of the time,I would choose the side with the size of revealed numbers are significantly larger.  ,3462571
+5539,18,Female,right,left,Not at all,Not at all,Always,N/a,2944108
+5018,19,Male,left,right,Not at all,Not at all,Always,"Mainly if the numbers preceding it showed a good constant high average, I would go with that one. Otherwise, if one had lower numbers than the other but also only had 1 data entry, i might have pulled the other one to see if that one singular data entry was an outlier, and depending on that result, I would re-adjust my strategy and pull the one with the overall higher average",1784236
+5628,19,Male,left,right,Some of the time,Not at all,Always,I tried to pick the side with the higher average forced choices. ,2407817
+4996,18,Male,left,right,Not at all,Not at all,Always,"Average of the forced swipes, as well as how hard the problem was",1821943
+5483,18,Female,left,right,Not at all,Not at all,Always,It was kind of just which ever I could solve easier.,1948547
+2637,21,Male,left,right,Not at all,Not at all,Always,I generally chose based on the average of what I'd seen so far but when there were hard multiplication problems I just chose to do addition instead.,2122219
+5439,19,Male,left,right,Not at all,Not at all,Always,I tried to calculate average values and also looked for outlier small or large values.,2734977
+2526,21,Male,right,left,Not at all,Not at all,Always,"overall average, how many were chosen so far and how many left to choose",2789492
+5622,19,Female,right,left,Not at all,Not at all,Always,"I just did whatever operation came easiest to mind when presented the two numbers. I tended not to do multiplication when there were two two-digit numbers, but everything else was somewhat random.",1766411
+5066,20,Male,left,right,Not at all,Not at all,Most of the time,"If I didn't have to ""carry"" any numbers for addition, I chose addition.",1869299
+5619,18,Male ,left,right,Not at all,Not at all,Always,"For the most part, I tried to see if there was a pattern too see which of the slot machines had a higher point machine. And usually, multiplication had a higher point average so I'd multiply. However, I also have a class soon, so if I thought 18*23 wasn't worth my time, I just chose to add it since I was under a time crunch. ",3178140
+3610,21,Female,left,right,Not at all,Not at all,Most of the time,NO,1537058
+5599,19,Male,right,left,Not at all,Not at all,Always,"The ones that were harder to multiply I would just add. For example, if it was like 24 and 16 it would be a lot easier for me to say 40 than multiply in my head",1818330
+4782,21,Male,right,left,Not at all,Not at all,Always,"Switching if it wasn't ""hot"" but the other had been. Left side generally seemed like it gave more points too. ",3084758
+5625,19,Female,right,left,Some of the time,Not at all,Most of the time,"If it was easier and less effort to add, I added, when I knew the answer or it was eassier to figure out like multiplied by 10 or easy to multiply in parts I multiplied",3596140
+5555,19,Male,right,left,Not at all,Not at all,Always,I considered the average of revealed numbers.,2294238
+5040,19,Male,right,left,Not at all,Not at all,Always,Mostly based on the average of the numbers shown,1462610
+5262,19,Female,left,right,Not at all,Not at all,Always,If the first 4 that were chosen were more on one side i'd do the math on the other side.,1929524
+4997,19,Female ,right,left,Not at all,Not at all,Always,I looked at the averages of the numbers that were revealed,3093120
+5675,21,Male,left,right,Some of the time,Not at all,Most of the time,Whichever column had the higher frequency of larger numbers,4002242
+4157,20,Male,right,left,Some of the time,Not at all,Most of the time,"Yes, always statistical averages, went with the highest",3093004
+5432,18,Male,left,right,Not at all,Not at all,Always,I used the first 4 to guide my choices for the column to pick. Then after that as long as the column I was picking values' stayed above the ones showed to me in the other column I stuck with it.,2212279
+5556,19,Male,right,left,Not at all,Not at all,Some of the time,No,1715719
+5553,19,Female,right,left,Not at all,Not at all,Always,"i tried to stay on the side with the highest pattern of high numbers, but if it was harder to do the problem, especially if it was multiplication then I would just add them either way ",3305822
+5649,19,Male,right,left,Not at all,Some of the time,Most of the time,"I averaged the information given and picked the logical route. When it wasn't obvious and in the 8 slot one, I would use the information discovered to make smart choices for the following 3.",3565339
+5538,18,Male,left,right,Not at all,Not at all,Always,"Nope, whatever seemed easier",1698797
+4337,20,Male,right,left,Not at all,Not at all,Always,"i usually picked which one had better previous results, but i also wanted to do easier math problems",2043166
+3444,20,Male,right,left,Some of the time,Not at all,Most of the time,I sometimes went along with the trend of which side had repeated the highest one but that information wasn't always available. There were many times that I guessed. If there were double digit number being multiplied in half like 12 X 18 i would divide on side by half so do 12 X 9 which is 108 and then double it to 216. This made it easier in my head and if it was odd like 12 X 19 instead of 18 i would still do the same trick as if it was 12 X 18 but just add 12.,4263096
+4917,21,Male,left,right,Not at all,Not at all,Always,Whichever one had the higher numbers before. ,2005577
+2852,20,Female,right,left,Some of the time,Not at all,Most of the time,the general average of the first few guided me. ,5349270
+800,22,Female,right,left,Not at all,Not at all,Always,which problem was the easiest ,2558131
+5612,20,Female,right,left,Not at all,Not at all,Always,I usually picked the one that had shown higher numbers unless the math problem was too complex to solve in my head. ,2682202
+4395,19,Male,left,right,Not at all,Not at all,Always,"I tried to see if a pattern existed in each column, if so I would pick my operation from there",3031469
+5641,18,Male,left,right,Not at all,Not at all,Always,"Tried to calculate the average of the columns revealed. If 3 vs 1 revealed in the first 4 and the 1 was larger, I would go with that column. The difficulty of the problem didn't really matter to me, although I made some stupid mistakes. I was trying to get the most points possible.",2458697
+2906,22,Female,right,left,Not at all,Not at all,Always,used tricks that i had from elementary school,1567317
+3635,20,Female,left,right,Not at all,Not at all,Always,"I looked at which side had the higher average, but if the math problem was too strenuous to multiply, I would pull the addition lever even if I knew it would amount to fewer points. ",3245635
+5719,18,Female,right,left,Not at all,Some of the time,Most of the time,I would change the format of the problem into even numbers to make it easier to calculate then factor in the remaining amounts.,2435323
+5587,20,Male,left,right,Not at all,Not at all,Always,I looked at which numbers were higher on average on each side,4068636
+4490,20,Female,right,left,Not at all,Not at all,Always,"Not particularly, whichever operation came to mind was the one that I used. ",3072646
+4761,19,Male,left,right,Not at all,Not at all,Always,I looked at which ones gave the most points,161576033
+5152,19,Male,right,left,Some of the time,Not at all,Most of the time,"Formula:
+-Look at average of both columns
+-If more information is needed to determine which is better after the 4, choose until you have enough information
+-stick to your choice (it is better to figure out which column is better earlier)
+-consciously ignore cost associated with using addition or subtraction (try not to let it factor into decision making)",3197116
+5645,18,Female,right,left,Some of the time,Not at all,Most of the time,"If the average of the score for forced choices was above 50/which ever one had the largest average, I would choose for my choices. ",2589497
+5021,19,Male,left,right,Not at all,Not at all,Always,I made a rough guess based off of the first numbers revealed and would alternate  between the two slots when the numbers were close together ,2129842
+4013,19,Male,right,left,Not at all,Not at all,Always,"how difficult it was to do addition versus substraction, how many choices I left, and how much information I had on each side so far",2600437
+2952,20,Female,right,left,Not at all,Not at all,Always,How easy the math problem was generally,2137909
+3859,20,Female,left,right,Some of the time,Most of the time,Most of the time,I picked the slots that showed the larger numbers,2514966
+1992,21,Female,right,left,Not at all,Not at all,Always,no,4511168
+5626,19,Male,right,left,Not at all,Not at all,Always,Which one had rthe highest average of available scores was the column I tried to choose.,2921063
+1592,22,Female,right,left,Not at all,Not at all,Always,I chose the slot machine that produced the highest numbers or if the equation was too hard for the highest number produced by the slot machine I chose the simpler equation.  ,4785987
+5707,18,Non-binary,left,right,Some of the time,Not at all,Most of the time,I tried to go with whichever one had the highest numbers that appeared in the 4 uncontrolled reveals. ,6953871
+2741,22,Male,left,right,Not at all,Not at all,Always,If I saw larger numbers in one column I would try and do the math for the problem in the respective column. Sometimes I randomized what I did due to the problem being easier (because I am incredibly exhausted).,4604142
+5526,18,Female,left,right,Not at all,Not at all,Always,towards the end i started doing whichever math problem was easiest,3009126
+5031,18,Male,right,left,Some of the time,Not at all,Most of the time,"Not really any strategy, just up to chance",2300165
+5480,19,Female,right,left,Not at all,Not at all,Always,i just did the addition ones,1793905
+5520,18,Male,right,left,Not at all,Not at all,Always,"In the beginning, I looked at the hints average and just stuck to whatever side had the highest average. Later on, I started doing addition because its generally easier to do.",1729872
+4450,20,Female,right,left,Not at all,Not at all,Always,Bigger amount,1797461
+4971,19,Female,right,left,Not at all,Not at all,Always,No. I picked whichever one seemed easier to do with the occasional challenging multiplication.,2024361
+5414,18,Female,right,left,Not at all,Not at all,Always,I picked whichever math calculation looked easier to do.,1923463
+2620,20,Trans Man,right,left,Some of the time,Not at all,Most of the time,I picked the side that had the highest values,3039042
+3677,21,Male,right,left,Not at all,Not at all,Always,"Yeah, quite a few, actually. First I would check the averages of each of the revealed columns. If it's the same amount of revealed numbers and the difference is dramatic, I go with the higher one. If they're about equal, I go for which every has the smaller range between numbers first, as there's a chance they have a much more positively skewed range. In that case, if the first check is low, I switch to the other one, as I have confirmed their range isn't skewed. When the number of revealed numbers is uneven, I just go for the highest average, as it's harder to test for a skew reliably then.",2526455
+5292,18,Female,left,right,Not at all,Not at all,Always,I just based my choice on the ongoing average of each bandit.,2288851
+5512,19,Male ,left,right,Not at all,Not at all,Always,I picked the one with the highest numbers,2022677
+3481,20,Female,right,left,Not at all,Not at all,Always,"The ones I could do most easily, but I defaulted to multiplication when it looked promising.",3399285
+3845,20,Male,left,right,Not at all,Not at all,Always,"Higher apparent averages, easier to add or multiply",2118553
+4012,19,Female ,right,left,Not at all,Not at all,Always,Tried to calculate the average of what I could see and then pick the side with the higher average for all the rest.,1747352
+2198,22,Male,left,right,Not at all,Not at all,Always,"I would use the forced choices to gauge which column had usually higher values. If the multiplication column was higher and the math wasn't too annoying, I would do the multiplication. Otherwise I would just add.",2351772
+5791,18,Female ,right,left,Not at all,Not at all,Always,Intuituion ,1386853
+4289,20,Male,left,right,Not at all,Not at all,Always,A lot of it was chance,1261833
+4610,18,Female ,right,left,Some of the time,Not at all,Most of the time,"Most of the time I just looked at the averages of each slot machine and went off of that. Sometimes I just chose randomly though, if I couldn't go by averages. ",2443403
+1594,21,Female,left,right,Some of the time,Not at all,Most of the time,"I tried to choose the slot with the highest numbers, but sometimes did it based on the easiest math problem.",1787918
+4149,19,Female ,left,right,Not at all,Not at all,Always,"If the multiplication seemed hard, I would choose to do addition",1754126
+5794,20,Female ,right,left,Not at all,Not at all,Most of the time,whichever operation was easier to solve mentally,3218415
+5601,18,Female ,right,left,Not at all,Not at all,Always,no,7873602
+5279,18,Male,right,left,Not at all,Some of the time,Not at all,none,2563822
+5759,18,Female,right,left,Some of the time,Not at all,Most of the time,The numbers; whichever had the higher numbers are the ones that I chose. ,2254432
+3428,20,Female ,right,left,Not at all,Not at all,Always,I just tried to guess which column had a higher average.,2520559
+5488,18,Female,left,right,Not at all,Not at all,Always,I did the easiest math problem. Sometimes if I saw a trend I would do the one I think would be higher.,1532548
+5272,19,Female ,left,right,Not at all,Not at all,Always,i missed something in the directions so i did not know what i was supposed to be doing. I did it randomly.,2651940
+5847,20,Male,left,right,Not at all,Not at all,Always,"I mostly just chose the one that had the higher average, unless they were close and I only had one sample of the one with a lower average. I sometimes ventured away from the one with the higher average if I was curious.",2308534
+5857,18,Male,left,right,Not at all,Not at all,Always,"When choosing the column, I just tried to see which column was giving higher numbers on average. If they were about the same, I decided to use the addition column because it was easier to solve in my head.",3630270
+3931,19,Female ,left,right,Not at all,Not at all,Always,"If I saw the blue column had higher numbers during the forced selection, I continued with blue, unless it suddenly got lower; in that case, I switched to the other side.",2348120
+329,21,Female ,left,right,Not at all,Not at all,Always,nope,1497474
+5176,19,Female ,right,left,Not at all,Not at all,Most of the time,"I tried to follow the pattern of the forced pull slots, but not all the time",1720955
+5237,19,Female ,left,right,Not at all,Not at all,Always,Sometimes followed a pattern from the preselected ones.  Did multiplication when it was easier.,2278547
+5001,18,Male,right,left,Not at all,Not at all,Not at all,no,1129771
+5821,20,Male,left,right,Not at all,Not at all,Always,i just did the one that was the easiest to do in my head,1892311
+279,21,"she/her, they/them",left,right,Not at all,Not at all,Always,"Mostly if I recognized higher numbers favoring one side, I went with that route. Though sometimes I just got too bothered to care and added since it was easier (ie with large numbers).",1903417
+5832,21,non binary,right,left,Not at all,Not at all,Always,"how high the values shown during forced picking, as well as the range of variation. Also how easy it was to multiply vs add ",1814743
+2460,20,Male,left,right,Not at all,Not at all,Always,None,2106630
+4977,19,Female,right,left,Not at all,Some of the time,Most of the time,I looked at the numbers that were chosen before and picked the bandit on the side with the overall highest numbers. ,3216712
+5793,19,Female,left,right,Not at all,Not at all,Always,Mostly just looking at the numbers and roughly assuming the averages,3049373
+5751,18,Female ,left,right,Some of the time,Some of the time,Most of the time,Observation of previous results,2337990
+5752,19,Female ,right,left,Not at all,Not at all,Always,for double digits that included 10 ex. 16 I would add 10 plus the number ex. (10   6) and multiply the individual number by the other factor ex. 22 x 10   22 x 6,3308714
+3512,20,Female ,right,left,Not at all,Most of the time,Some of the time,if i was given 2 from each machine i looked at their average.,2156929
+5844,18,Female,right,left,Not at all,Not at all,Always,Generally went with the side that had a higher average over the first few numbers,3672522
+5745,20,Female ,right,left,Not at all,Not at all,Always,i averaged the forced pulls and after each pull averaged again and always picked the bandit with the highest average at that point,3533695
+4580,19,Male,left,right,Some of the time,Not at all,Most of the time,took the average of both sides,2221285
+5784,19,Male,left,right,Not at all,Not at all,Always,"amount of numbers revealed, average value of numbers revealed",2298937
+5523,20,Male,left,right,Not at all,Not at all,Always,N/A,1734507
+4272,19,Female,right,left,Not at all,Not at all,Always,I always went with the side with a higher average,2540178
+5746,18,Female ,left,right,Not at all,Most of the time,Some of the time,Tried to see which side was adding up to more,2655865
+5796,18,Female ,left,right,Not at all,Not at all,Always,The numbers that I could already see in the columns.,1765895
+5722,20,Male,right,left,Not at all,Not at all,Always,"For the first half, I chose based on which one looked like it had the higher average. Then I got tired and if the averages were close, I would just do the addition problems because they were easier.",2805913
+5369,20,Female ,right,left,Not at all,Not at all,Always,I choose the one with larger average on the first four forced choiced,3144003
+5777,19,Male,left,right,Not at all,Not at all,Always,"I based my decision (choosing either bandit) off of the first few numbers that popped up on each. If one demonstrated more consistency over the other, I chose that one. If one had higher numbers than the other, I chose that one.",2123656
+5747,18,Male,left,right,Not at all,Not at all,Always,I looked at the choices that were prepicked and then tried to find a pattern of which seemed to be increasing or decreasing. Or if the sum of one was much higher than the other. I also didn't try to do multiplication problems I knew I might not get right because it was not worth losing the opportunity to get even a small amount of points on the addition side. ,2190808
+578,22,Male,right,left,Not at all,Not at all,Always,"I mostly made choices based on the averages of the two columns. However, I did switch up my strategy on a few attempts.",3289602
+698,22,Female,right,left,Not at all,Not at all,Always,"I picked what would be unexpected. If only one number was available in the column during the forced pull, I chose to calculate for the value of that column's mathematic function.",5752483
+5814,19,Female,right,left,Not at all,Not at all,Always,I used the arrow strategy,2090387
+4559,19,Female ,left,right,Not at all,Not at all,Always,"based on which side tended to have higher numbers, that is mainly how I picked. Sometimes even if the right seemed to have higher numbers but the values were about equal and the multiplication problem would have been hard I did the addition to be done quicker",2015031
+5865,19,Male,left,right,Not at all,Not at all,Always,the easiest one,1441793
+247,21,Female ,right,left,Not at all,Not at all,Always,average of each column thus far,2524376
+5485,19,Female,left,right,Some of the time,Not at all,Most of the time,Often times I would pick based on if the problem was easy to multiply or not.,2990953
+5776,19,Female ,right,left,Not at all,Not at all,Always,"eventually I only chose the column that had the larger average of already revealed answers because when the rest of the column seemed to be in a similar range as those already revealed answers. When I didn't do that, there were never numbers that were much higher than the previously revealed numbers in that column.",26272929
+2457,21,Female,left,right,Not at all,Not at all,Always,"Largest value, or ability to solve math problem correctly",2105037
+3310,20,Female,left,right,Not at all,Not at all,Always,Picked based on the previous revealed values or just went back and forth,1825450
+2490,21,Female ,left,right,Some of the time,Some of the time,Some of the time,n/A,3417955
+2883,21,Female,right,left,Not at all,Not at all,Always,"if it was too hard to multiply, I added instead. Unless it seemed like the multiplication slot machine was giving much higher rewards than the addition slot.",1974435
+4183,20,Female ,left,right,Not at all,Not at all,Always,The side with the higher numbers is the side I would choose,2231069
+1638,21,Female,right,left,Not at all,Not at all,Some of the time,No,1954063
+3834,20,Male,right,left,Not at all,Not at all,Always,If there were more forced choices for one slot,2142013
+5859,18,Female ,left,right,Some of the time,Not at all,Most of the time,Most multiplication problems were memorized from previous math years so I did those. The addition was the easy choice. ,3938209
+5838,19,Male,right,left,Not at all,Not at all,Always,"In general, after the 4 ""forced picks"", I stayed consistent with whichever side demonstrated a higher average in the forced picks.",1571967
+5872,20,Female ,left,right,Not at all,Not at all,Always,WHATEVER COLUMN HAD THE HIGHEST NUMBERS,2778161
+5795,19,Male,right,left,Some of the time,Some of the time,Some of the time,I didn't have a specific strategy.,1773509
+5301,18,Female ,right,left,Not at all,Not at all,Always,I just picked addition cause I couldn't find a pattern and it was easier than multiplication,5913466
+4021,19,Female ,left,right,Not at all,Not at all,Always,I looked at the general patterns of each bandit. The one with the generally larger numbers is the one that I would choose. ,3277755
+5819,18,Female ,left,right,Some of the time,Always,Most of the time,I looked at the numbers I was shown and tried to quickly come up with an average of which side was larger and then performed the calculation corresponding to that side.,2223995
+5790,18,Female,left,right,Not at all,Not at all,Always,i mostly used addition because it was faster ,1850518
+5836,20,Male,right,left,Not at all,Not at all,Always,try to use the currently available information to make judgment of which side tends to be larger.,2555751
+5290,19,Female,left,right,Not at all,Not at all,Always,Not really. I switched between multiplying and adding most rounds.,2213339
+5041,19,Male,left,right,Some of the time,Not at all,Most of the time,"When the problems were more complicated, I tend to break it down ",11790547
+3127,20,Female,right,left,Not at all,Not at all,Always,The numbers that I saw during the forced pulls factored into my choice.,2095660
+4058,19,Female,right,left,Not at all,Not at all,Always,I felt that I should do multiplication more often on the double digit numbers based on my idea that harder work = higher reward. sometimes I just didn't want to do it though so I went with addition at times too.,2409872
+5833,19,Male,left,right,Not at all,Not at all,Always,"I tried to gauge which slot machines were consistently putting out higher numbers and continued to try and choose that machine. However, for some of the multiplication problems that were a lot for me to do in my head, I chose the addition problems regardless of the pattern I saw.",3048345
+4247,19,Male,right,left,Not at all,Not at all,Always,I chose the problems that were the easiest ,1279860
+5884,18,Female,right,left,Not at all,Not at all,Always,if the multiplication was something hard i would do the addition. otherwise i would usually choose based on which one i thought would give me the highest value given the other values that were outputted,2588730
+3809,20,Female,right,left,Not at all,Not at all,Always,"I just picked whichever seemed to have a higher average, except for sometimes when I would get distracted and do and enter the addition solution without thinking
+",2275069
+5830,19,Male,right,left,Not at all,Not at all,Always,"I tried to get an even amount of numbers on the left and right side. However, if the first 2 numbers were significantly different (22 vs 70) I always attempted to solve the side with the larger numbers. However, sometimes, I accidentally added instead of multiplied and vise versa.",2402395
+3516,20,Male,right,left,Not at all,Not at all,Always,If I only received 1 number from a column I normally tried to check that column again and go with the one with more data if the number wasn't high enough. Also sometimes I got lazy and picked whichever side I could solve faster. ,2984660
+5330,18,Female,left,right,Not at all,Not at all,Always,I mostly just picked randomly,2070433
+4188,19,Female,right,left,Not at all,Not at all,Most of the time,No!,1920375
+5853,20,Female,left,right,Not at all,Not at all,Always,How easy the multiplication/addition was so if the numbers were too big and hard to multiply out in my head I would opt for addition.,1874972
+5817,18,Female,right,left,Some of the time,Some of the time,Most of the time,no,1666108
+5837,19,Male,left,right,Not at all,Not at all,Always,"I based my choices off of the pattern of the badits that came before and when I really could not decide, I slightly erred towards picking the multiplication bandit if the problem was hard.",2585657
+3822,19,Female,left,right,Not at all,Some of the time,Most of the time,"I just picked the one that was averaging higher with the forced pull. When one side had only one forced pull, I would pick it to get more information. ",2938016
+3964,19,Female,right,left,Not at all,Not at all,Always,"I tried to pick the one that had higher numbers. If the side with higher numbers was the left, I picked the right one sometimes if the multiplication was too hard to do since some points are better than no points.",2001802
+5430,20,Female,right,left,Not at all,Not at all,Always,I generally based on the forced choice to see which slot have more larger numbers. I do not make choice based on the relative difficulty of the math problems.,1992035
+5442,18,Female,right,left,Not at all,Some of the time,Most of the time,I had no strategies. ,3256101
+4324,21,Male,right,left,Not at all,Not at all,Always,Rhythm,2323846
+5785,18,Female,right,left,Not at all,Not at all,Always,nope,3124023
+2365,20,Female,right,left,Not at all,Not at all,Always,I stayed with the slot machine that had the highest expected value each time,3072281
+5828,20,Female,left,right,Some of the time,Not at all,Some of the time,I just chose randomly,3290765
+5808,19,Female,left,right,Some of the time,Not at all,Most of the time,Usually the ones that had a higher number (if there was one) or the higher average. ,2344197
+2756,20,Female,left,right,Not at all,Not at all,Always,I usually picked the side that had more larger numbers. Unless the multiplication would have taken too long. Then I picked the addition side.,2121979
+5860,19,Male,left,right,Not at all,Not at all,Always,no strategies. Did whatever operation that seemed easier to me first.,1528311
+5890,18,Female,right,left,Not at all,Not at all,Always,No,3125915
+5782,31,Male,right,left,Not at all,Some of the time,Most of the time,"I usually went with the side with the higher average. If they were close and the addition was easier I would do chose that one, essentially buying info with an easy answer. If then it was clear I needed to struggle through the multiplication for a bigger pay out I would.",4018072
+5260,18,Female,left,right,Not at all,Not at all,Always,"I simply looked at the common numbers shown in the locked answers for guidance on the higher average. Sometimes I also got lazy to multiply the larger numbers so I simply added. If the numbers were single digits, depending on the previous answers, I would multiply or add. ",9181164
+2206,22,Male,left,right,Not at all,Not at all,Always,I try different patterns and the moment they don't seem to work out I tried to change and adapt.,4455981
+5826,19,Female,left,right,Not at all,Not at all,Always,"I primarily decided based on the column that seemed to have the higher average. If the averages seemed the same, I chose the addition column because it was easier.  ",3380841
+5457,18,Female,left,right,Not at all,Not at all,Always,Choosing the slot that showed the higher numbers,2639918
+5887,18,Female,left,right,Not at all,Some of the time,Most of the time,Whatever operations I memorized were helpful when deciding to choose,1752163
+3477,21,Female,left,right,Some of the time,Not at all,Most of the time,the first four numbers,2146176
+5744,42,Female,right,left,Not at all,Not at all,Always,I don't understand what the bandit is you are referring to. I thought all the choices were forced so I picked the lever the arrow pointed to. I used a mental area model strategy to solve the math problems. ,3145615
+2926,21,Male,right,left,Not at all,Not at all,Always,"factored in highest numbers, but weren't the only thing",2200800
+5866,19,Female,right,left,Some of the time,Not at all,Most of the time,"If the values showed to me were very similar to each other on both sides, I would choose to add the next number since that is the easiest to do. When the numbers showed to me were larger on one side by a lot, I would multiply/add on that given side. Multiplication was the most difficult to me when the numbers were double digits so I would take more time to solve the problem when it seemed like a large number was at stake. ",2755917
+2546,20,Female ,right,left,Not at all,Not at all,Always,"If it was an easy multiplication problem, I choose whichever I thought would give me a higher number. If not, I stuck with addition because it is easier",2390777
+4529,21,Male,right,left,Not at all,Not at all,Always,no,28736584
+2541,22,Male,right,left,Not at all,Not at all,Always,which column had the higher numbers,1955808
+5904,19,Female,left,right,Not at all,Not at all,Always,i didn't do multiplication for the easy multiplying ones,2484040
+593,21,Female,right,left,Not at all,Not at all,Always,which side had provided more numbers and ease of the multiplication,2089637
+1458,22,Female,right,left,Some of the time,Not at all,Most of the time,"If there was not a huge different in the mean at a quick glance, I chose the easier math problem. If there was a huge difference, I would sometimes do the harder math problem if it wasn't too hard, but there was a threshold where I did not want to do the hard one even though it would bring the average up.",2082006
+1285,21,Female,right,left,Most of the time,Not at all,Some of the time,the average of the numbers revealed,4489159
+2647,21,Female,right,left,Not at all,Not at all,Always,I chose whichever calculation was easier for me. ,2002561
+3912,20,Female,left,right,Not at all,Not at all,Always,"At first I tried to do all the multiplication side if the left side was looking to be a higher average,but towards the end I started doing the easier equation.",1869364
+2842,20,Male,left,right,Not at all,Not at all,Always,-,1997235
+3838,19,Male,right,left,Not at all,Not at all,Always,nope just random,1629800
+2506,22,Male,right,left,Not at all,Not at all,Always,"Yes, I took into account the averages of the available numbers giving some weight to the maximum and the range of the numbers available. If the averages were close, I typically picked the bandit with the larger maximum number.",2272776
+5283,19,Male,right,left,Some of the time,Not at all,Most of the time,random,2146022
+3190,20,Male,right,left,Not at all,Not at all,Always,The side with the largest numbers consistently.,9001628
+5897,22,Male,right,left,Not at all,Not at all,Always,"I eyeballed the average of both sides, and my first choice was the one with the higher average.  On the following choices, I did the same thing but estimated if the preceding number lowered the average enough to pick the other side.",2284456
+551,21,Male,right,left,Not at all,Not at all,Always,I tried to keep in mind what average the shown values could be centered around.,1602462
+4049,19,Female,right,left,Some of the time,Not at all,Some of the time,Which ever had more numbers,1724213
+5786,20,Female,left,right,Not at all,Not at all,Always,"I usually did addition because it was easier, honestly. I did not really have a strategy.",4134595
+4298,18,Female,left,right,Not at all,Not at all,Always,"If I felt I could do the multiplication, I chose the right column. If I felt it was too hard, I chose the left column. ",2225635
+5915,19,Male,left,right,Not at all,Not at all,Always,I just looked at whichever side's average from the given values was higher,2372647
+5905,18,Male,right,left,Not at all,Not at all,Always,"I judged which bandit to pick using the provided numbers (I tried to select the machine that seemed to have a higher average). In some cases when there was only one number to judge for a machine, I treated that number as an indicator for the average.",1907491
+3371,20,Male,right,left,Not at all,Not at all,Always,no i chose randomly. usually added cuz it was quicker,3584927
+1524,22,Female,right,left,Not at all,Not at all,Always,"Generally I went with what was highest based on the forced levers, but for the 8 lever games I was more likely to use my levers to continue to figure out with slot machine had a higher average",2288580
+2475,21,Male,left,right,Not at all,Not at all,Always,NO`,2272997
+3251,20,Female,right,left,Not at all,Not at all,Always,I just tried to stick with the one that originally seemed to have higher values from the forced pulls,2726616
+2572,21,Female,left,right,Not at all,Not at all,Always,"If one side had much higher numbers, i usually chose to do all the problems for that one, unless there was a multiplication problem i thought would take me a long time to figure out.",2602392
+5868,18,Female,right,left,Not at all,Not at all,Always,I looked at bandit had higher given numbers for each round. I also have difficulties doing mental math and if a problem was too hard to multiply I simply added it. (math fluency impairment),3331885
+5748,19,Male,right,left,Some of the time,Not at all,Most of the time,digits,1765737
+5241,20,Female,left,right,Some of the time,Some of the time,Most of the time,"The numbers shown before on the slot machine influenced my pick. If the numbers had a higher average than the other one, I chose the slot machine with the higher average.",2314891
+4557,19,Male,left,right,Not at all,Not at all,Always,"In the first few rounds, I noticed that the slot machine with the higher average typically, but didn't always, have the higher scores, so with few exceptions, I followed the highest score, only changing sides when I found the pattern to be broken.",2821954
+5409,19,Male,right,left,Some of the time,Not at all,Most of the time,Added the sum of the knowns of the 4 forced and whatever side was higher is the side I picked.,1954197
+4625,21,Female,left,right,Not at all,Not at all,Always,whichever had higher averages or if the multiplication was too hard,1550219
+5917,19,Female,left,right,Some of the time,Not at all,Most of the time,I used the numbers that were forced to choose whether to add or multiply. If there was a large range of numbers in one column I would try to only do numbers in the other unless the larger range seemed a bigger number.,3306332
+4103,19,Female,left,right,Not at all,Some of the time,Most of the time,"I tried to estimate which bandit had a higher average based on the numbers revealed thus far, and chose to continue picking that bandit. If the bandits had about the same average, I chose the bandit with addition because the math problems were easier and quicker to solve.",2824241
+3326,21,Female,right,left,Some of the time,Not at all,Most of the time,whatever was eady,2836209
+5203,19,Female,left,right,Not at all,Not at all,Always,I picked which ever side was higher on the last slot,3787446
+5797,19,Male,right,left,Not at all,Not at all,Always,I just looked at which machine I thought had the higher average values that were shown by the force. ,4486240
+5126,19,Female,left,right,Not at all,Not at all,Always,"I mostly chose the side with the higher visible average, and occasionally did the opposite in case it was a trick or something",2646579
