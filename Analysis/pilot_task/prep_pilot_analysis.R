@@ -8,9 +8,9 @@ pilot_data_raw <- here("Data", "Pilot_Task", "experimental_trials.csv") %>%
 
 pilot_data <- pilot_data_raw %>%
   group_by(subid) %>%
-  filter(mean(accuracy) >= 80) %>%
+  filter(mean(accuracy) >= min_pilot_math_acc) %>%
   ungroup() %>%
-  filter(math_rt < 75)
+  filter(math_rt < longest_time_for_baseline_math)
 
 names(pilot_data) <- c(
   "Sub_ID", "Response", "Answer", "Task", "High_Num", "Low_Num", "Accuracy",

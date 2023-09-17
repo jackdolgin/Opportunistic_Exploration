@@ -3,17 +3,20 @@
 # install.packages("devtools")
 if (!require(devtools)) install.packages("pacman")
 
-regenerate_preprocessed_df <<- FALSE
-
-rerun_fit_models <<- "none"  # "none", "local", or "cluster"
-
 purrr::walk(
-  c("packages", "preprocess_and_load_free_choices", "fit", "plotting_funcs"),
+  c(
+    "packages", "analysis_params", "preprocess_and_load_free_choices", "fit",
+    "plotting_funcs"
+  ),
   ~source(here::here("Analysis", "main_task", paste0(.x, ".R")))
 )
 library(papaja)
 
 # Collect Methods Info ----------------------------------------------------
+
+pilot_num_recruited_baseline <- pilot_data_raw$subid %>% n_distinct() 
+
+pilot_num_basline_usasble <- pilot_data$Sub_ID %>% n_distinct()
 
 pilot_baseline_gender_breakdown <- here("Data", "Pilot_Task", "sub_info.csv") %>%
   read_csv() %>%
@@ -608,10 +611,13 @@ knitr::write_bib(
   ))
 
 
-correlation_between_diff_and_rt <- cor.test(
-  pilot_data_filtered_and_summarized$RT,
-  pilot_data_filtered_and_summarized$Difficulty
-) %>%
+correlation_RT_Diff <- cor.test(pilot_data_filtered_and_summarized$RT,
+                                pilot_data_filtered_and_summarized$Difficulty)
+
+correlation_Acc_Diff <- cor.test(pilot_data_filtered_and_summarized$Accuracy,
+                                 pilot_data_filtered_and_summarized$Difficulty)
+
+correlation_between_diff_and_rt <- correlation_RT_Diff %>%
   pluck(4) %>%
   round(2) %>%
   as.numeric

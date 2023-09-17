@@ -177,7 +177,7 @@ first_layer_of_filtering <- preprocessed_df %>%
     q1 == "Not at all",
     q2 == "Not at all",
     q3 == "Always",
-    sub_avg_accuracy >= .8,
+    sub_avg_accuracy >= min_bandit_math_acc / 100,
     forced_choice == 0
   )
 
@@ -186,10 +186,13 @@ potential_cheaters <- first_layer_of_filtering %>%
   filter(
     batch == "replication_2",
     selection == "mult",
-    rt_diff > 12
+    rt_diff > cheaters_detection_vars[2]
   ) %>%
   summarise(median_choice_time = median(choice_time), num_diff_choices = n()) %>%
-  filter(median_choice_time < 10000, num_diff_choices >= 15) %>%
+  filter(
+    median_choice_time < cheaters_detection_vars[3] / 1000,
+    num_diff_choices >= cheaters_detection_vars[1]
+  ) %>%
   pull(subid)
 
 if (regenerate_preprocessed_df){
@@ -199,7 +202,7 @@ if (regenerate_preprocessed_df){
     group_by(subid) %>%
     mutate(perc_mult = mean(selection == "mult")) %>%
     filter(
-      between(perc_mult, .15, .85),
+      between(perc_mult, 1 - too_much_math_preference, too_much_math_preference),
       game_max_choice_time_so_far < 180 | batch %in% c("exploratory", "replication")
     ) %>%
     ungroup() %>%

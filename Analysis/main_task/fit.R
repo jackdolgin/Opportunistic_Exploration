@@ -42,12 +42,12 @@ if (rerun_fit_models %in% c("local", "cluster")){
       ) %>%
       pull %>%
       c(
-        if_else(eq_exposure, 1, dnorm(par[4], mean = 0, sd = 20)), # sets the if value to 1 since it gets logged at the next step, which stops it from having any effect
-        dnorm(par[2], mean = 0, sd = 20),
-        dnorm(par[3], mean = 0, sd = 20)
+        if_else(eq_exposure, 1, dnorm(par[4], mean = gaus_prior[1], sd = gaus_prior[2])), # sets the if value to 1 since it gets logged at the next step, which stops it from having any effect
+        dnorm(par[2], mean = gaus_prior[1], sd = gaus_prior[2]),
+        dnorm(par[3], mean = gaus_prior[1], sd = gaus_prior[2])
       ) %>%
       log %>%
-      c(-par[1] / 20) %>% # could move this before the log, use exp to wrap it, and set a bound on optim values so we never reach 709, which sends val to infinity
+      c(-par[1] / exponential_prior_length) %>% # could move this before the log, use exp to wrap it, and set a bound on optim values so we never reach 709, which sends val to infinity
       multiply_by(-1) %>%
       sum
   }
@@ -75,7 +75,7 @@ if (rerun_fit_models %in% c("local", "cluster")){
         ungroup()
       
       if (aggregation == "percentile"){
-        df <- mutate(df, across(iv_diff, ~change_scale(., c(-1, 1))))           # Sets range from -1 to 1
+        df <- mutate(df, across(iv_diff, ~change_scale(., std_scale_of_diff)))  # Sets range from -1 to 1
       }
       
       if (continuum == "ordinal"){
@@ -113,9 +113,17 @@ if (rerun_fit_models %in% c("local", "cluster")){
           function(my_data, my_equal_exposure){
             DEoptim(
               optimization_func,
-              c(.0001, -100, -100, if(!my_equal_exposure) -100),
-              c(rep(100, 3), if(!my_equal_exposure) 100),
-              DEoptim.control(itermax=1000, trace = FALSE),
+              c(
+                .0001,
+                global_optimizer_lower_bound,
+                global_optimizer_lower_bound,
+                if(!my_equal_exposure) global_optimizer_lower_bound
+              ),
+              c(
+                rep(global_optimizer_upper_bound, 3),
+                if(!my_equal_exposure) global_optimizer_upper_bound
+              ),
+              DEoptim.control(itermax = max_iterations_per_fit, trace = FALSE),
               data = my_data,
               eq_exposure = my_equal_exposure
             ) %>%
