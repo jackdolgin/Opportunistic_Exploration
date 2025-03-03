@@ -1,0 +1,297 @@
+---
+title             : "Opportunistic exploration: Humans consider not just whether, but also when, to sample unfamiliar options"
+shorttitle        : "Opportunistic exploration"
+
+author: 
+  - name          : "Jack Dolgin"
+    affiliation   : "1"
+    corresponding : yes
+    address       : "Somers Family Hall 1125, 1 Brookings Drive, St. Louis, MO 63105"
+    email         : "jdolgin@wustl.edu"
+  - name          : "Bettina Bustos"
+    affiliation   : "2"
+  - name          : "Robert C. Wilson"
+    affiliation   : "3"
+  - name          : "Wouter Kool"
+    affiliation   : "1"
+
+affiliation:
+  - id            : "1"
+    institution   : "Washington University in St. Louis"
+  - id            : "2"
+    institution   : "University of Iowa"
+  - id            : "3"
+    institution   : "University of Arizona"
+
+abstract: "Big or small, many decisions incorporate the tradeoff between exploration and exploitation—whether to take advantage of what we know to be good, or to take a chance on something new. Recent research suggests we make this choice via a combination of stochasticity and directedness, and that the directedness involves prioritizing lesser seen options. Through a series of multi-armed bandit experiments, we extend this conceptualization of directed exploration to incorporate opportunistic choice in dynamic decision contexts. Participants chose between two bandits and, unlike in prior work, did not explore undersampled bandits more when more future trials remained, even though there was increased strategic value in learning about those choice options. Crucially, however, on each trial they chose one bandit by multiplying two randomly selected numbers, and the other bandit by adding the two numbers. We found that people seized the context to opportunistically explore, such that they were more likely to pass on the multiplication bandit for a hard problem when more subsequent trials remained. The results echo recent machine learning work on “opportunism” but in humans and suggest directed exploration reflects not just whether, but also when to explore."
+  
+keywords          : "Exploration, Exploitation, Opportunism, Planning, Decision Making, Reinforcement Learning"
+
+bibliography      : ["article_refs.bib", "r_package_refs.bib"]
+
+figsintext        : no
+figurelist        : yes
+tablelist         : yes
+footnotelist      : no
+lineno            : no
+mask              : no
+
+#class             : doc
+#lang              : 'en-US'
+
+
+class             : "man"
+# output:
+#  bookdown::html_document2:
+#     toc: true
+#     toc_float: true
+#     collapsed: false
+#     number_sections: false
+#     toc_depth: 2
+#     code_folding: hide
+#     css: webpaper.css
+
+indent: TRUE
+#output: 
+#  word_document
+
+mainfont: Times New Roman
+output:
+  papaja::apa6_word: default
+  papaja::apa6_pdf: default
+  #redoc::rdocx_reversible
+ 
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_format = "all") })
+  
+header-includes:
+  - \usepackage{threeparttable}
+  - \usepackage{setspace}\singlespacing 
+  - \usepackage{dcolumn}
+  - \usepackage{upgreek}
+  # - \newenvironment{zeroindent}
+  #    {\par\setlength{\parindent}{5pt}}
+  #    {\par}  
+  - \setlength{\parskip}{0pt}
+  - \raggedbottom
+---
+
+```{r}
+
+medium <<- "manuscript"
+```
+
+```{r setup, include=FALSE, code=xfun::read_utf8(here::here("Analysis", "staging.R"))}
+medium <<- "manuscript"
+# Install  these packages if they aren't installed already
+# devtools::install_github("crsh/papaja")
+# install.packages("knitr")
+# Also, must download file from https://osf.io/zvfky
+# and place in Data/Main_Task directory
+```
+
+```{r preferences, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, error=FALSE, message=FALSE)
+knitr::opts_knit$set(eval.after = 'fig.cap')
+```
+
+# Introduction
+
+Every day we perpetually size up and decide between options, and for many of those choices we have more familiarity with some options than others. In the case of a sports coach, she may have to decide which of her players, varying in experience, to put on the field. She could stick with those who are battle-tested and whose output is predictable; alternatively, she could take a chance on a young prospect who, if given the chance, might in fact prove themselves to already be the best. This kind of choice, pitting the unfamiliar vs. the predictable, is a variant of a long-researched problem known as the explore-exploit dilemma. Findings have consistently pointed to humans' aptitude for adaptively negotiating these scenarios, thanks both to domain-general and context-specific strategies. Across contexts, people decide how much to explore using two strategies---directed and random exploration---that mirror strategies computer scientists use to model optimal behavior in similar paradigms (e.g., Gershman, 2018; Wilson, Bonawitz, Costa, & Ebitz, 2021). In specific circumstances, we also may tack on additional bespoke strategies. For example, when exploring certain options makes more options available downstream, we prioritize these activating or "empowering" options (Brändle, Stocks, Tenenbaum, Gershman, & Schulz, 2023).
+
+Nevertheless, the strategies that exploration research has identified are only a fraction of the strategies people have been shown to use across all kinds of decision-making tasks. One of the key omissions from the exploration research has been the strategy of when, rather than just whether, to explore. Previous studies frame the explore-exploit choice as static, as if options are selected one at a time. However, the sports coach from before, for example, may not be contemplating only whether to explore (inserting the young prospect into the game). Her choice may also be about inserting the player when the game is likeliest to be out of hand (and the risks to exploring are low). Even if exploring is tempting at the beginning of the game, the coach can get much of the same benefit (learning how talented the player is) by waiting until the end to insert the prospect. In that spirit, this paper investigates whether, and if so how, people sequence when to explore. Specifically, we ask whether people leverage the learnt, time-varying cost structure of the environment to opportunistically put off or pounce on chances to sample unfamiliar options.
+
+Of course, it is long known that people can and frequently do plan the order of their actions and decisions. Lashley (1951) catapulted the idea that there is temporal organization behind actions, and, taking the mantle, Miller, Galanter, and Pribram (1960) characterized much behavior as planned. They contended that in planned behavior, people serially execute pre-decided steps to service a hierarchy of sub-goals and goals. Researchers like Hayes-Roth and Hayes-Roth (1978) suggested one principle that guides how people order these steps. They pointed out that, in the everyday world, the quality of choices often fluctuates across moments, and that people often match when they select an option based on its idiosyncratic dips and crests, if they were predictable (alternatively, if not predictable, people would adjust on the fly, not necessarily committing to predefined steps). They referred to this idea of "timing" as "opportunistic planning."
+
+Yet to date, only inconclusive evidence has linked planning---opportunistic or otherwise---to exploration. One indirect source of evidence stems from work by Hills and Hertwig (2010). Their participants sampled from two payoff distributions, and the results showed they consistently did so in one of two ways. Some participants stuck to sampling one distribution for half the time, then switched over to the other distribution for the second half. Another set of participants continually alternated between both distributions. These explorations of the distributions could signal planning, because there was a relationship between consecutive samples, potentially meaning that participants thought out in advance how they would order their behavior. On the other hand, participants may very well have adopted these patterns as mere heuristics, myopically repeating or zig-zagging without forethought. This kind of interpretation question also arises in the work of optimal stopping problems. In these problems, similar to the casino card game Black Jack, participants keep sampling (exploration) until they decide to walk away with their last reward. Participants could perform complex calculations, considering how many trials remain, evaluating the expected reward on an average trial, factoring in the likely variability, and settling on a threshold for when to stop sampling. Alternatively, they might not plan out what threshold they will stop at, instead making their call somewhat spontaneously. Thus, it remains unresolved whether people actively plan out how they will explore.
+
+Work at the intersection of exploration and the form of planning central to this paper---opportunism---is less settled still. One study, deploying six bandits, informed participants that a bandit would disappear if they did not regularly sample it; the authors found that this threat caused participants to select unappealing bandits more often (Navarro, Tran, and Baz, 2018). This increase in sampling could reflect opportunistic exploration, since a bandit is explored specifically because it is a particularly opportune time to do so (it is available now, but will not otherwise be in the future); however, this behavior might have little to do with optimizing when to explore and may more reflect loss aversion (Kahneman & Tversky, 1979). Another study (Schulz, Klenske, Bramley, and Speekenbrink, 2017) controlled for any preservation tendencies, but the authors did not find compelling evidence of opportunistic exploration. In this virtual boat-steering task, anticipating high downstream costs to explore did not encourage more exploration at the outset. It therefore remains unclear whether opportunism might characterize exploration.
+
+To test for opportunistic exploration, we created a bandit task where the value of a moment for exploration, defined in terms of mental effort, was sometimes particularly cheap and at other times particularly costly. Specifically, on each trial participants chose one bandit by multiplying two randomly selected numbers, or the other bandit by adding the numbers. Participants sometimes faced difficult multiplication problems (e.g., 19 and 13), or in more opportune moments sampling the multiplication bandit required completing only a simple calculation (1 and 13). Our hypothesis was that while a more difficult math problem might make one bandit particularly more aversive than the other, this aversiveness should be amplified when there are more future opportunities to explore that same side, especially under the expectation that the cost of exploring that same side will likely be lower (i.e., easier math problems) on future trials. Likewise, an easy math problem will loom especially large, we expected, when one might be in the thick of a longer series of trials, because if one hopes to sample that side anyways, they may pounce on the opportunity before facing a more difficult math problem. In short, when there are more future opportunities to explore, participants should become more sensitive to the relative cost between bandits.
+
+In total, we ran a baseline arithmetic task and three novel two-choice bandit tasks. Besides being realistically complex, without obvious demand effects, our bandit task also examined the presence of two of the most common types of uncertainty-driven strategies. In directed exploration, options that are less well known are most likely to be chosen, all else equal. In random exploration, choices are made randomly, which indirectly results in less explored options being sampled. In our task, bandits differed not only in associated math difficulty, but also expected rewards and number of previous samples (informativeness). Thus, we measured opportunism, random exploration, and directed exploration as three mutually compatible strategies.
+
+# Baseline Experiment
+
+The baseline task indexed the difficulty of addition and multiplication problems. These math problems subsequently appeared during bandit task trials, thereby indexing their opportunism.
+
+## Materials and Methods
+
+### Participants
+
+We recruited all participants from the Washington University pool of undergraduate psychology students. The tasks were approved by the Washington University Institutional Review Board, built using jsPsych (de Leeuw, 2015), and completed online, remotely, and for class credit. We recruited `r pilot_num_recruited_baseline` participants for the arithmetic task and analyzed data from `r pilot_num_basline_usasble` (`r pilot_num_females` female, `r pilot_num_males` male, `r pilot_num_other_gender` other) after removing participants for correctly answering fewer than `r min_pilot_math_acc`% of trials.
+
+### Experimental Design
+
+The entire task was answering 74-75 addition problems and 74-75 multiplication problems. Each problem featured two numbers, between 1 and 24. To generate the problems, we constructed 16 sets of addition and multiplication number pairs, with each pair appearing in one of the 16 sets as addends and again in another of the 16 sets as multiplicands. Each set consisted of 74-75 multiplicand and 74-75 addend pairs that were otherwise determined pseudorandomly. The pairs together represented all combinations of numbers between 1 and 24 except the couple 2 and 2. We randomly assigned a set to each participant so that the participant's task was answering the 148-150 problems in that set. Within each participant we randomized the order the pairs of numbers appeared. On a given trial, participants had unlimited time to answer, and they responded by typing their answer on their keyboard; problems lasting longer than `r longest_time_for_baseline_math` seconds were not further analyzed. After each response, they rated the difficulty of the problem on a scale from 0-100. We asked participants ahead of time to do all the math in their head, meaning not using the Internet or pen and paper, for example, as assistance. We also asked participants after the experiment if they followed the instructions about doing the math in their head, and excluded participants who did not.
+
+## Results
+
+Measures of difficulty all significantly correlated with one another. At the group level, self-rated difficulty correlated with response time *r*(`r correlation_RT_Diff$parameter`) = `r round(correlation_RT_Diff$estimate, 2)`, `r format_p(correlation_RT_Diff$p.value)` and with accuracy *r*(`r correlation_Acc_Diff$parameter`) = `r round(correlation_Acc_Diff$estimate, 2)`, `r format_p(correlation_Acc_Diff$p.value)`. Because of the particularly tight link between self-rated difficulty and response time, we focus on these two measures in the rest of the paper. As seen in Figure 1, each participant found multiplication problems more difficult than addition problems. However, Figure 2 reveals that this difference varied widely depending on the pair of numbers. For the median pair, multiplying the two numbers took `r round(all_number_combos$RT_diff %>% median, 2)` seconds longer than adding those same two numbers; however, that difference increased to `r number(biggest_combo_diff$RT_diff, .1)` seconds in the case of one pair, `r biggest_combo_diff$Low_Num` and `r biggest_combo_diff$High_Num`, whereas on the other end of the spectrum, participants on average multiplied the pair `r smallest_combo_diff$Low_Num` and `r smallest_combo_diff$High_Num` `r round(-1 * smallest_combo_diff$RT_diff, 2)` seconds *faster* than adding the two numbers. Therefore, the baseline task successfully produced a continuous and dispersed index of difficulty serviceable for the bandit experiments.
+
+```{r figure1, echo=FALSE,fig.width=10, fig.height=5, fig.cap=fig_1_caption, out.width = "\\textwidth", fig.pos = "!ht"}
+
+fig_1_caption <- paste(
+  "Individual difference in response time for correct answers to addition",
+  "and multiplication problems"
+)
+
+indiv_diffs_math()
+```
+
+```{r figure2, echo=FALSE,fig.width=10, fig.height= 8, fig.cap=fig_2_caption, out.width = "\\textwidth", fig.pos = "!h"}
+
+fig_2_caption <- paste(
+  "Difference in difficulty between multiplication and addition problems",
+  "by number pairs"
+)
+
+list(
+  c("RT", "Difficulty"),
+  c("RT", "Self-Rated Difficulty (1-100)"),
+  c("Response Time (In Seconds)", "Self-Rated Difficulty"),
+  c(-2, -10),
+  c(20, 60),
+  c(0, 0)
+) %>%
+  pmap(heat_plotter) %>%
+  reduce(`|`)
+  # write_csv(cars, "aloha5.csv")  
+```
+
+# Bandit Experiments
+
+We ran three bandit experiments in total. The first and third experiments were identical, and the second version was nearly the same. Key predictions for the second and third experiments were pre-registered, as shown in Tables 1-4, logged at [osf.io/kb4xa/registrations](https://osf.io/kb4xa/registrations), and further discussed in the Results section.
+
+## Materials and Methods
+
+### Participants
+
+#### Bandit Experiment 1
+
+We recruited `r expl_num_recruited` undergraduate students for the first bandit task and analyzed data from `r expl_usable_participants` (`r expl_gender[[1]]` female, `r expl_gender[[2]]` male, `r expl_gender[[3]]` other). We removed `r expl_innac` participants with accuracies below `r min_bandit_math_acc`% on math problems, `r didnt_in_head_by_exp("exploratory")` more who, despite instructions, reported that they did not complete all math problems entirely in their head, and another `r too_many_resp_by_exp("exploratory")` who chose the same bandit more than `r too_much_math_preference * 100`% of the time.
+
+#### Bandit Experiment 2
+
+We recruited `r rep_1_num_recruited` individuals for the first preregistered bandit task and analyzed data from `r rep_1_usable_participants` (`r rep_gender[[1]]` female, `r rep_gender[[2]]` male, `r rep_gender[[3]]` other). In line with our preregistration, we pruned `r rep_innac` with accuracies below `r min_bandit_math_acc`% on math problems, `r didnt_in_head_by_exp("replication")` more who, despite instructions, reported not completing all math problems entirely in their head, and another `r too_many_resp_by_exp("replication")` who chose the same bandit more than `r too_much_math_preference * 100`% of the time.
+
+#### Bandit Experiment 3
+
+We collected data on a new set of `r rep_2_num_recruited` participants for the replication bandit task and analyzed the data of `r rep_2_usable_participants` (`r rep_2_gender[[1]]` female, `r rep_2_gender[[2]]` male, `r rep_2_gender[[3]]` other). In line with our preregistration, we first excluded any participants who did not meet the exclusion criteria in Experiments 1 and 2. We pruned `r rep_2_innac` with accuracies below `r min_bandit_math_acc`% on math problems, `r didnt_in_head_by_exp("replication_2")` more who, despite instructions, did not complete all math problems entirely in their head, and another `r too_many_resp_by_exp("replication_2")` who chose the same bandit more than `r too_much_math_preference * 100`% of the time. In addition, also in line with our preregistration, we excluded `r potential_cheaters_removed` participants who we suspected may have used a calculator, in spite of what they listed in the post-task questionnaire. These participants' data followed a similar pattern in choice time and math problem difficulty compared to those who listed post-task that they did use calculator help. Specifically, they chose a multiplication bandit at least `r cheaters_detection_vars[1]` times when multiplying the two numbers was, on average in the pilot task, more than `r cheaters_detection_vars[2]` seconds slower than adding them. Also, among those `r cheaters_detection_vars[1]` or more choices, their average choice time was quicker than `r cheaters_detection_vars[3]` seconds, suggesting they did not invest requisite effort into these difficult multiplication problems.
+
+### Experimental Design
+
+We modeled the bandit experiments off Wilson et al.'s (2014) Horizon Task. The experiments were broken into 80 games, and each game was broken into a number of trials. At the start of a game, two vertical rectangles appeared, each sliced into the same number of pieces as the number of trials in that game (see Figure 3). We told participants that each vertical rectangle represented one bandit, and bandits were set up so they dispensed some average amount of rewards over the game that was variable from trial to trial. The rewards were always valued between 1 and 100 points.
+
+```{r figure3, echo=FALSE, fig.width=5,fig.height=6, fig.cap=fig_3_caption, out.width = "\\textwidth", fig.pos = "!ht"}
+
+fig_3_caption <- paste(
+  "Example games from the experiment; short horizon on the left",
+  "long horizon on right"
+)
+
+knitr::include_graphics(here::here("Manuscript", "short_vs_long_horizon_fig.png"))
+```
+
+We explicitly told participants that the bandits during one game would have zero relation with the rewards underlying subsequent bandits on either side. We also did not provide them any clues, other than the opportunity to sample from trial to trial, about which side was more likely to yield a greater reward. Under the hood, we randomly assigned one of the two bandits a generative average of either 60 or 40, and we randomly assigned the other bandit's generative mean as 20, 8, or 4 points different (these differences were 4-20 points lower if the first bandit was 60, and 4-20 points greater if the first bandit was 40). We also set the standard deviation of a bandit from its mean at 8 points.
+
+The first four trials in each game were always forced choices. Specifically, participants were told whether to press the left arrow key, corresponding to the left rectangle, or the right arrow key, corresponding to the right one (the task ignored presses of the wrong key). In 50% of games, two choices were forced to each of the two rectangles, in a random order; in the other 50% of games one side was forced once and the other side three times (50% of these games involved three forced choices to the right side, 50% involved three forced choices to the left).
+
+After the forced choices, participants were free to choose between bandits ("free choice" trials). Participants faced either 1 free choice trial (known as "short horizon" games) or 4-5 free choice trials ("long horizon" games). The singular difference between the first and third experiments vs. the second is that each long horizon was 4 trials for the first and third experiments but 5 trials for the second experiment. Each participant completed 40 short horizon games and 40 long horizon games, shuffled randomly. Note that at the onset of a game, participants could immediately see how many trials the game would last.
+
+The novel and critical wrinkle in our design was that for the free choices (trials 5 and beyond), selecting a bandit entailed solving an arithmetic problem in lieu of pressing the corresponding arrow key. For each participant, the bandit on the left side of the screen in every game was associated with either addition or multiplication, and the bandit on the right side of the screen with the other of the two types of arithmetic (side and arithmetic type were randomized between participants). Specifically, we randomly presented one of `r num_baseline_pairs` pairs of numbers from the arithmetic-only experiment on each trial 5 or beyond. The two numbers were always between 1 and 24, and participants decided whether to choose the bandit that required them to add these two numbers or to multiply them. For example, imagine a trial on which the numbers are 4 and 13. If the participant chose the multiplication bandit, then the participant needed to answer "17" (= 4 + 13), but if they chose the addition bandit, then they needed to answer "52" (= 4 x 13). If participants provided an answer that did not solve either problem, the trial ended and no points were provided. Moreover, we encouraged them to amass the most total points over the experiment, and further, we informed them that ranking among the top seven participants in points earned would amount to a \$15 Amazon gift card on top of participation class credit.
+
+## Analysis
+
+We conducted our analyses in R (R Core Team, 2021), using the packages tidyverse (Wickham et al., 2019), arrow (Richardson et al., 2021), cowplot (Wilke, 2020), patchwork (Lin Pedersen, 2020), and gghalves (Tiedemann, 2020). The code for the online task and the analyses are available at [https://github.com/jackdolgin/opportunistic_exploration](https://github.com/jackdolgin/opportunistic_exploration). The results can also be explored interactively at [https://jackdolgin.shinyapps.io/opportunistic_exploration](https://jackdolgin.shinyapps.io/opportunistic_exploration). The only trial-level pruning occurred if a trial or any trial preceding it in the same game involved an incorrect math response (`r task_inaccuracy` of trials were incorrect) or if the response time while answering was greater than three minutes.
+
+Our statistical tests centered around a model used by studies with a similar task design (Zajkowski, Kossut, and Wilson, 2017; Feng, Wang, Zarnescu, and Wilson, 2021), with the addition of a difficulty parameter. The model, which takes the shape of a logistic choice curve, incorporates inputs that are different components of the choice. Our model is as follows:
+
+$$
+p_{mult} = \frac{1}{1 + exp(\frac{R_{mult} - R_{add} + \alpha(I_{mult} - I_{add}) + D(M_{add} - M_{mult}) + B}{\sqrt2\sigma})}
+$$
+
+In this equation, *p~mult~* represents the probability of selecting the multiplication side, *R~mult~* - *R~add~* the difference in the mean points between the multiplication and addition bandits, and *I~mult~* - *I~add~* the difference in 'informativeness' between bandits. This latter difference equals 1 when the multiplication bandit is more informative (less sampled) than the addition bandit, -1 when the addition bandit is more informative, and 0 when both sides are evenly sampled. Thus, the greater the magnitude of the corresponding coefficient, $\alpha$, the more sensitive participants are to bandit exposure. We interpreted $\alpha$ as a measure of directed exploration.
+
+Because challenging math problems demand more cognitive effort (Hess & Polt, 1964; Dunn, Inzlicht, & Risko, 2019), which people experience as aversive (Kool, McGuire, Rosen, & Botvinick, 2010; Westbrook, Kester, & Braver, 2013), we expected participants to seek easier math problems and avoid more difficult ones. The difference *M~add~* - *M~mult~* represents how much more difficult it is to multiply the trial's numbers than to add them. We defined difficulty as the average time to solve the problem during the baseline experiment. Since pilot data revealed the distribution of RT differences to be skewed (see the bottom half of Figure 2), we entered the differences in RT between multiplication and addition as rank-ordered values, compared against the difference in RT of all `r num_baseline_pairs - 1` other pairs in the baseline experiment. The corresponding parameter, *D*, increased in magnitude when sensitivity to difficulty increased. We also recalculated *D* three other ways, resulting in four overall, slightly different models. First, we re-fit *D* in terms of raw RT differences, rather than performing rank-ordering. Second and third, we defined difficulty in terms of self-rated difficulty during the baseline; in the second model, we rank-ordered self-rated difficulty; in the third model, we used raw self-rated difficulty. All four approaches to quantifying *D* yielded similar fits, as RT and self-rated difficulty were correlated `r correlation_between_diff_and_rt` in the baseline task.
+
+We standardized the difference in difficulty (regardless of how it was defined) and difference in reward so they spanned between `r std_scale_of_diff[1]` and `r std_scale_of_diff[2]` and therefore sat on the same scale as the information difference. The last two free parameters, *B* and $\sigma$, represent a bias for bandits on one side of the screen vs. the other and represent decision noise, respectively. This decision noise corresponds to how randomly a participant explored with respect to the other free parameters. We interpreted decision noise as a proxy for random exploration.
+
+We fit the model separately for each free choice trial number for each horizon length for each participant using a maximum a posteriori estimation. As a result, there were six fits for each participant in Experiments 1 and 3 and seven for each participant in Experiment 2 (technically, there were four times as many fits, since we ran four models, one for each of the four difficulty parameters). We added an exponential prior (with length scale `r exponential_prior_length`) for the temperature coefficient and a N(`r gaus_prior[1]`, `r gaus_prior[2]`) Gaussian prior distribution for the information, difficulty, and side bias coefficients (Feng et al., 2021). In our first two experiments, we used a pair-wise t-test to assess whether coefficients significantly differed between the first free choices of short horizons vs. long horizons. Since the fits were not normally distributed, in our third experiment, we used a Wilcoxon signed-rank test in accordance with our pre-registration. A global optimizer from the RcppDE R package (Eddelbuettel, 2018) set bounds of -100 to 100 for the side bias, information, and difficulty coefficients, set a bound of 0 to 100 for the temperature coefficient, and ran up to `r formatC(max_iterations_per_fit, big.mark=",")` iterations per fit until the objective function had been minimized.
+
+## Results
+
+Using generalized linear models, we performed several manipulation checks on our data to ensure their sufficient quality. As expected, greater expected reward, as measured by the mean standardized points on previous pulls to the bandit, significantly increased the odds a bandit would be picked ($\beta$ = `r round(effect_of_rew$estimate, 2)`, 95% CI [`r round(effect_of_rew$lower_estimate, 2)`, `r round(effect_of_rew$upper_estimate, 2)`], z = `r round(effect_of_rew$statistic, 2)`, `r format_p(effect_of_rew$p.value)`). Conversely, the more difficult the arithmetic solution required to pull a bandit, as measured by the response time of that math problem in the baseline experiment, the lower the odds that side would be picked ($\beta$ = `r round(effect_of_diff$estimate, 3)`, 95% CI [`r round(effect_of_diff$lower_estimate, 3)`, `r round(effect_of_diff$upper_estimate, 3)`], z = `r round(effect_of_diff$statistic, 1)`, `r format_p(effect_of_diff$p.value)`). Still, though multiplication problems in general were more difficult than their addition counterparts ($\beta$ = 17.52, 95% CI [15.10, 19.43], *t*(596) = 10.03, *p* \< .001), participants picked the multiplication side `r perc_mult_chosen` of the time, indicating that people engaged with the experiment and did not myopically choose only the easiest math problem.
+
+Our key question was whether people leveraged the learnt cost structure of the environment to opportunistically put off or pounce on chances to explore. Such a prediction would result in more sensitivity to costs at the start of long horizons compared to short horizons, when there are no future opportunities to explore and therefore is no putting off or pouncing to be done. The results in Figure 4, particularly for Experiments 1 and 2, align with this hypothesis. When participants had seen both bandits an equal number of times via forced choice, when the rewards those bandits had yielded so far had been comparable (on average), and when the math problems for one bandit were much harder than those for the other bandit, there still seemed to be a discernible avoidance of the multiplication side at the start of a long horizon, compared to during a short horizon. We formally tested sensitivity to difficulty via the *D* coefficient in the model described in the Analyses section.
+
+```{r figure4, echo=FALSE,fig.width=16.5, fig.height= 8, fig.cap=fig_4_caption, out.width = "\\textwidth", fig.pos = "!ht"}
+
+fig_4_caption <- paste(
+  "Facing several upcoming trials led participants to be more sensitive to",
+  "the math trial difficulty"
+)
+
+choice_and_learning_plots("choice_curve")
+```
+
+In Experiment 1, the *D* coefficient (Figure 5) was significantly larger at the start of long horizons than at the start of short horizons (*M~d~* = 5.64, 95% CI [3.92, Inf], *t*(80) = 5.45, *p* \< .001). In Experiment 2, our pre-registered test for the difference in the difficulty parameter, calculated in terms of rank-ordered RT, was marginally significant (*M~d~* = 1.42, 95% CI [-.04, Inf], *t*(149) = 1.61, *p* = .055). However, as mentioned in the Methods section, there were three other equally plausible ways of calculating difficulty, and those approaches each reached significance (see Table 1; *p*-values all less than .01). Moreover, all four approaches reached significance when we implemented a Wilcoxon signed-ranked test, reflecting the non-normal shape of the parameter distribution. Therefore, in Experiment 3 we increased our sample size, pre-registered all four methods for calculating difficulty, and measured significance with a Wilcoxon signed-ranked test. As seen in Table 1, the difference in the difficulty parameter was significant across all measurement approaches (*p*-values of .001, .049, .001, and .044). These results suggest greater sensitivity to bandit math difficulty at the start of long horizons compared to short horizons.
+
+```{r figure5, echo=FALSE,fig.width=12, fig.height= 10, fig.cap=fig_5_caption, out.width = "\\textwidth", fig.pos = "!ht"}
+
+fig_5_caption <- paste(
+  "Estimates of the difficulty parameter, $D$, across three experiments"
+)
+
+fig_5 <- fits_plot("Difficulty")
+walk(fig_5, print)
+```
+
+Alongside opportunism, we also examined the mutually compatible presences of directed and random exploration strategies. These strategies predict increased long horizon exploration and an increased short horizon exploitation of reward, similar to the results in Experiment 2 depicted in Figure 4. Specifically, in Experiment 2 greater reward for one bandit on free choice 1, short horizon made that bandit particularly more compelling than when the bandit was equally rewarding on free choice 1, long horizon. To formally test the presence of these exploration strategies, we measured whether their corresponding model coefficients---for informativeness and $\sigma$ for decision noise---were greater for the first choice on long horizon trials compared to short horizon trials.
+
+Across the three studies, we found inconclusive evidence for such information and noise increases (see Tables 2 and 3 and Figures 6 and 7). In Experiment 1, how we defined difficulty influenced whether the informativeness coefficient was significantly greater at the start of the long horizon (*p*-values ranged between .032 and .055) (see Table 2). Meanwhile, we observed no difference in the decision noise coefficient between short and long horizons (*M~d~* = 0.10, 95% CI [-Inf, 1.08], *t*(80) = -0.17, *p* = .567) (see Table 3). In Experiment 2, there was clear evidence for an increase in both informativeness (*M~d~* = -2.10, 95% CI [-Inf, -0.77], *t*(149) = -2.61, *p* = .005) and decision noise (*M~d~* = -1.17, 95% CI [-Inf, -0.56], *t*(149) = -3.18, *p* = .001) during longer horizons, regardless of which of the four ways we defined difficulty. However, for Experiment 3, we observed non-significant differences between information parameters (*z* = -1.00, p = .160) and between temperature parameters (*z* = -0.83, *p* = .203) across horizons.
+
+```{r figure6, echo=FALSE,fig.width=12, fig.height= 10, fig.cap=fig_6_caption, out.width = "\\textwidth", fig.pos = "!ht"}
+
+fig_6_caption <- paste(
+  "Estimates of the information-seeking parameter, $\\alpha$,",
+  "across three experiments"
+)
+
+fig_6 <- fits_plot("Information")
+walk(fig_6, print)
+```
+
+```{r figure7, echo=FALSE,fig.width=12, fig.height= 10, fig.cap=fig_7_caption, out.width = "\\textwidth", fig.pos = "!ht"}
+
+fig_7_caption <- paste(
+  "Estimates of the decision noise parameter, $\\sigma$,",
+  "across three experiments"
+)
+
+fig_7 <- fits_plot("Decision Noise")
+walk(fig_7, print)
+```
+
+# Discussion
+
+Across three bandit experiments, two pre-registered, we find consistent evidence that people recognize how opportune a particular moment is to explore, and that they exploit that knowledge during their decisions. Sampling bandits in our task always involved some cost since we tied them to math problems, but only in some cases---when more trials remained---could participants opportunistically pounce or punt on that difficulty. In other words, when a participant wanted to sample a given bandit, they had no flexibility about when to do so if it was the only free choice trial in the game. We found, however, that in comparison, facing several upcoming trials led participants to be more sensitive to the math trial difficulty. Apparently, knowing more trials remained made them more likely to wait on a bandit with a difficult math problem; likewise, it made them more eager to sample bandits whose costs they knew were cheap now but likely to soon rise. In contrast, we surprisingly found inconsistent evidence for the presence of two of the best documented exploration strategies, directed and random exploration.
+
+The presence of opportunism in our findings links sequential decision-making research to the exploration literature. Many decision-making studies have documented that different parts of the brain are responsible for deciding what to choose compared to deciding when to choose it (Brass & Haggard, 2008; Zapparoli, Seghezzi, & Paulesu, 2017). If the timing is at least a partially independent process in many decisions, it stands to reason that it should also be a component of exploration decisions. We believe our findings to be the first to tap into this component. To be sure, the exploration literature has considered the related idea of anticipation. That is, people certainly think about future events, like upcoming trials, when making a decision---knowing more trials are to come boosts exploration in the now, because one will have more chances to later exploit whatever they explore now (Gureckis & Rich, 2018; Navarro, Newell, & Schulze, 2016; Sang, Todd, Goldstone, & Hills, 2020; Wilson et al., 2014). However, our results go a step further, showcasing the ability to plan a sequence of decisions in the context of exploration. Specifically, people may be uncertain about one kind of distribution---the expected rewards of each bandit---but they can leverage what they know about other distributions, like expected math difficulty, to opportunistically arrange their choices.
+
+It is unclear whether opportunism was a deliberate strategy that participants deployed, or if it occurred more automatically. One could tease apart this question by subjecting participants to a working memory load while completing the task, a method Cogliati Dezza, Cleemans, and Alexander (2019) used to show that another strategy, directed exploration (which decreased under load), is a top-down process. The fact that the presence of these two strategies, opportunistic and directed exploration, did not consistently coincide with one another in the present study suggests that both may indeed be top-down and, by extension, in competition. Nevertheless, participants in Experiments 1 and 3 did not explore randomly either, even though Cogliati Dezza et al. (2019) suggest random exploration is an automatic process. Participants may have simply prioritized one attribute, the relative difficulty of bandits' math problems, over how many times they had previously explored that bandit. Future work can disentangle the strategies that go into play in settings where opportunism is leverageable.
+
+Together, the different strength of results among random, directed, and opportunistic exploration raises questions about what constitutes a strategy. On the one hand, participants may have, explicitly or implicitly, switched between exploration strategies from trial to trial. On the other hand, they may have carried out multiple strategies concurrently. If so, they may have applied random, directed, and opportunistic exploration strategies separately to the choice options, generating a weighted score for the options. Alternatively, they may have somehow combined strategies. Work by Wilson, Wang, Sadeghiyeh, and Cohen (2020 preprint) contends that random and directed exploration are ends on a continuum of a singled shared strategy known as "Deep Exploration."; in that model, people simulate which option to pick, and the more simulations they run, the more directed their exploration becomes. Future work could investigate whether a different holistic model could incorporate opportunistic exploration among other exploration strategies.
+
+We should note a number of conceptual limitations in our experiment. We used large samples to obtain relatively modest effective sizes, though we note the task was performed online and we could not guarantee that participants bought into the math difficulty aspect of the task instead of cheating with an online calculator. The size of the effects also may in part be due to participants' inability to notice or keep in mind the opportunistic nature of the task, rather than deliberately ignoring whether upcoming trials would be easier or harder. If participants did approach each problem in a sort of silo, that might say more about how participants even recognize and remember opportunities and patterns rather than a reluctance to take advantage of them (Marković, Goschke, and Kiebel, 2021). Additionally, we defined opportunities in a specific way, with regard to math difficulty, and that is only one such measure of an opportunity. We alternatively could have defined opportunities in relation to availability, for example. A future study could eliminate one of two bandits on a predictable set of bandit pulls, thereby potentially encouraging a participant to pull and sample that bandit before it temporarily disappears.
+
+Stepping back, though, our results provide compelling evidence for people's capacity and willingness to seize opportunities to explore choice options when they are relatively cheap. This strategy is perhaps the strongest affirmative answer yet to a question posed by Schulz and Gershman (2019), among others, about whether people plan exploratory behavior, as opposed to it emerging more as a heuristic. Likewise, just as opportunism is revealing of exploration, so too is exploration revealing about opportunism. It is hard to imagine a situation riper for prioritizing the "when" as exploration; if one is pre-committed to sampling several options anyways, and therefore at least to some extent indifferent between them, they will be left to focus their attention elsewhere, such as on opportune timing. It is telling that this paper behaviorally replicates a conceptually similar paradigm recently proposed in computer science (Wu, Guo, & Liu, 2018), signaling a convergence of opportunistic exploration research in disparate domains. Regardless, our participants' ability to recognize cheap and expensive moments to sample and to pounce or punt, accordingly, speaks to human sophistication in flexibly managing uncertainty. That probably bodes well for young prospects' playing time during blowouts.
+
+\newpage
+
+
+# References
+
+::: {#refs}
+:::
